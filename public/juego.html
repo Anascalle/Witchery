@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego en Curso</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Juego en Curso</h1>
+    <div id="turno" class="turno"></div>
+
+
+    <div class="cartas-container">
+        <div class="carta" onclick="mostrarModal('Crea')">Crea</div>
+        <div class="carta" onclick="mostrarModal('Actúa')">Actúa</div>
+        <div class="carta" onclick="mostrarModal('Escribe')">Escribe</div>
+        <div class="carta" onclick="mostrarModal('Descifra')">Descifra</div>
+    </div>
+    
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarModal()">&times;</span>
+            <h2 id="modal-titulo"></h2>
+            <p id="modal-texto"></p>
+            <button id="cumplio-btn">Cumplió</button>
+
+        </div>
+    </div>
+
+    <script type="module" src="../src/js/gamelogic.js"></script>
+</body>
+</html>
