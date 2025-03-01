@@ -140,15 +140,35 @@ export function aplicarEfectoHechizo(hechizo) {
 // Función para cerrar el modal de hechizo
 export function cerrarModalHechizo() {
     let modalHechizo = document.getElementById("modal-hechizo");
+    let codigoInput = document.getElementById("codigo-hechizo");
+    let botonHechizo = document.querySelector("button");
+    let modalTitulo = document.getElementById("titulo-hechizo");
+
     if (modalHechizo) {
         modalHechizo.style.display = "none";
     }
+
+    // Restablecer los valores cuando se cierre el modal
+    // Restaurar el título del modal a su valor original
+    modalTitulo.innerText = "Ingresa el código del hechizo"; 
+
+    // Mostrar de nuevo el input y el botón
+    codigoInput.style.display = "block";
+    botonHechizo.style.display = "block";
+
+    // Limpiar el input
+    codigoInput.value = "";
+    
+    // Limpiar el mensaje de hechizo
+    let mensajeHechizo = document.getElementById("mensaje-hechizo");
+    mensajeHechizo.innerText = "";
 }
+
 export function validarCodigo() {
     let codigoInput = document.getElementById("codigo-hechizo");
     let mensajeHechizo = document.getElementById("mensaje-hechizo");
     let botonHechizo = document.querySelector("button"); // Obtener el botón de lanzar hechizo
-    let modalTitulo = document.getElementById("modal-titulo"); // Obtener el título del modal
+    let modalTitulo = document.getElementById("titulo-hechizo"); // Obtener el título del modal
 
     // Código de hechizo ingresado
     let codigo = codigoInput.value.trim();
@@ -160,10 +180,13 @@ export function validarCodigo() {
         // Mostrar el nombre del hechizo en el título del modal
         modalTitulo.innerText = hechizoEncontrado.nombre;  // Actualiza el título con el nombre del hechizo
         mensajeHechizo.innerText = `${hechizoEncontrado.descripcion}`;
-        
+
+        // Actualizar el input para que muestre el nombre del hechizo
+        codigoInput.value = hechizoEncontrado.nombre; // Aquí cambiamos el texto del input por el nombre del hechizo
+
         // Aquí puedes agregar la lógica para aplicar el hechizo en el juego
         console.log(`Hechizo lanzado: ${hechizoEncontrado.descripcion}`);
-        
+
         // Ocultar el input y el botón después de lanzar el hechizo
         codigoInput.style.display = "none";
         botonHechizo.style.display = "none";
@@ -172,10 +195,8 @@ export function validarCodigo() {
         // Si el código no es válido
         mensajeHechizo.innerText = "¡Código inválido! Intenta de nuevo.";
     }
-
-    // Limpia el input para ingresar un nuevo código
-    codigoInput.value = "";
 }
+
 
 export function mostrarModal(categoria, ingredienteNombre = null) {
     let modalTitulo = document.getElementById("modal-titulo");
