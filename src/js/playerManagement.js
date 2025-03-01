@@ -22,7 +22,7 @@ function generarInputs() {
     for (let i = 0; i < cantidad; i++) {
         let input = document.createElement("input");
         input.type = "text";
-        input.placeholder = `Nombre ${i + 1}`;
+        input.placeholder = `Nombre jugador  ${i + 1}`;
         input.id = `nombre${i}`;
         container.appendChild(input);
     }
