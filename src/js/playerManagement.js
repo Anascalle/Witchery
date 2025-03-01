@@ -1,4 +1,4 @@
-import { ingredientes } from "./ingredients.js";
+import { ingredientes } from "../data/ingredients.js";
 console.log(ingredientes);
 
 

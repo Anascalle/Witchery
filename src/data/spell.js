@@ -11,34 +11,3 @@ export const hechizos = [
     { codigo: "S9T0", descripcion: "Manos Encantadas: El equipo contrario no puede usar sus manos en el siguiente desafío." },
     { codigo: "U1V2", descripcion: "Pista Ilusoria: La app entrega una pista errónea al equipo contrario sin que lo sepan." }
 ];
-
-
-// 🔮 Función corregida para obtener un hechizo aleatorio
-export function obtenerHechizoAleatorio() {
-    let hechizosArray = Object.values(hechizos); // Convierte el objeto en array
-    return hechizosArray[Math.floor(Math.random() * hechizosArray.length)];
-}
-
-// 🔮 Aplica un hechizo a un equipo contrario
-export function aplicarHechizo(equipos, turnoActual) {
-    let equipoAfectadoIndex = (turnoActual + 1) % equipos.length;
-    let equipoAfectado = equipos[equipoAfectadoIndex];
-
-    if (!equipoAfectado) {
-        console.warn("No hay equipo para aplicar el hechizo.");
-        return;
-    }
-
-    let hechizo = obtenerHechizoAleatorio();
-
-    if (!equipoAfectado.hechizos) {
-        equipoAfectado.hechizos = [];
-    }
-
-    equipoAfectado.hechizos.push(hechizo);
-    console.log(`El equipo ${equipoAfectado.name} ha recibido el hechizo: ${hechizo}`);
-
-    localStorage.setItem("equipos", JSON.stringify(equipos));
-
-    return hechizo;
-}

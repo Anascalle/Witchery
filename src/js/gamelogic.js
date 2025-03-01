@@ -2,7 +2,7 @@ import { actualizarTurno, siguienteTurno } from "./turns.js";
 import { mostrarModal, cerrarModal, cumplioReto, noCumplioReto} from "./modal.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Verifica si los elementos del DOM están disponibles antes de usar
+   
     const turnoElemento = document.getElementById("turno");
     if (turnoElemento) {
         actualizarTurno();
