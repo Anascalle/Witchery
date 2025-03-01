@@ -205,29 +205,33 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
     let cumplioBtn = document.getElementById("cumplio-btn");
     let noCumplioBtn = document.getElementById("no-cumplio-btn");
     let pistaImagen = document.getElementById("pista-imagen");
+    let iniciarBtn = document.getElementById("iniciar-btn");
 
-    if (!modalTitulo || !modalTexto || !modal || !cumplioBtn || !noCumplioBtn) {
+    if (!modalTitulo || !modalTexto || !modal || !cumplioBtn || !noCumplioBtn || !iniciarBtn) {
         console.error("Elementos del modal no encontrados.");
         return;
     }
 
-    cumplioBtn.style.display = "inline-block";
-    noCumplioBtn.style.display = "inline-block";
+    // Mostrar el botón de "Iniciar" y ocultar los botones de "Cumplió" y "No cumplió"
+    iniciarBtn.style.display = "inline-block";  // Mostrar el botón de iniciar
+    cumplioBtn.style.display = "none";  // Ocultar el botón de cumplió
+    noCumplioBtn.style.display = "none";  // Ocultar el botón de no cumplió
 
+    // Si se pasa un ingrediente con nombre
     if (ingredienteNombre) {
         let ingrediente = ingredientes.find(i => i.nombre === ingredienteNombre);
         if (!ingrediente || !ingrediente.pistas || !Array.isArray(ingrediente.pistas)) {
             console.warn(`Ingrediente "${ingredienteNombre}" no encontrado o sin pistas.`);
             return;
         }
-    
+
         // Resetea el progreso de las pistas para este ingrediente
-        progresoPistas[ingredienteNombre] = 0; 
-    
+        progresoPistas[ingredienteNombre] = 0;
+
         let pistaActual = ingrediente.pistas[0];
         modalTitulo.innerText = "Pista 1";
         modalTexto.innerText = pistaActual;
-    
+
         if (ingrediente.imagen) {
             pistaImagen.src = ingrediente.imagen;
             pistaImagen.style.display = "block";
@@ -236,6 +240,7 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
         }
     }
     else {
+        // Si no se pasa ingrediente, se selecciona un reto aleatorio de la categoría
         if (!retos[categoria]) {
             console.warn(`Categoría "${categoria}" no encontrada.`);
             return;
@@ -246,10 +251,46 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
         pistaImagen.style.display = "none";
     }
 
-    cumplioBtn.onclick = cumplioReto;
-    noCumplioBtn.onclick = noCumplioReto;
+    // Función para cuando se hace clic en "Iniciar"
+    iniciarBtn.onclick = function() {
+        // Muestra los botones "Cumplió" y "No cumplió" después de hacer clic en "Iniciar"
+        cumplioBtn.style.display = "inline-block";
+        noCumplioBtn.style.display = "inline-block";
+
+        // Si el reto es de "Crear" o "Actuar", ocultar el texto del reto
+        if (categoria === "Crea" || categoria === "Actúa") {
+            modalTexto.style.display = "none";  // Oculta el texto del reto
+        }
+
+        // Ocultar el botón de iniciar
+        iniciarBtn.style.display = "none";
+
+        // Asigna las funciones a los botones para asegurarse de que sigan funcionando
+        cumplioBtn.onclick = cumplioReto;
+        noCumplioBtn.onclick = noCumplioReto;
+
+        // Los botones de "Cumplió" y "No cumplió" estarán activos mientras se oculten los textos
+        // El texto de la pista se mostrará cuando el reto se cumpla o no
+        cumplioBtn.onclick = function() {
+            if (categoria === "Crea" || categoria === "Actúa") {
+                modalTexto.style.display = "block";  // Muestra el texto de la pista
+            }
+            cumplioReto();
+        };
+
+        noCumplioBtn.onclick = function() {
+            if (categoria === "Crea" || categoria === "Actúa") {
+                modalTexto.style.display = "block";  // Muestra el texto de la pista
+            }
+            noCumplioReto();
+        };
+    };
+
+    // Mostrar el modal
     modal.style.display = "block";
 }
+
+
 
 export function cumplioReto() {
     let equipoActual = equipos[turnoActual];
