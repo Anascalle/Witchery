@@ -329,7 +329,7 @@ export function cumplioReto() {
             pistaImagen.style.display = "block";
         }
 
-        // Mostrar botones de la pista
+        // Esconde los botones en esta etapa, ya que los botones solo se mostrarán después de que se haya mostrado la pista
         cumplioBtn.style.display = "none";
         noCumplioBtn.style.display = "none";
 
@@ -343,15 +343,52 @@ export function cumplioReto() {
         console.log(`Todas las pistas de "${ingrediente.nombre}" han sido mostradas.`);
         ingredienteActualIndex++;
 
+        // Verifica si se han procesado todos los ingredientes del equipo
         if (ingredienteActualIndex >= equipoActual.ingredients.length) {
             console.log("Todos los ingredientes han sido procesados.");
-            ingredienteActualIndex = 0;
+            ingredienteActualIndex = 0;  // Reinicia para el siguiente turno
             siguienteTurno();  // Avanzar al siguiente turno si todos los ingredientes han sido procesados
         } else {
             console.log(`Pasando al siguiente ingrediente: ${equipoActual.ingredients[ingredienteActualIndex].nombre}`);
+
+            // Asegúrate de ocultar el texto de pistas y botones cuando se pase al siguiente ingrediente
+            let modalTitulo = document.getElementById("modal-titulo");
+            let modalTexto = document.getElementById("modal-texto");
+            let pistaImagen = document.getElementById("pista-imagen");
+            let cumplioBtn = document.getElementById("cumplio-btn");
+            let noCumplioBtn = document.getElementById("no-cumplio-btn");
+
+            // Limpiar el contenido del modal antes de mostrar el siguiente ingrediente
+            modalTitulo.innerText = '';
+            modalTexto.innerText = '';
+            pistaImagen.style.display = "none";  // Esconde la imagen
+            cumplioBtn.style.display = "none";   // Esconde el botón
+            noCumplioBtn.style.display = "none"; // Esconde el otro botón
+
+            // Ahora, carga el siguiente ingrediente y su primera pista
+            let siguienteIngrediente = equipoActual.ingredients[ingredienteActualIndex];
+            if (siguienteIngrediente && siguienteIngrediente.pistas.length > 0) {
+                // Mostrar la primera pista del siguiente ingrediente
+                modalTitulo.innerText = "Pista 1";
+                modalTexto.innerText = siguienteIngrediente.pistas[0];
+
+                if (siguienteIngrediente.imagen) {
+                    pistaImagen.src = siguienteIngrediente.imagen;
+                    pistaImagen.style.display = "block";
+                }
+
+                // Esconder los botones ya que no deben aparecer en esta fase
+                cumplioBtn.style.display = "none";
+                noCumplioBtn.style.display = "none";
+
+                // Restablecer el progreso de pistas del nuevo ingrediente
+                progresoPistas[siguienteIngrediente.nombre] = 0;
+            }
         }
     }
 }
+
+
 
 
 
