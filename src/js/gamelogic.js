@@ -1,5 +1,5 @@
 import { actualizarTurno, siguienteTurno } from "./turns.js";
-import { mostrarModal, cerrarModal, cumplioReto, noCumplioReto} from "./modal.js";
+import { mostrarModal, cerrarModal, cumplioReto, noCumplioReto, mostrarModalHechizo, validarCodigo, cerrarModalHechizo} from "./modal.js";
 
 document.addEventListener("DOMContentLoaded", function () {
    
@@ -10,11 +10,13 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("No se encontró el elemento 'turno' en el DOM.");
     }
 
-    // Exponer funciones en `window` para el HTML
+    
     window.siguienteTurno = siguienteTurno;
     window.mostrarModal = mostrarModal;
     window.cerrarModal = cerrarModal;
     window.cumplioReto = cumplioReto;
     window.noCumplioReto = noCumplioReto; 
+    window.mostrarModalHechizo = mostrarModalHechizo; 
+    window.validarCodigo = validarCodigo;
+    window.cerrarModalHechizo = cerrarModalHechizo;
 });
-
