@@ -20,3 +20,38 @@ export const retos = {
         "v"
     ]
 };
+
+export const preguntasPiensa = [
+    {
+        pregunta: "Un grupo de amigos va de excursión a devolver una joya, pero en el camino se enredan con un tipo pálido que se obsesiona con ellos y un monstruo con doble personalidad. ¿De qué película se trata?",
+        opciones: [
+            "El Señor de los Anillos",
+            "Los Goonies",
+            "Indiana Jones y el Templo de la Perdición",
+            "Harry Potter y las Reliquias de la Muerte"
+        ],
+        respuestaCorrecta: "El Señor de los Anillos"
+    },
+    {
+        pregunta: "Un hombre besa a un cadáver, se enamora de ella, y cuando ella revive, resulta que es una princesa. Todo el mundo lo ve normal. ¿De qué película se trata?",
+        opciones: [
+            "Blancanieves y los siete enanitos",
+            "La bella y la bestia",
+            "El cadáver de la novia",
+            "La Sirenita"
+        ],
+        respuestaCorrecta: "Blancanieves y los siete enanitos"
+    },
+    {
+        pregunta: "Una joven con una condición dermatológica poco común destaca académicamente, pero su reputación se arruina por una serie de malentendidos políticos y un escándalo con animales parlantes. ¿De qué película se trata?",
+        opciones: [
+            "Wicked",
+            "Matilda",
+            "El viaje de Chihiro",
+            "La brújula dorada"
+        ],
+        respuestaCorrecta: "Wicked"
+    }
+    
+];
+
