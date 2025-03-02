@@ -210,29 +210,28 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
     let opcionesContainer = document.getElementById("opciones-container");
 
     if (!modalTitulo || !modalTexto || !modal || !cumplioBtn || !noCumplioBtn || !iniciarBtn || !opcionesContainer) {
-        console.error("Elementos del modal no encontrados.");
         return;
     }
 
-    // En la categoría "Piensa", no mostramos el botón "iniciar"
-    if (categoria === "Piensa") {
-        iniciarBtn.style.display = "none";  // Ocultar el botón de inicio
-    } else {
-        iniciarBtn.style.display = "inline-block"; // Mostrar botón de inicio en otras categorías
-    }
+    // Escondemos los botones de "cumplió" o "no cumplió" al principio
     cumplioBtn.style.display = "none";
     noCumplioBtn.style.display = "none";
     opcionesContainer.style.display = "none"; // Ocultar opciones inicialmente
 
-    // Mostrar la pregunta y las opciones de "Piensa"
-    if (categoria === "Piensa") {
-        let preguntaAleatoria = preguntasPiensa[Math.floor(Math.random() * preguntasPiensa.length)];
-        modalTitulo.innerText = "Piensa";
+    // Obtener una pregunta aleatoria de "Piensa"
+    let preguntaAleatoria = preguntasPiensa[Math.floor(Math.random() * preguntasPiensa.length)];
+
+    modalTitulo.innerText = "Piensa"; // Mantener el título de la categoría visible
+
+    if (preguntaAleatoria.tipo === "seleccion") {
+        // En la categoría "selección" no mostramos el botón de inicio
+        iniciarBtn.style.display = "none"; 
+
         modalTexto.innerHTML = `<p>${preguntaAleatoria.pregunta}</p>`;
 
         // Crear opciones de respuesta como botones
         opcionesContainer.innerHTML = ''; // Limpiar las opciones anteriores
-        preguntaAleatoria.opciones.forEach((opcion, index) => {
+        preguntaAleatoria.opciones.forEach((opcion) => {
             let opcionElemento = document.createElement('button');
             opcionElemento.classList.add('opcion');
             opcionElemento.innerText = opcion;
@@ -244,46 +243,61 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
 
         // Mostrar las opciones de respuesta
         opcionesContainer.style.display = "block"; // Mostrar las opciones
-        pistaImagen.style.display = "none";
-    } else {
-        if (!retos[categoria]) {
-            console.warn(`Categoría "${categoria}" no encontrada.`);
-            return;
-        }
-        let retoAleatorio = retos[categoria][Math.floor(Math.random() * retos[categoria].length)];
-        modalTitulo.innerText = categoria;
-        modalTexto.innerText = retoAleatorio;
-        pistaImagen.style.display = "none";
+        pistaImagen.style.display = "none"; // No mostrar imagen
+
+    } else if (preguntaAleatoria.tipo === "reto") {
+        // Mostrar la categoría y la pregunta al principio
+        modalTexto.innerHTML = `<p>${preguntaAleatoria.pregunta}</p><p><em>Respuesta correcta: ${preguntaAleatoria.respuestaCorrecta}</em></p>`;
+        
+        // Al presionar el botón de iniciar, se inicia el cronómetro
+        iniciarBtn.onclick = function () {
+            // Esconder la consigna (texto de la pregunta) pero no el título
+            modalTexto.innerHTML = ''; // Limpiar solo la consigna
+            iniciarBtn.style.display = "none"; // Ocultar botón de iniciar
+
+            // Iniciar el cronómetro y mostrar el tiempo
+            let tiempoRestante = preguntaAleatoria.tiempoLimite;
+            let temporizador = document.createElement('p');
+            temporizador.innerText = `Tiempo restante: ${tiempoRestante} segundos`;
+            modalTexto.appendChild(temporizador);
+
+            let intervalo = setInterval(function() {
+                tiempoRestante--;
+                temporizador.innerText = `Tiempo restante: ${tiempoRestante} segundos`;
+                if (tiempoRestante <= 0) {
+                    clearInterval(intervalo);
+                    temporizador.innerText = "¡Tiempo agotado!";
+
+                    // Mostrar la respuesta correcta y los botones "cumplió" o "no cumplió"
+                    setTimeout(() => {
+                        modalTexto.innerHTML = `<p>El tiempo ha terminado. La respuesta correcta es: ${preguntaAleatoria.respuestaCorrecta}</p>`;
+                        cumplioBtn.style.display = "inline-block";
+                        noCumplioBtn.style.display = "inline-block";
+                    }, 1000);  // Esperar un segundo antes de mostrar la respuesta correcta
+                }
+            }, 1000); // Actualiza cada segundo
+
+            // Cambiar visibilidad de los botones al iniciar
+            cumplioBtn.style.display = "none";
+            noCumplioBtn.style.display = "none";
+        };
+
+        opcionesContainer.style.display = "none"; // No mostrar opciones en un reto
+        pistaImagen.style.display = "none"; // Si no se requiere imagen
     }
 
-    // Manejo de la lógica cuando se hace clic en 'iniciar' en otras categorías
-    iniciarBtn.onclick = function () {
-        cumplioBtn.style.display = "inline-block";
-        noCumplioBtn.style.display = "inline-block";
-        iniciarBtn.style.display = "none";
+    // Manejo de los botones de cumplió y no cumplió
+    cumplioBtn.onclick = function () {
+        cumplioReto(); // Llamar a la función correspondiente para avanzar al siguiente reto
+    };
 
-        // Mostrar contenido solo después de iniciar
-        if (categoria === "Crea" || categoria === "Actúa") {
-            modalTexto.style.display = "none";
-        }
-
-        cumplioBtn.onclick = function () {
-            if (categoria === "Crea" || categoria === "Actúa") {
-                modalTexto.style.display = "block";
-            }
-            cumplioReto();
-        };
-
-        noCumplioBtn.onclick = function () {
-            if (categoria === "Crea" || categoria === "Actúa") {
-                modalTexto.style.display = "block";
-            }
-            noCumplioReto();
-        };
+    noCumplioBtn.onclick = function () {
+        noCumplioReto(); // Llamar a la función correspondiente para avanzar al siguiente reto
     };
 
     modal.style.display = "block";
 }
+
 
 // Función para mostrar el resultado (respuesta correcta o incorrecta)
 function mostrarResultado(opcionSeleccionada, respuestaCorrecta, opcionesContainer) {
@@ -313,6 +327,8 @@ function mostrarResultado(opcionSeleccionada, respuestaCorrecta, opcionesContain
     // Añadir el mensaje de respuesta
     opcionesContainer.appendChild(mensaje);
 }
+
+
 
 
 export function cumplioReto() {
