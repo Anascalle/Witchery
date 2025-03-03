@@ -85,64 +85,64 @@ export const preguntasPiensa = [
 export const preguntasEscribe =[
     {
         pregunta: "Escribe una rima con la palabra 'hechizo'",
-        tipo: "reto", 
+        tipo: "desafio", 
         respuestaCorrecta: "Cualquier rima válida que tenga la palabra 'hechizo'."
     },
     {
         pregunta: "Escribe una rima rápida utilizando la palabra 'misterio'",
-        tipo: "reto", 
+        tipo: "desafio", 
         respuestaCorrecta: "Cualquier rima válida con 'misterio'."
     },
     {
         pregunta: "Escribe un hechizo corto para transformar un objeto en otro. Debe tener rima y al menos 6 palabras.",
-        tipo: "reto", 
+        tipo: "desafio", 
         respuestaCorrecta: "Debe tener rima y mencionar transformación."
     },
     {
         pregunta: "Usa las letras de la palabra HECHIZO para formar un acrónimo que tenga sentido con el tema de hechizos o magia. Cada letra debe representar una palabra o parte de una frase relacionada.",
-        tipo: "reto", 
+        tipo: "desafio", 
         respuestaCorrecta: "Debe formar un acrónimo relacionado con magia."
     },
     {
         pregunta: "Cambia solo una letra en cada palabra para formar una nueva palabra válida en español. No puedes agregar ni quitar letras, solo modificar una.",
-        tipo: "reto", 
-        opciones: ["Barco", "Diente", "Plaza", "Camino", "Rocas"],
+        tipo: "desafio", 
+        palabras: ["Barco", "Diente", "Plaza", "Camino", "Rocas"],
         respuestaCorrecta: "Cada palabra debe transformarse correctamente."
     },
     {
         pregunta: "Cambia solo una letra en cada palabra para formar una nueva palabra válida en español. No puedes agregar ni quitar letras, solo modificar una.",
-        tipo: "reto", 
-        opciones: ["Mesa", "Canto", "Río", "Toro", "Perro"],
+        tipo: "desafio", 
+        palabras: ["Mesa", "Canto", "Río", "Toro", "Perro"],
         respuestaCorrecta: "Cada palabra debe transformarse correctamente."
     },
     {
         pregunta: "Escribe una frase en la que 'rojo' signifique algo distinto al color.",
-        tipo: "reto", 
+        tipo: "desafio", 
         respuestaCorrecta: "Debe ser una frase donde 'rojo' signifique algo distinto."
     },
     {
         pregunta: "Escribe una pregunta cuya respuesta sea 'la luna'.",
-        tipo: "reto", 
+        tipo: "desafio", 
         respuestaCorrecta: "Debe ser una pregunta cuya respuesta sea la luna."
     },
     {
         pregunta: "Usa las letras de la palabra BRUJA para formar un acrónimo que tenga sentido con el tema de hechizos o magia. Cada letra debe representar una palabra o parte de una frase relacionada.",
-        tipo: "reto", 
+        tipo: "desafio", 
         respuestaCorrecta: "Debe formar un acrónimo relacionado con magia."
     },
     {
         pregunta: "Escribe dos palabras que contengan tres vocales diferentes.",
-        tipo: "reto", 
+        tipo: "desafio", 
         respuestaCorrecta: "Cualquier par de palabras con tres vocales diferentes."
     },
     {
         pregunta: "Escribe una frase en la que cada palabra tenga la misma cantidad de letras.",
-        tipo: "reto", 
+        tipo: "desafio", 
         respuestaCorrecta: "Debe ser una frase donde todas las palabras tengan el mismo número de letras."
     },
     {
         pregunta: "Escribe una palabra que sea un anagrama de 'bruja' y 'mala'. Anagrama: Cambiar el orden de las letras y formar otra palabra",
-        tipo: "reto", 
+        tipo: "desafio", 
         respuestaCorrecta: "La palabra debe ser un anagrama válido."
     },
     {
@@ -157,34 +157,37 @@ export const preguntasEscribe =[
     },
     {
         pregunta: "Escribe tres palabras que signifiquen lo mismo que 'encantamiento'.",
-        tipo: "reto", 
+        tipo: "desafio", 
         respuestaCorrecta: "Debe ser un conjunto de tres sinónimos de 'encantamiento'."
     },
     {
         pregunta: "Completa el refrán: El que con lobos anda, __________.",
-        tipo: "escribe",
+        respuestaCorrecta:  "aullar aprende",
+        tipo: "rellena",
     },
     {
         pregunta: "Completa el refrán: En casa de herrero, __________.",
-        tipo: "escribe",
+        respuestaCorrecta: "cuchillo de palo",
+        tipo: "rellena",
     },
     {
-        pregunta: "Completa el refrán: A palabras necias, __________.",
-        tipo: "escribe",
+        pregunta: "Completa el refrán:  Del dicho al hecho, __________.",
+        respuestaCorrecta: "hay mucho trecho",
+        tipo: "rellena",
     },
     {
         pregunta: "Crea un conjuro usando solo palabras que empiecen con la misma letra.",
-        tipo: "reto", 
+        tipo: "desafio", 
         respuestaCorrecta: "Debe ser un conjuro usando palabras con la misma letra inicial."
     },
     {
         pregunta: "Un brujo ha lanzado un hechizo sobre ti y ahora hablas al revés. Escribe una frase al revés (min 4 palabras).",
-        tipo: "reto", 
+        tipo: "desafio", 
         respuestaCorrecta: "Debe ser una frase escrita al revés."
     },
     {
         pregunta: "Usa las letras de la palabra GATO para formar un acrónimo que tenga sentido con el tema de hechizos o magia. Cada letra debe representar una palabra o parte de una frase relacionada.",
-        tipo: "reto", 
+        tipo: "desafio", 
         respuestaCorrecta: "Debe formar un acrónimo relacionado con magia."
     }
 ];
