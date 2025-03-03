@@ -1,5 +1,5 @@
 import { actualizarTurno, siguienteTurno } from "./turns.js";
-import { mostrarModal, cerrarModal, cumplioReto, noCumplioReto, mostrarModalHechizo, validarCodigo, cerrarModalHechizo, } from "./modal.js";
+import { mostrarModal, cerrarModal, cumplioReto, noCumplioReto, mostrarModalHechizo, validarCodigo, cerrarModalHechizo,  } from "./modal.js";
 
 document.addEventListener("DOMContentLoaded", function () {
    
