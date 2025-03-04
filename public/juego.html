@@ -20,14 +20,12 @@
         </div>
     </div>
     
-    
     <div class="cartas-container">
         <div class="carta" onclick="mostrarModal('Crea')">Crea</div>
         <div class="carta" onclick="mostrarModal('Actúa')">Actúa</div>
         <div class="carta" onclick="mostrarModal('Escribe')">Escribe</div>
         <div class="carta" onclick="mostrarModal('Piensa')">Piensa</div>
         <div class="carta" onclick="mostrarModalHechizo('Hechizo')">Hechizo</div>
-
     </div>
 
     <div id="modal" class="modal">
@@ -39,16 +37,16 @@
                 <p id="modal-texto" class="pista-texto"></p>
                 
                 <div id="palabra-container" class="palabra-container" style="display: none;"></div>
-
             </div>
             <div id="opciones-container" class="opciones-container" style="display: none;"></div> 
         
-                <button id="enviar-respuesta-btn" style="display:none;">Enviar Respuesta</button>
-           
-            
+            <button id="enviar-respuesta-btn" style="display:none;">Enviar Respuesta</button>
             <button id="iniciar-btn">Iniciar</button>
             <button id="cumplio-btn" style="display:none;">Cumplió</button>
             <button id="no-cumplio-btn" style="display:none;">No cumplió</button>
+            
+            <!-- Botón para abrir la respuesta (solo se muestra si la pregunta es de tipo "acertijo") -->
+            <button id="ver-respuesta-btn" style="display:none;">Abrir Respuesta</button> 
         </div>
     </div>
 

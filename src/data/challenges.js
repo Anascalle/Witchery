@@ -1,28 +1,5 @@
 
 export const retos = {
-"Crea": [
-    "Dibuja un caldero mágico sin levantar el lápiz. Tu equipo debe adivinar qué objeto has dibujado.",
-    "Modela con plastilina a un dragón. Tu equipo debe adivinar qué criatura has modelado.",
-    "Modela con plastilina a un cuervo. Tu equipo debe adivinar qué criatura has modelado.",
-    "Modela con plastilina a un gato. Tu equipo debe adivinar qué criatura has modelado.",
-    "Dibuja un hipogrifo. Tu equipo debe adivinar qué criatura has dibujado.",
-    "Dibuja un fénix. Tu equipo debe adivinar qué criatura has dibujado.",
-    "Dibuja un pegaso. Tu equipo debe adivinar qué criatura has dibujado.",
-    "Modela una lámpara mágica. Tu equipo debe adivinar qué objeto has modelado.",
-    "Dibuja un portal a otra dimensión. Tu equipo debe adivinar qué objeto has dibujado.",
-    "Dibuja una mano lanzando un hechizo. Tu equipo debe adivinar qué acción representa el dibujo.",
-    "Modela con plastilina una calavera encantada. Tu equipo debe adivinar qué objeto has modelado.",
-    "Dibuja un grimorio con símbolos mágicos. Tu equipo debe adivinar qué objeto has dibujado.",
-    "Dibuja una escoba voladora. Tu equipo debe adivinar qué objeto has dibujado.",
-    "Dibuja un hechizo de tormenta eléctrica. Tu equipo debe adivinar qué objeto has dibujado.",
-    "Dibuja un hechizo de amor. Tu equipo debe adivinar qué objeto has dibujado.",
-    "Modela un hombre lobo. Tu equipo debe adivinar qué criatura has modelado.",
-    "Modela un caldero mágico. Tu equipo debe adivinar qué objeto has modelado.",
-    "Modela una llave encantada. Tu equipo debe adivinar qué objeto has modelado.",
-    "Modela un tritón. Tu equipo debe adivinar qué criatura has modelado.",
-    "Modela una varita mágica. Tu equipo debe adivinar qué objeto has modelado.",
-    "Dibuja un bosque. Tu equipo debe adivinar qué lugar has dibujado."
-],
 
 
     "Actúa": [
@@ -206,6 +183,136 @@ export const preguntasEscribe = [
         respuestaCorrecta: "Debe formar un acrónimo relacionado con magia."
     }
 ];
+
+export const preguntasCrea = [
+    {
+        pregunta: "Dibuja un caldero mágico sin levantar el lápiz. Tu equipo debe adivinar qué objeto has dibujado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un caldero mágico"
+    },
+    {
+        pregunta: "Modela con plastilina a un dragón. Tu equipo debe adivinar qué criatura has modelado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un dragón"
+    },
+    {
+        pregunta: "Modela con plastilina a un cuervo. Tu equipo debe adivinar qué criatura has modelado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un cuervo"
+    },
+    {
+        pregunta: "Modela con plastilina a un gato. Tu equipo debe adivinar qué criatura has modelado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un gato"
+    },
+    {
+        pregunta: "Dibuja un hipogrifo. Tu equipo debe adivinar qué criatura has dibujado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un hipogrifo"
+    },
+    {
+        pregunta: "Dibuja un fénix. Tu equipo debe adivinar qué criatura has dibujado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un fénix"
+    },
+    {
+        pregunta: "Dibuja un pegaso. Tu equipo debe adivinar qué criatura has dibujado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un pegaso"
+    },
+    {
+        pregunta: "Modela una lámpara mágica. Tu equipo debe adivinar qué objeto has modelado.",
+        tipo: "reto",
+        respuestaCorrecta: "Una lámpara mágica"
+    },
+    {
+        pregunta: "Dibuja un portal a otra dimensión. Tu equipo debe adivinar qué objeto has dibujado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un portal a otra dimensión"
+    },
+    {
+        pregunta: "Dibuja una mano lanzando un hechizo. Tu equipo debe adivinar qué acción representa el dibujo.",
+        tipo: "reto",
+        respuestaCorrecta: "Una mano lanzando un hechizo"
+    },
+    {
+        pregunta: "Modela con plastilina una calavera encantada. Tu equipo debe adivinar qué objeto has modelado.",
+        tipo: "reto",
+        respuestaCorrecta: "Una calavera encantada"
+    },
+    {
+        pregunta: "Dibuja un grimorio con símbolos mágicos. Tu equipo debe adivinar qué objeto has dibujado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un grimorio con símbolos mágicos"
+    },
+    {
+        pregunta: "Dibuja una escoba voladora. Tu equipo debe adivinar qué objeto has dibujado.",
+        tipo: "reto",
+        respuestaCorrecta: "Una escoba voladora"
+    },
+    {
+        pregunta: "Dibuja un hechizo de tormenta eléctrica. Tu equipo debe adivinar qué objeto has dibujado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un hechizo de tormenta eléctrica"
+    },
+    {
+        pregunta: "Dibuja un hechizo de amor. Tu equipo debe adivinar qué objeto has dibujado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un hechizo de amor"
+    },
+    {
+        pregunta: "Modela un hombre lobo. Tu equipo debe adivinar qué criatura has modelado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un hombre lobo"
+    },
+    {
+        pregunta: "Modela un caldero mágico. Tu equipo debe adivinar qué objeto has modelado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un caldero mágico"
+    },
+    {
+        pregunta: "Modela una llave encantada. Tu equipo debe adivinar qué objeto has modelado.",
+        tipo: "reto",
+        respuestaCorrecta: "Una llave encantada"
+    },
+    {
+        pregunta: "Modela un tritón. Tu equipo debe adivinar qué criatura has modelado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un tritón"
+    },
+    {
+        pregunta: "Modela una varita mágica. Tu equipo debe adivinar qué objeto has modelado.",
+        tipo: "reto",
+        respuestaCorrecta: "Una varita mágica"
+    },
+    {
+        pregunta: "Dibuja un bosque. Tu equipo debe adivinar qué lugar has dibujado.",
+        tipo: "reto",
+        respuestaCorrecta: "Un bosque"
+    },
+    {
+        pregunta: "Dibuja la respuesta de este acertijo: Un reloj sin manecillas, pero que siempre da la hora exacta.",
+        tipo: "acertijo",
+        respuestaCorrecta: "Un reloj de sol"
+    },
+    {
+        pregunta: "Dibuja la respuesta de este acertijo: Cuanto más la quitas, más grande se hace.",
+        tipo: "acertijo",
+        respuestaCorrecta: "Un agujero"
+    },
+    {
+        pregunta: "Dibuja la respuesta de este acertijo: Puede contener agua, pero tiene muchos agujeros. ",
+        tipo: "acertijo",
+        respuestaCorrecta: "Una esponja"
+    },
+    {
+        pregunta: "Dibuja la respuesta de este acertijo: Es más ligera que el aire, pero la persona más fuerte no puede sostenerla por mucho tiempo. ",
+        tipo: "acertijo",
+        respuestaCorrecta: "La respiración"
+    }
+
+];
+
 
 
 
