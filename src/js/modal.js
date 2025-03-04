@@ -259,7 +259,14 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
         preguntasMostradas.push(preguntaAleatoria.pregunta);
 
         modalTitulo.innerText = categoria;
+        
+        // Mostrar la pregunta
         modalTexto.innerHTML = `<p>${preguntaAleatoria.pregunta}</p>`;
+
+        // Si la pregunta tiene el campo participantes: "Todos", agregarlo al modal
+        if (preguntaAleatoria.participantes && preguntaAleatoria.participantes === "Todos") {
+            modalTexto.innerHTML += `<p><strong>Participantes:</strong> Todos</p>`;
+        }
 
         // Mostrar las palabras solo si la categoría es "Piensa" o "Escribe"
         if ((categoria === "Piensa" || categoria === "Escribe") && preguntaAleatoria.palabras && Array.isArray(preguntaAleatoria.palabras)) {
@@ -381,8 +388,6 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
 
     modal.style.display = "block";
 }
-
-
 
 
 
