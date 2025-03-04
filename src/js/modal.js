@@ -84,6 +84,7 @@ export function aplicarEfectoHechizo(hechizo) {
             break;
         case "M3N4":
             // Confusión Temporal
+            
             console.log(`${equipoContrario.name} intercambia su turno con el otro equipo.`);
             break;
         case "O5P6":
@@ -201,6 +202,8 @@ export function validarCodigo() {
 }
 
 
+let preguntasMostradas = [];  // Array para almacenar las preguntas ya mostradas
+
 export function mostrarModal(categoria, ingredienteNombre = null) {
     let modalTitulo = document.getElementById("modal-titulo");
     let modalTexto = document.getElementById("modal-texto");
@@ -211,7 +214,7 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
     let iniciarBtn = document.getElementById("iniciar-btn");
     let opcionesContainer = document.getElementById("opciones-container");
     let enviarRespuestaBtn = document.getElementById("enviar-respuesta-btn");
-    let instructivoContainer = document.getElementById("palabra-container"); // Contenedor para el instructivo
+    let instructivoContainer = document.getElementById("palabra-container");
 
     if (!modalTitulo || !modalTexto || !modal || !cumplioBtn || !noCumplioBtn || !opcionesContainer || !instructivoContainer) {
         console.error("Elementos del modal no encontrados.");
@@ -230,51 +233,61 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
     if (categoria === "Piensa" || categoria === "Escribe") {
         let preguntas = categoria === "Piensa" ? preguntasPiensa : preguntasEscribe;
 
-        // Verificar si hay preguntas disponibles
         if (preguntas.length === 0) {
             console.error(`No hay preguntas disponibles para la categoría ${categoria}`);
             return;
         }
 
-        // Seleccionar una pregunta aleatoria
-        preguntaAleatoria = preguntas[Math.floor(Math.random() * preguntas.length)];
+        // Filtramos las preguntas que ya han sido mostradas
+        let preguntasDisponibles = preguntas.filter(pregunta => !preguntasMostradas.includes(pregunta.pregunta));
 
-        // Verificar si la pregunta está correctamente seleccionada y tiene la propiedad 'tipo'
+        if (preguntasDisponibles.length === 0) {
+            // Si ya se mostraron todas las preguntas, reiniciamos la lista
+            preguntasMostradas = [];
+            preguntasDisponibles = preguntas;  // Ahora todas las preguntas están disponibles de nuevo
+        }
+
+        // Seleccionamos una pregunta aleatoria de las preguntas no mostradas
+        preguntaAleatoria = preguntasDisponibles[Math.floor(Math.random() * preguntasDisponibles.length)];
+
         if (!preguntaAleatoria || !preguntaAleatoria.tipo) {
             console.error("La pregunta aleatoria no tiene un tipo válido.");
             return;
         }
 
+        // Marcamos la pregunta como mostrada
+        preguntasMostradas.push(preguntaAleatoria.pregunta);
+
         modalTitulo.innerText = categoria;
         modalTexto.innerHTML = `<p>${preguntaAleatoria.pregunta}</p>`;
 
-        // Mostrar las palabras en el modal si existen
-        if (preguntaAleatoria.palabras && Array.isArray(preguntaAleatoria.palabras)) {
+        // Mostrar las palabras solo si la categoría es "Piensa" o "Escribe"
+        if ((categoria === "Piensa" || categoria === "Escribe") && preguntaAleatoria.palabras && Array.isArray(preguntaAleatoria.palabras)) {
             let palabrasHTML = preguntaAleatoria.palabras.map(word => `<li>${word}</li>`).join("");
             instructivoContainer.style.display = "block";  // Hacemos visible el contenedor de palabras
-            instructivoContainer.innerHTML = `<p><strong>Palabras:</strong></p>${palabrasHTML}`;
-        }
-
-        // Mostrar el instructivo si está presente en la pregunta
-        if (preguntaAleatoria.instructivo && Array.isArray(preguntaAleatoria.instructivo)) {
-            // Crear una lista de palabras en el instructivo
-            let palabrasHTML = preguntaAleatoria.instructivo.map(word => `<li>${word}</li>`).join(""); 
             instructivoContainer.innerHTML = `<p><strong>Palabras:</strong></p><ul>${palabrasHTML}</ul>`;
+        } else {
+            instructivoContainer.style.display = "none"; // Ocultamos el contenedor si no corresponde
         }
 
+        // Si hay instrucciones adicionales
+        if (preguntaAleatoria.instructivo && Array.isArray(preguntaAleatoria.instructivo)) {
+            let instruccionesHTML = preguntaAleatoria.instructivo.map(word => `<li>${word}</li>`).join(""); 
+            instructivoContainer.innerHTML = `<p><strong>Instrucciones:</strong></p><ul>${instruccionesHTML}</ul>`;
+        }
+
+        // Tipo "rellena" con un input
         if (preguntaAleatoria.tipo === "rellena") {
-            // Crear un campo de texto para que el jugador ingrese la respuesta
             let inputElemento = document.createElement('input');
             inputElemento.type = 'text';
             inputElemento.placeholder = 'Escribe tu respuesta aquí...';
             inputElemento.id = 'respuesta-input';
-            opcionesContainer.innerHTML = ''; // Limpiamos las opciones previas
+            opcionesContainer.innerHTML = '';
             opcionesContainer.appendChild(inputElemento);
             opcionesContainer.style.display = "block"; 
-            enviarRespuestaBtn.style.display = "inline-block"; // Hacemos visible el botón de envío
+            enviarRespuestaBtn.style.display = "inline-block"; 
             iniciarBtn.style.display = "none";  
         } else if (Array.isArray(preguntaAleatoria.opciones)) {
-            // Para los tipos "reto" y "desafio", mostrar las opciones como botones
             opcionesContainer.innerHTML = ''; 
             preguntaAleatoria.opciones.forEach((opcion) => {
                 let opcionElemento = document.createElement('button');
@@ -291,7 +304,9 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
             iniciarBtn.style.display = "inline-block";  
             opcionesContainer.style.display = "none";  
         }
-        pistaImagen.style.display = "none";  
+
+        pistaImagen.style.display = "none";  // Ocultamos la imagen por defecto
+
     } else if (ingredienteNombre) {
         // Lógica para la categoría Ingrediente (sin cambios)
         let ingrediente = ingredientes.find(i => i.nombre === ingredienteNombre);
@@ -312,7 +327,6 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
             pistaImagen.style.display = "none";
         }
     } else {
-        // Lógica para los retos (sin cambios)
         if (!retos[categoria]) {
             console.warn(`Categoría "${categoria}" no encontrada.`);
             return;
@@ -328,13 +342,19 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
         noCumplioBtn.style.display = "inline-block";
         iniciarBtn.style.display = "none";  
 
-        if ((categoria === "Piensa" && preguntaAleatoria?.tipo === "reto") || categoria === "Escribe" || categoria === "Crea" || categoria === "Actúa") {
+        // Ocultar las palabras después de iniciar
+        instructivoContainer.style.display = "inline-block";  // Ocultamos las palabras después de iniciar
+
+        if (categoria === "Escribe") {
+            modalTexto.style.display = "block";  // Dejar visible el texto en "Escribe"
+        } else if ((categoria === "Piensa" && preguntaAleatoria?.tipo === "reto") || categoria === "Crea" || categoria === "Actúa") {
             modalTexto.style.display = "none";
         }
 
         cumplioBtn.onclick = function () {
             if ((categoria === "Piensa" && preguntaAleatoria?.tipo === "reto") || categoria === "Escribe" || categoria === "Crea" || categoria === "Actúa") {
                 modalTexto.style.display = "block";
+                instructivoContainer.style.display = "none";
             }
             cumplioReto();
         };
@@ -347,7 +367,6 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
         };
     };
 
-    // Función para enviar la respuesta (se activa cuando se hace clic en "Enviar Respuesta")
     enviarRespuestaBtn.onclick = function () {
         let inputElemento = document.getElementById('respuesta-input');
         let opcionSeleccionada = inputElemento.value.trim();
@@ -357,12 +376,13 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
         }
         validarRespuesta(opcionSeleccionada, preguntaAleatoria.respuestaCorrecta, opcionesContainer);
 
-        // Ocultar el botón "Enviar Respuesta" cuando pase a la pista
         enviarRespuestaBtn.style.display = "none";
     };
 
     modal.style.display = "block";
 }
+
+
 
 
 

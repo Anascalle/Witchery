@@ -8,7 +8,7 @@ export const retos = {
     "Dibuja un hipogrifo. Tu equipo debe adivinar qué criatura has dibujado.",
     "Dibuja un fenix. Tu equipo debe adivinar qué criatura has dibujado.",
     "Dibuja un pegaso. Tu equipo debe adivinar qué criatura has dibujado.",
-    "Haz una escultura rápida con objetos que tengas cerca en 30 segundos. Tu equipo debe adivinar qué has creado."
+    
 ],
 
     "Actúa": [
@@ -17,12 +17,6 @@ export const retos = {
         "Recrea una escena de una película sin usar palabras."
     ],
    
-    "Escribe": [
-        "Escribe una rima con la palabra 'hechizo'",
-         "Escribe una rima rápida utilizando la palabra 'misterio'",
-        "a3",
-        "v"
-    ]
 };
 export const preguntasPiensa = [
     {
@@ -146,13 +140,13 @@ export const preguntasEscribe =[
         respuestaCorrecta: "La palabra debe ser un anagrama válido."
     },
     {
-        pregunta: "Escribe un acertijo sobre un fantasma, mientras otro jugador del equipo intenta adivinar.",
-        tipo: "reto", 
+        pregunta: "Escribe un acertijo sobre un fantasma.",
+        tipo: "desafio", 
         respuestaCorrecta: "Cualquier acertijo sobre un fantasma."
     },
     {
-        pregunta: "Escribe un acertijo sobre un hada, mientras otro jugador del equipo intenta adivinar.",
-        tipo: "reto", 
+        pregunta: "Escribe un acertijo sobre un hada.",
+        tipo: "desafio", 
         respuestaCorrecta: "Cualquier acertijo sobre un hada."
     },
     {
