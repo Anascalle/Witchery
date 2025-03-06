@@ -1,14 +1,5 @@
 
-export const retos = {
 
-
-    "Actúa": [
-        "Imita a un personaje famoso y haz que tu equipo lo adivine.",
-        "Expresa una emoción sin hablar, solo con gestos.",
-        "Recrea una escena de una película sin usar palabras."
-    ],
-   
-};
 export const preguntasPiensa = [
     {
         pregunta: "Un grupo de amigos va de excursión a devolver una joya, pero en el camino se enredan con un tipo pálido que se obsesiona con ellos y un monstruo con doble personalidad. ¿De qué película se trata?",
@@ -311,6 +302,199 @@ export const preguntasCrea = [
         respuestaCorrecta: "La respiración"
     }
 
+];
+
+export const preguntasActua = [
+    {
+        pregunta: "Elige una de las tres opciones para actuar",
+        tipo: "reto",
+        elige:["Chef cocinando un postre complicado",
+                "Pastelero decorando una tarta de bodas enorme ",
+                " Mesero cargando una bandeja muy pesada",
+        ]
+    },
+    {
+        pregunta: "Elige una de las tres opciones para actuar",
+        tipo: "reto",
+        elige: [
+            "Policía persiguiendo a un ladrón",
+            "Bombero apagando un incendio",
+            "Médico atendiendo una emergencia"
+        ],
+    },
+    {
+        pregunta: "Elige una de las tres opciones para actuar",
+        tipo: "reto",
+        elige: [
+            "Profesor explicando una lección difícil",
+            "Entrenador de fútbol dando instrucciones en un partido",
+            "Músico tocando en un concierto"
+        ],
+    },
+    {
+        pregunta: "Elige una de las tres opciones para actuar",
+        tipo: "reto",
+        elige: [
+            "Piloto despegando un avión",
+            "Conductor de autobús en un tráfico terrible",
+            "Repartidor de pizza llegando tarde"
+        ],
+    },
+    {
+        pregunta: "Elige una de las tres opciones para actuar",
+        tipo: "reto",
+        elige: [
+            "Un veterinario revisando un perro inquieto",
+            "Un granjero ordeñando una vaca",
+            "Un biólogo observando animales salvajes"
+        ],
+    },
+    {
+        pregunta: "Elige una de las tres opciones para actuar",
+        tipo: "reto",
+        elige: [
+            "Un actor en una escena de acción",
+            "Un bailarín profesional haciendo una coreografía difícil",
+            "Un mago haciendo un truco impresionante"
+        ],
+    },
+    {
+        pregunta: "Elige una de las tres opciones para actuar",
+        tipo: "reto",
+        elige: [
+            "Un cajero contando billetes rápidamente",
+            "Un mecánico reparando un coche averiado",
+            "Un albañil construyendo una casa"
+        ],
+    },
+    {
+        pregunta: "Elige una de las tres opciones para actuar",
+        tipo: "reto",
+        elige: [
+            "Un fotógrafo intentando capturar la mejor foto",
+            "Un periodista entrevistando a alguien importante",
+            "Un influencer grabando un video viral"
+        ],
+    },
+    {
+        pregunta: "Elige una de las tres opciones para actuar",
+        tipo: "reto",
+        elige: [
+            "Un astronauta caminando en la luna",
+            "Un buzo explorando el fondo del océano",
+            "Un guardia de seguridad revisando cámaras de vigilancia"
+        ],
+    },
+    {
+        pregunta: "Elige una de las tres opciones para actuar",
+        tipo: "reto",
+        elige: [
+            "Un peluquero cortando el cabello con mucho estilo",
+            "Un diseñador de moda mostrando sus creaciones",
+            "Un tatuador haciendo un tatuaje complicado"
+        ],
+    },
+        {
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            tipo: "reto",
+            elige: [
+                "Imitar a Mickey Mouse",
+                "Un chef preparando sushi",
+                "Un perro cavando un hoyo"
+            ]
+        },
+        {
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            tipo: "reto",
+            elige: [
+                "Imitar a Elsa de Frozen",
+                "Un policía dirigiendo el tráfico",
+                "Un gato estirándose perezosamente"
+            ]
+        },
+        {
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            tipo: "reto",
+            elige: [
+                "Imitar a Spider-Man lanzando telarañas",
+                "Un doctor operando a un paciente",
+                "Un gallo cantando al amanecer"
+            ]
+        },
+        {
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            tipo: "reto",
+            elige: [
+                "Imitar a Mario Bros saltando obstáculos",
+                "Un piloto aterrizando un avión",
+                "Un caballo trotando con elegancia"
+            ]
+        },
+        {
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            tipo: "reto",
+            elige: [
+                "Imitar a Bob Esponja riendo",
+                "Un pastelero haciendo una tarta de cumpleaños",
+                "Un elefante usando su trompa"
+            ]
+        },
+        {
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            tipo: "reto",
+            elige: [
+                "Imitar a Peppa Pig hablando feliz",
+                "Un futbolista celebrando un gol",
+                "Un mono trepando un árbol"
+            ]
+        },
+        {
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            tipo: "reto",
+            elige: [
+                "Imitar a Batman con su voz grave",
+                "Un mecánico arreglando una llanta pinchada",
+                "Un pato nadando en un lago"
+            ]
+        },
+        {
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            tipo: "reto",
+            elige: [
+                "Imitar a Dora la Exploradora dando instrucciones",
+                "Un cantante en un concierto",
+                "Un tigre acechando a su presa"
+            ]
+        },
+        {
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            tipo: "reto",
+            elige: [
+                "Imitar a la Sirenita nadando bajo el mar",
+                "Un bombero rescatando a un gato de un árbol",
+                "Un pingüino caminando torpemente"
+            ]
+        },
+        {
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            tipo: "reto",
+            elige: [
+                "Imitar a Winnie the Pooh buscando miel",
+                "Un mago sacando un conejo del sombrero",
+                "Un león rugiendo fuerte"
+            ]
+        },
+        {
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            tipo: "reto",
+            elige: [
+                "Imitar a Shrek gruñendo",
+                "Un veterinario revisando a un loro parlante",
+                "Un canguro saltando rápidamente"
+            ]
+        }
+    
+    
 ];
 
 

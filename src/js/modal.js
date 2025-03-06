@@ -1,10 +1,11 @@
 
-import { retos } from "../data/challenges.js";
 import { ingredientes } from "../data/ingredients.js";
 import { hechizos } from "../data/spell.js";
 import { preguntasPiensa } from "../data/challenges.js";
 import { preguntasEscribe } from "../data/challenges.js";
 import { preguntasCrea } from "../data/challenges.js";
+import { preguntasActua } from "../data/challenges.js";
+
 
 export let equipos = JSON.parse(localStorage.getItem("equipos")) || [];
 export let turnoActual = JSON.parse(localStorage.getItem("turnoActual")) || 0;
@@ -216,7 +217,7 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
     let opcionesContainer = document.getElementById("opciones-container");
     let enviarRespuestaBtn = document.getElementById("enviar-respuesta-btn");
     let instructivoContainer = document.getElementById("palabra-container");
-    let verRespuestaBtn = document.getElementById("ver-respuesta-btn"); // Botón para ver respuesta
+    let verRespuestaBtn = document.getElementById("ver-respuesta-btn");
 
     if (!modalTitulo || !modalTexto || !modal || !cumplioBtn || !noCumplioBtn || !opcionesContainer || !instructivoContainer || !verRespuestaBtn) {
         console.error("Elementos del modal no encontrados.");
@@ -231,10 +232,10 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
     noCumplioBtn.style.display = "none"; 
     opcionesContainer.style.display = "none"; 
     instructivoContainer.style.display = "none";  
-    verRespuestaBtn.style.display = "none";  // Inicialmente ocultamos el botón "ver respuesta"
+    verRespuestaBtn.style.display = "none"; 
 
-    if (categoria === "Piensa" || categoria === "Escribe" || categoria === "Crea") {
-        // Selección de preguntas según la categoría
+    // Selección de preguntas según la categoría
+    if (categoria === "Piensa" || categoria === "Escribe" || categoria === "Crea" || categoria === "Actúa") {
         let preguntas;
         if (categoria === "Piensa") {
             preguntas = preguntasPiensa;
@@ -242,9 +243,10 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
             preguntas = preguntasEscribe;
         } else if (categoria === "Crea") {
             preguntas = preguntasCrea;
+        } else if (categoria === "Actúa") {
+            preguntas = preguntasActua;  // Asumimos que preguntasActua contiene las preguntas para la categoría Actua
         }
 
-        // Verificamos que haya preguntas disponibles para la categoría
         if (preguntas.length === 0) {
             console.error(`No hay preguntas disponibles para la categoría ${categoria}`);
             return;
@@ -254,12 +256,10 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
         let preguntasDisponibles = preguntas.filter(pregunta => !preguntasMostradas.includes(pregunta.pregunta));
 
         if (preguntasDisponibles.length === 0) {
-            // Si ya se mostraron todas las preguntas, reiniciamos la lista
             preguntasMostradas = [];
-            preguntasDisponibles = preguntas;  // Ahora todas las preguntas están disponibles de nuevo
+            preguntasDisponibles = preguntas;
         }
 
-        // Seleccionamos una pregunta aleatoria de las preguntas no mostradas
         preguntaAleatoria = preguntasDisponibles[Math.floor(Math.random() * preguntasDisponibles.length)];
 
         if (!preguntaAleatoria || !preguntaAleatoria.tipo) {
@@ -267,26 +267,21 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
             return;
         }
 
-        // Marcamos la pregunta como mostrada
         preguntasMostradas.push(preguntaAleatoria.pregunta);
 
-        // Actualizamos el título y texto del modal
         modalTitulo.innerText = categoria;
-        
-        // Agregar "participantes: Todos" si está presente
+
         let textoPregunta = `<p>${preguntaAleatoria.pregunta}</p>`;
         if (preguntaAleatoria.participantes === "Todos") {
             textoPregunta += `<p><strong>Participantes:</strong> Todos</p>`;
         }
-        
+
         modalTexto.innerHTML = textoPregunta;
 
-        // Si es un acertijo, no mostramos el botón "Ver respuesta" hasta que se presione "Iniciar"
         if (preguntaAleatoria.tipo === "acertijo") {
             verRespuestaBtn.style.display = "none"; 
         }
 
-        // Si el tipo es "rellena" o tiene opciones, se muestran los respectivos controles
         if (preguntaAleatoria.tipo === "rellena") {
             let inputElemento = document.createElement('input');
             inputElemento.type = 'text';
@@ -310,13 +305,25 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
             });
             opcionesContainer.style.display = "block"; 
             iniciarBtn.style.display = "none";  
+        } else if (preguntaAleatoria.tipo === "reto" && Array.isArray(preguntaAleatoria.elige)) {
+            // Mostrar las opciones como una lista en lugar de botones
+            opcionesContainer.innerHTML = '';  
+            let lista = document.createElement('ul'); // Creamos una lista <ul> para las opciones
+            preguntaAleatoria.elige.forEach((opcion) => {
+                let listaItem = document.createElement('li'); // Cada opción será un <li>
+                listaItem.classList.add('opcion');
+                listaItem.innerText = opcion;
+                lista.appendChild(listaItem);  // Añadimos el <li> a la lista
+            });
+            opcionesContainer.appendChild(lista);  // Añadimos la lista al contenedor
+            opcionesContainer.style.display = "block"; 
+            iniciarBtn.style.display = "inline-block";  
         } else {
             iniciarBtn.style.display = "inline-block";  
             opcionesContainer.style.display = "none";  
         }
 
-        pistaImagen.style.display = "none";  // Ocultamos la imagen por defecto
-    
+        pistaImagen.style.display = "none";  
     } else if (ingredienteNombre) {
         // Lógica para la categoría Ingrediente (sin cambios)
         let ingrediente = ingredientes.find(i => i.nombre === ingredienteNombre);
@@ -347,31 +354,34 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
         pistaImagen.style.display = "none";
     }
 
+    // Si no hay texto en el modal y solo los botones de "cumplio" o "no cumplio", mostramos "Juego en curso"
+    if (modalTexto.innerHTML === "" && cumplioBtn.style.display === "inline-block") {
+        modalTexto.innerHTML = "<p><strong>Juego en curso...</strong></p>";
+    }
+
     // Función para manejar la acción de "Iniciar"
     iniciarBtn.onclick = function () {
         cumplioBtn.style.display = "inline-block";
         noCumplioBtn.style.display = "inline-block";
-        iniciarBtn.style.display = "none";  
+        iniciarBtn.style.display = "none";
+        opcionesContainer.style.display = "none";  
 
-        // Si la categoría es "Actúa", ocultamos el texto cuando se presiona "Iniciar"
         if (categoria === "Actúa") {
-            modalTexto.style.display = "none";  // Ocultamos el texto en "Actúa"
+            modalTexto.style.display = "none";  
         } else {
-            modalTexto.style.display = "block";  // Deja el texto visible para las otras categorías
+            modalTexto.style.display = "block";  
         }
 
-        // Mostrar el botón de "Ver respuesta" ahora que se presionó "Iniciar"
         if (preguntaAleatoria && preguntaAleatoria.tipo && preguntaAleatoria.tipo === "acertijo") {
-            verRespuestaBtn.style.display = "inline-block"; // Mostrar el botón "Ver respuesta"
+            verRespuestaBtn.style.display = "inline-block"; 
         }
 
-        // Ocultar las palabras después de iniciar
-        instructivoContainer.style.display = "inline-block";  // Ocultamos las palabras después de iniciar
+        instructivoContainer.style.display = "inline-block";  
 
         if (categoria === "Escribe") {
-            modalTexto.style.display = "block";  // Dejar visible el texto en "Escribe"
+            modalTexto.style.display = "block";  
         } else if ((categoria === "Piensa" && preguntaAleatoria?.tipo === "reto") || categoria === "Crea") {
-            modalTexto.style.display = "none";  // Ocultar texto si es tipo "reto" en Piensa y en Crea
+            modalTexto.style.display = "none";  
         }
 
         cumplioBtn.onclick = function () {
@@ -394,19 +404,11 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
     verRespuestaBtn.onclick = function() {
         console.log("Botón 'Ver respuesta' presionado.");
 
-        // Verifica que preguntaAleatoria y su respuesta existan
         if (preguntaAleatoria && preguntaAleatoria.respuestaCorrecta) {
-            // Crear el HTML de la respuesta
             let respuestaHTML = `<p><strong>Respuesta:</strong> ${preguntaAleatoria.respuestaCorrecta}</p>`;
-            
-            // Agregar la respuesta al contenedor modalTexto
-            modalTexto.innerHTML += respuestaHTML;  // Agregar la respuesta al final del contenido actual
+            modalTexto.innerHTML += respuestaHTML;
             console.log("Respuesta añadida al modal:", respuestaHTML);
-
-            // Asegurarse de que el modalTexto sea visible
-            modalTexto.style.display = "block";  // Esto asegura que el contenedor donde se muestra la respuesta esté visible
-
-            // Ocultar el botón después de hacer clic
+            modalTexto.style.display = "block";
             verRespuestaBtn.style.display = "none"; 
         } else {
             console.error("No se ha encontrado la respuesta correcta.");
@@ -421,12 +423,14 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
             return;
         }
         validarRespuesta(opcionSeleccionada, preguntaAleatoria.respuestaCorrecta, opcionesContainer);
-
         enviarRespuestaBtn.style.display = "none";
     };
 
     modal.style.display = "block";
 }
+
+
+
 
 
 
