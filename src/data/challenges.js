@@ -76,7 +76,7 @@ export const preguntasEscribe = [
         participantes: "Todos"
     },
     {
-        pregunta: "Usa las letras de la palabra HECHIZO para formar un acrónimo que tenga sentido con el tema de hechizos o magia. Cada letra debe representar una palabra o parte de una frase relacionada.",
+        pregunta: "Usa las letras de la palabra HECHIZO para formar un acrónimo que tenga sentido. Cada letra debe representar una palabra o parte de una frase relacionada.",
         tipo: "desafio", 
         respuestaCorrecta: "Debe formar un acrónimo relacionado con magia."
     },
@@ -105,7 +105,7 @@ export const preguntasEscribe = [
         participantes: "Todos"
     },
     {
-        pregunta: "Usa las letras de la palabra BRUJA para formar un acrónimo que tenga sentido con el tema de hechizos o magia. Cada letra debe representar una palabra o parte de una frase relacionada.",
+        pregunta: "Usa las letras de la palabra BRUJA para formar un acrónimo que tenga sentido. Cada letra debe representar una palabra o parte de una frase relacionada.",
         tipo: "desafio", 
         respuestaCorrecta: "Debe formar un acrónimo relacionado con magia."
     },
@@ -141,7 +141,22 @@ export const preguntasEscribe = [
         tipo: "desafio", 
         respuestaCorrecta: "Debe ser un conjunto de tres sinónimos de 'encantamiento'."
     },
-   
+    {
+        pregunta: "Completa el refrán: El que con lobos anda, __________.",
+        respuestaCorrecta:  "aullar aprende",
+        tipo: "rellena",
+        participantes: "Todos"
+    },
+    {
+        pregunta: "Completa el refrán: En casa de herrero, __________.",
+        respuestaCorrecta: "cuchillo de palo",
+        tipo: "rellena"
+    },
+    {
+        pregunta: "Completa el refrán:  Del dicho al hecho, __________.",
+        respuestaCorrecta: "hay mucho trecho",
+        tipo: "rellena"
+    },
     {
         pregunta: "Crea un conjuro usando solo palabras que empiecen con la misma letra.",
         tipo: "desafio", 
@@ -481,3 +496,12 @@ export const preguntasActua = [
     
     
 ];
+
+
+
+
+
+
+
+
+

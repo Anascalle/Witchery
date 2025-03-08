@@ -15,6 +15,27 @@ let progresoPistas = {};
 let ingredienteActualIndex = 0; 
 
 
+export function actualizarTurno() {
+    let turnoElemento = document.getElementById("turno");
+
+    if (equipos.length > 0 && turnoElemento) {
+        turnoElemento.innerText = `Turno de: ${equipos[turnoActual].name}`;
+    } else {
+        console.warn("No hay equipos disponibles o no se encontró el elemento 'turno'.");
+    }
+}
+
+export function siguienteTurno() {
+    if (equipos.length > 0) {
+        turnoActual = (turnoActual + 1) % equipos.length; 
+        localStorage.setItem("turnoActual", JSON.stringify(turnoActual)); 
+        actualizarTurno(); 
+        console.log(`Ahora es el turno de: ${equipos[turnoActual].name}`);
+    } else {
+        console.warn("No hay equipos para cambiar el turno.");
+    }
+}
+
 export function mostrarModalHechizo() {
     let modalHechizo = document.getElementById("modal-hechizo");
     let mensajeHechizo = document.getElementById("mensaje-hechizo");
@@ -120,6 +141,8 @@ export function aplicarEfectoHechizo(hechizo) {
     cerrarModalHechizo();
 }
 
+
+// Función para cerrar el modal de hechizo
 export function cerrarModalHechizo() {
     let modalHechizo = document.getElementById("modal-hechizo");
     let codigoInput = document.getElementById("codigo-hechizo");
@@ -178,28 +201,6 @@ export function validarCodigo() {
         mensajeHechizo.innerText = "¡Código inválido! Intenta de nuevo.";
     }
 }
-export function actualizarTurno() {
-    let turnoElemento = document.getElementById("turno");
-
-    if (equipos.length > 0 && turnoElemento) {
-        turnoElemento.innerText = `Turno de: ${equipos[turnoActual].name}`;
-    } else {
-        console.warn("No hay equipos disponibles o no se encontró el elemento 'turno'.");
-    }
-}
-
-export function siguienteTurno() {
-    if (equipos.length > 0) {
-        turnoActual = (turnoActual + 1) % equipos.length; 
-        localStorage.setItem("turnoActual", JSON.stringify(turnoActual)); 
-        actualizarTurno(); 
-        console.log(`Ahora es el turno de: ${equipos[turnoActual].name}`);
-    } else {
-        console.warn("No hay equipos para cambiar el turno.");
-    }
-}
-
-// Función para cerrar el modal de hechizo
 
 
 let preguntasMostradas = [];  // Array para almacenar las preguntas ya mostradas
@@ -217,17 +218,15 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
     let enviarRespuestaBtn = document.getElementById("enviar-respuesta-btn");
     let instructivoContainer = document.getElementById("palabra-container");
     let verRespuestaBtn = document.getElementById("ver-respuesta-btn");
-    let cerrarModalBtn = document.getElementById("cerrar-modal");
-
-    // Inicializamos la visibilidad de los botones
-    cerrarModalBtn.style.display = "none";  // Ocultar el botón de cerrar al inicio
-    modalTexto.style.display = "block";
-
-    // Comprobamos que todos los elementos necesarios están disponibles
+    let cerrarHechizoBtn = document.getElementById("cerrar-hechizo");
+    
+    cerrarHechizoBtn.style.display = "none";
     if (!modalTitulo || !modalTexto || !modal || !cumplioBtn || !noCumplioBtn || !opcionesContainer || !instructivoContainer || !verRespuestaBtn) {
         console.error("Elementos del modal no encontrados.");
         return;
     }
+
+    let preguntaAleatoria = null;
 
     // Inicializamos la visibilidad de los botones
     iniciarBtn.style.display = "inline-block"; 
@@ -235,14 +234,11 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
     noCumplioBtn.style.display = "none"; 
     opcionesContainer.style.display = "none"; 
     instructivoContainer.style.display = "none";  
-    verRespuestaBtn.style.display = "none";  // Inicialmente, ocultamos el botón de ver respuesta
-
-    let preguntaAleatoria = null;
+    verRespuestaBtn.style.display = "none"; 
 
     // Selección de preguntas según la categoría
     if (categoria === "Piensa" || categoria === "Escribe" || categoria === "Crea" || categoria === "Actúa") {
         let preguntas;
-        // Definimos las preguntas según la categoría
         if (categoria === "Piensa") {
             preguntas = preguntasPiensa;
         } else if (categoria === "Escribe") {
@@ -250,10 +246,9 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
         } else if (categoria === "Crea") {
             preguntas = preguntasCrea;
         } else if (categoria === "Actúa") {
-            preguntas = preguntasActua;
+            preguntas = preguntasActua;  // Asumimos que preguntasActua contiene las preguntas para la categoría Actua
         }
 
-        // Si no hay preguntas disponibles para la categoría, mostramos un error
         if (preguntas.length === 0) {
             console.error(`No hay preguntas disponibles para la categoría ${categoria}`);
             return;
@@ -262,13 +257,11 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
         // Filtramos las preguntas que ya han sido mostradas
         let preguntasDisponibles = preguntas.filter(pregunta => !preguntasMostradas.includes(pregunta.pregunta));
 
-        // Si ya no hay preguntas disponibles, reiniciamos las mostradas
         if (preguntasDisponibles.length === 0) {
             preguntasMostradas = [];
             preguntasDisponibles = preguntas;
         }
 
-        // Elegimos una pregunta aleatoria
         preguntaAleatoria = preguntasDisponibles[Math.floor(Math.random() * preguntasDisponibles.length)];
 
         if (!preguntaAleatoria || !preguntaAleatoria.tipo) {
@@ -276,11 +269,10 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
             return;
         }
 
-        // Añadimos la pregunta a las mostradas
         preguntasMostradas.push(preguntaAleatoria.pregunta);
 
-        // Configuramos el modal con el título y el texto de la pregunta
         modalTitulo.innerText = categoria;
+
         let textoPregunta = `<p>${preguntaAleatoria.pregunta}</p>`;
         if (preguntaAleatoria.participantes === "Todos") {
             textoPregunta += `<p><strong>Participantes:</strong> Todos</p>`;
@@ -288,70 +280,54 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
 
         modalTexto.innerHTML = textoPregunta;
 
-        // Dependiendo del tipo de pregunta, mostramos los elementos adecuados
         if (preguntaAleatoria.tipo === "acertijo") {
-            // El botón "Ver Respuesta" solo se mostrará después de presionar "Iniciar"
             verRespuestaBtn.style.display = "none"; 
-             // Inicialmente oculto
-            verRespuestaBtn.onclick = function () {
-                modalTexto.innerHTML = `<p><strong>Respuesta: </strong>${preguntaAleatoria.respuestaCorrecta}</p>`;
-                verRespuestaBtn.style.display = "none"; // Ocultar botón después de mostrar la respuesta
-            };
-             } else if (preguntaAleatoria.tipo === "seleccion" && Array.isArray(preguntaAleatoria.opciones)) {
-                // Limpiar cualquier contenido previo en el contenedor de opciones
-                opcionesContainer.innerHTML = ""; 
-            
-                // Crear botones para cada opción si la pregunta tiene opciones
-                preguntaAleatoria.opciones.forEach((opcion) => {
-                    let opcionElemento = document.createElement('button');
-                    opcionElemento.classList.add('opcion');
-                    opcionElemento.innerText = opcion;
-            
-                    // Al hacer clic en una opción, se valida la respuesta
-                    opcionElemento.onclick = function () {
-                        // Llamamos a la función para validar la respuesta seleccionada
-                        validarRespuesta(opcion, preguntaAleatoria.respuestaCorrecta, opcionesContainer);
-                    };
-            
-                    // Agregamos el botón al contenedor de opciones
-                    opcionesContainer.appendChild(opcionElemento);
-                });
-            
-                // Mostramos las opciones como botones
-                opcionesContainer.style.display = "inline-block";
-                // Ocultamos el botón de "Iniciar" cuando las opciones ya están disponibles
-                iniciarBtn.style.display = "none";
-            }
-            
-         else if (preguntaAleatoria.tipo === "reto" && Array.isArray(preguntaAleatoria.elige)) {
+        }
+
+        if (preguntaAleatoria.tipo === "rellena") {
+            let inputElemento = document.createElement('input');
+            inputElemento.type = 'text';
+            inputElemento.placeholder = 'Escribe tu respuesta aquí...';
+            inputElemento.id = 'respuesta-input';
+            opcionesContainer.innerHTML = '';
+            opcionesContainer.appendChild(inputElemento);
+            opcionesContainer.style.display = "block"; 
+            enviarRespuestaBtn.style.display = "inline-block"; 
+            iniciarBtn.style.display = "none";  
+        } else if (Array.isArray(preguntaAleatoria.opciones)) {
+            opcionesContainer.innerHTML = ''; 
+            preguntaAleatoria.opciones.forEach((opcion) => {
+                let opcionElemento = document.createElement('button');
+                opcionElemento.classList.add('opcion');
+                opcionElemento.innerText = opcion;
+                opcionElemento.onclick = function () {
+                    validarRespuesta(opcion, preguntaAleatoria.respuestaCorrecta, opcionesContainer);
+                };
+                opcionesContainer.appendChild(opcionElemento);
+            });
+            opcionesContainer.style.display = "block"; 
+            iniciarBtn.style.display = "none";  
+        } else if (preguntaAleatoria.tipo === "reto" && Array.isArray(preguntaAleatoria.elige)) {
             // Mostrar las opciones como una lista en lugar de botones
             opcionesContainer.innerHTML = '';  
-            let lista = document.createElement('ul');
+            let lista = document.createElement('ul'); // Creamos una lista <ul> para las opciones
             preguntaAleatoria.elige.forEach((opcion) => {
-                let listaItem = document.createElement('li');
+                let listaItem = document.createElement('li'); // Cada opción será un <li>
                 listaItem.classList.add('opcion');
                 listaItem.innerText = opcion;
-                lista.appendChild(listaItem);
+                lista.appendChild(listaItem);  // Añadimos el <li> a la lista
             });
-            opcionesContainer.appendChild(lista);
-            opcionesContainer.style.display = "block";  // Ocultamos las opciones por defecto
-            iniciarBtn.style.display = "inline-block";  // Mantenemos el botón "Iniciar"
-          // Asegura que no haya inputs anteriores
-
-        } else if (preguntaAleatoria.tipo === "desafio" && Array.isArray(preguntaAleatoria.palabras)) {
-            // Mostrar las palabras como texto en pantalla si es un desafío con palabras
-            if (!opcionesContainer.querySelector('p')) {  // Solo agregamos las palabras si no están ya en el contenedor
-                let palabrasTexto = document.createElement('p');
-                palabrasTexto.innerText = `Palabras: ${preguntaAleatoria.palabras.join(', ')}`;
-                opcionesContainer.appendChild(palabrasTexto); // Añadimos las palabras al contenedor
-                opcionesContainer.style.display = "inline-block";
-            }
-            iniciarBtn.style.display = "inline-block";  // Mantenemos el botón "Iniciar"
+            opcionesContainer.appendChild(lista);  // Añadimos la lista al contenedor
+            opcionesContainer.style.display = "block"; 
+            iniciarBtn.style.display = "inline-block";  
+        } else {
+            iniciarBtn.style.display = "inline-block";  
+            opcionesContainer.style.display = "none";  
         }
 
         pistaImagen.style.display = "none";  
     } else if (ingredienteNombre) {
-        // Lógica para la categoría Ingrediente
+        // Lógica para la categoría Ingrediente (sin cambios)
         let ingrediente = ingredientes.find(i => i.nombre === ingredienteNombre);
         if (!ingrediente || !ingrediente.pistas || !Array.isArray(ingrediente.pistas)) {
             console.warn(`Ingrediente "${ingredienteNombre}" no encontrado o sin pistas.`);
@@ -370,7 +346,6 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
             pistaImagen.style.display = "none";
         }
     } else {
-        // Lógica para mostrar un reto aleatorio
         if (!retos[categoria]) {
             console.warn(`Categoría "${categoria}" no encontrada.`);
             return;
@@ -381,123 +356,132 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
         pistaImagen.style.display = "none";
     }
 
-    // Mostrar el modal
-    modal.style.display = "block";
+    // Si no hay texto en el modal y solo los botones de "cumplio" o "no cumplio", mostramos "Juego en curso"
+    if (modalTexto.innerHTML === "" && cumplioBtn.style.display === "inline-block") {
+        modalTexto.innerHTML = "<p><strong>Juego en curso...</strong></p>";
+    }
 
     // Función para manejar la acción de "Iniciar"
     iniciarBtn.onclick = function () {
         cumplioBtn.style.display = "inline-block";
         noCumplioBtn.style.display = "inline-block";
-        iniciarBtn.style.display = "none";  // Ocultamos el botón "Iniciar"
-        opcionesContainer.style.display = "none";  // Aseguramos que las opciones estén ocultas al principio
+        iniciarBtn.style.display = "none";
+        opcionesContainer.style.display = "none";  
 
-        instructivoContainer.style.display = "inline-block";  // Mostramos las instrucciones o cualquier otro contenido que deba mostrarse
-        opcionesContainer.innerHTML = ''; // Asegura que no haya inputs anteriores
-
-        // Aseguramos que las palabras del desafío se mantengan visibles
-        if (preguntaAleatoria.tipo === "desafio" && Array.isArray(preguntaAleatoria.palabras)) {
-            // Verificar si las palabras ya están en el contenedor
-            if (!opcionesContainer.querySelector('p')) {  // Solo agregamos las palabras si no están ya en el contenedor
-                let palabrasTexto = document.createElement('p');
-                palabrasTexto.innerText = `Palabras: ${preguntaAleatoria.palabras.join(', ')}`;
-                opcionesContainer.appendChild(palabrasTexto); // Añadimos las palabras al contenedor
-                opcionesContainer.style.display = "inline-block";
-            }
-        }
-        // Ocultar el texto de la pregunta si es un reto
-        if (preguntaAleatoria.tipo === "reto") {
-            modalTexto.style.display = "none";  // Escondemos el texto de la pregunta
+        if (categoria === "Actúa") {
+            modalTexto.style.display = "none";  
+        } else {
+            modalTexto.style.display = "block";  
         }
 
-        // Mostrar el botón "Ver Respuesta" solo si es un acertijo
-        if (preguntaAleatoria.tipo === "acertijo") {
-            verRespuestaBtn.style.display = "inline-block";  // Mostrar "Ver Respuesta" solo después de "Iniciar"
+        if (preguntaAleatoria && preguntaAleatoria.tipo && preguntaAleatoria.tipo === "acertijo") {
+            verRespuestaBtn.style.display = "inline-block"; 
         }
+
+        instructivoContainer.style.display = "inline-block";  
+
+        if (categoria === "Escribe") {
+            modalTexto.style.display = "block";  
+        } else if ((categoria === "Piensa" && preguntaAleatoria?.tipo === "reto") || categoria === "Crea") {
+            modalTexto.style.display = "none";  
+        }
+
+
 
         cumplioBtn.onclick = function () {
-            // Aquí mostramos las opciones del modal cuando el jugador hace clic en "Cumplió"
             if ((categoria === "Piensa" && preguntaAleatoria?.tipo === "reto") || categoria === "Escribe" || categoria === "Crea" || categoria === "Actúa") {
-                modalTexto.style.display = "block";  // Mostramos la pregunta
-                instructivoContainer.style.display = "none";  // Ocultamos las instrucciones
+                modalTexto.style.display = "block";
+                instructivoContainer.style.display = "none";
+                cerrarHechizoBtn.style.display = "inline-block";
             }
-
-            // Ocultar las palabras del desafío después de "Cumplió"
-            if (preguntaAleatoria.tipo === "desafio" && Array.isArray(preguntaAleatoria.palabras)) {
-                opcionesContainer.style.display = "none";  // Ocultamos el contenedor de las palabras
-            }
-
-            cerrarModalBtn.style.display = "inline-block";  
-            cumplioReto(); // Llamamos a la función cumplioReto
+            cumplioReto();
         };
+
+        
 
         noCumplioBtn.onclick = function () {
             if ((categoria === "Piensa" && preguntaAleatoria?.tipo === "reto") || categoria === "Escribe" || categoria === "Crea" || categoria === "Actúa") {
-                modalTexto.style.display = "block";  // Mostramos la pregunta
+                modalTexto.style.display = "block";
             }
             noCumplioReto();
         };
     };
+
+    // Mostrar respuesta cuando se hace clic en el botón "Ver respuesta"
+    verRespuestaBtn.onclick = function() {
+        console.log("Botón 'Ver respuesta' presionado.");
+
+        if (preguntaAleatoria && preguntaAleatoria.respuestaCorrecta) {
+            let respuestaHTML = `<p><strong>Respuesta:</strong> ${preguntaAleatoria.respuestaCorrecta}</p>`;
+            modalTexto.innerHTML += respuestaHTML;
+            console.log("Respuesta añadida al modal:", respuestaHTML);
+            modalTexto.style.display = "block";
+            verRespuestaBtn.style.display = "none"; 
+        } else {
+            console.error("No se ha encontrado la respuesta correcta.");
+        }
+    };
+
+    enviarRespuestaBtn.onclick = function () {
+        let inputElemento = document.getElementById('respuesta-input');
+        let opcionSeleccionada = inputElemento.value.trim();
+        if (opcionSeleccionada === "") {
+            alert("Por favor ingresa una respuesta.");
+            return;
+        }
+        validarRespuesta(opcionSeleccionada, preguntaAleatoria.respuestaCorrecta, opcionesContainer);
+        enviarRespuestaBtn.style.display = "none";
+    };
+
+    modal.style.display = "block";
 }
 
 
-function validarRespuesta(opcionSeleccionada, respuestaCorrecta, opcionesContainer) {
+
+
+
+
+function validarRespuesta(opcionSeleccionada, respuestaCorrecta, opcionesContainer, esReto) {
     let mensaje = document.createElement('p');
-    let cerrarModalBtn = document.getElementById("cerrar-modal");
-    let tiempoEspera = 1500;  // Reducido el tiempo de espera a 1.5 segundos
+    let tiempoEspera = 3000; // Siempre 3s para "rellena"
 
     // Verificamos si la opción es de tipo "rellena"
     if (opcionesContainer.querySelector('input')) {
         // Es un campo de texto
         let inputElemento = document.getElementById('respuesta-input');
         opcionSeleccionada = inputElemento.value.trim(); // Tomamos lo que se haya ingresado
-
-        // Comprobamos si la respuesta es correcta
-        if (opcionSeleccionada.toLowerCase() === respuestaCorrecta.toLowerCase()) {
-            mensaje.innerText = '¡Correcto!';
-            opcionesContainer.appendChild(mensaje);
-
-            // Ejecutamos la función cumplioReto después de unos segundos
-            setTimeout(function () {
-                cumplioReto(); // Llamamos a la función cumplioReto
-                cerrarModalBtn.style.display = 'inline-block'; // Aseguramos que el botón de "X" se muestre
-            }, tiempoEspera);
+        if (opcionSeleccionada === respuestaCorrecta) {
+            mensaje.innerText = "¡Respuesta correcta!";
+            mensaje.style.color = "green";
         } else {
-            mensaje.innerText = `Respuesta Incorrecta. La respuesta era: ${respuestaCorrecta}`;
-            opcionesContainer.appendChild(mensaje);
-
-            // Ejecutamos la función noCumplioReto después de unos segundos
-            setTimeout(function () {
-                noCumplioReto(); // Llamamos a la función noCumplioReto
-                cerrarModalBtn.style.display = 'inline-block'; // Aseguramos que el botón de "X" se muestre
-            }, tiempoEspera);
+            mensaje.innerText = `Respuesta incorrecta. La respuesta correcta era: ${respuestaCorrecta}`;
+            mensaje.style.color = "red";
         }
     } else {
-        // Es una opción con botones (tipo "seleccion")
+        // Comportamiento normal de opciones
         if (opcionSeleccionada === respuestaCorrecta) {
-            mensaje.innerText = '¡Correcto!';
-            opcionesContainer.appendChild(mensaje);
-
-            // Ejecutamos la función cumplioReto después de unos segundos
-            setTimeout(function () {
-                opcionesContainer.style.display = 'none';
-                cumplioReto();
-                cerrarModalBtn.style.display = 'inline-block'; // Aseguramos que el botón de "X" se muestre
-            }, tiempoEspera);
+            mensaje.innerText = "¡Respuesta correcta!";
+            mensaje.style.color = "green";
         } else {
-            mensaje.innerText = `Respuesta Incorrecta. La respuesta era: ${respuestaCorrecta}`;
-            opcionesContainer.appendChild(mensaje);
-
-            // Ejecutamos la función noCumplioReto después de unos segundos
-            setTimeout(function () {
-                noCumplioReto(); // Llamamos a la función noCumplioReto
-                cerrarModalBtn.style.display = 'inline-block'; // Aseguramos que el botón de "X" se muestre
-            }, tiempoEspera);
+            mensaje.innerText = "Respuesta incorrecta. La respuesta correcta era: " + respuestaCorrecta;
+            mensaje.style.color = "red";
         }
     }
 
-    // Ocultamos el mensaje después de un tiempo
-    setTimeout(function () {
-        mensaje.style.display = "none";  // Ocultamos el mensaje después del tiempo de espera
+    opcionesContainer.appendChild(mensaje);
+
+    setTimeout(() => {
+        opcionesContainer.innerHTML = ''; // Limpia las opciones y el mensaje
+
+        if (esReto) {
+            opcionesContainer.style.display = "none"; // Oculta el texto en los retos
+        }
+
+        if (opcionSeleccionada === respuestaCorrecta) {
+            cumplioReto(); // Continúa con la pista
+        } else {
+            cerrarModal(); // Cambia de turno
+        }
     }, tiempoEspera);
 }
 
@@ -513,96 +497,86 @@ export function cumplioReto() {
     }
 
     let ingrediente = equipoActual.ingredients[ingredienteActualIndex];
-    if (!ingrediente || !ingrediente.pistas || !Array.isArray(ingrediente.pistas)) {
+
+    if (!ingrediente || !Array.isArray(ingrediente.pistas) || ingrediente.pistas.length === 0) {
         console.warn(`Ingrediente no válido o sin pistas para el equipo ${equipoActual.name}.`);
         return;
     }
-   
-    // Si el progreso del ingrediente no ha sido establecido, comienza desde la primera pista
+
+    // Inicializa el progreso del ingrediente si no está definido
     if (progresoPistas[ingrediente.nombre] === undefined) {
-        progresoPistas[ingrediente.nombre] = 0;  // Comienza en la pista 0
+        progresoPistas[ingrediente.nombre] = 0;
     }
 
-    // Verifica si aún hay más pistas para mostrar
-    if (progresoPistas[ingrediente.nombre] < ingrediente.pistas.length) {
-        let pistaNumero = progresoPistas[ingrediente.nombre] + 1;
-        let modalTitulo = document.getElementById("modal-titulo");
-        let modalTexto = document.getElementById("modal-texto");
-        let cumplioBtn = document.getElementById("cumplio-btn");
-        let noCumplioBtn = document.getElementById("no-cumplio-btn");
-        let pistaImagen = document.getElementById("pista-imagen");
+    let indicePista = progresoPistas[ingrediente.nombre];
+    let totalPistas = ingrediente.pistas.length;
 
+    let modalTitulo = document.getElementById("modal-titulo");
+    let modalTexto = document.getElementById("modal-texto");
+    let pistaImagen = document.getElementById("pista-imagen");
+    let cumplioBtn = document.getElementById("cumplio-btn");
+    let noCumplioBtn = document.getElementById("no-cumplio-btn");
+    let verificarIngredientesBtn = document.getElementById("verificar-ingredientes-btn");
+
+    if (indicePista < totalPistas) {
         // Mostrar la pista actual
-        modalTitulo.innerText = `Pista  ${pistaNumero}`;
-        modalTexto.innerText = ingrediente.pistas[progresoPistas[ingrediente.nombre]];
+        modalTitulo.innerText = `Pista ${indicePista + 1}`;
+        modalTexto.innerText = ingrediente.pistas[indicePista];
 
         if (ingrediente.imagen) {
             pistaImagen.src = ingrediente.imagen;
             pistaImagen.style.display = "block";
+        } else {
+            pistaImagen.style.display = "none";
         }
 
-        // Esconde los botones en esta etapa, ya que los botones solo se mostrarán después de que se haya mostrado la pista
+        // Ocultar los botones en esta etapa
         cumplioBtn.style.display = "none";
         noCumplioBtn.style.display = "none";
-
-        
-        // Mostrar en consola el nombre del ingrediente que se está procesando
-        console.log(`Dando pista para el ingrediente: ${ingrediente.nombre}`);
 
         // Avanzar al siguiente nivel de pista
         progresoPistas[ingrediente.nombre]++;
     } else {
-        // Si ya se han mostrado todas las pistas para este ingrediente
+        // Todas las pistas han sido mostradas para este ingrediente
         console.log(`Todas las pistas de "${ingrediente.nombre}" han sido mostradas.`);
         ingredienteActualIndex++;
 
-        // Verifica si se han procesado todos los ingredientes del equipo
+        // Si era el último ingrediente, pasar al siguiente turno
         if (ingredienteActualIndex >= equipoActual.ingredients.length) {
-            console.log("Todos los ingredientes han sido procesados.");
-            ingredienteActualIndex = 0;  // Reinicia para el siguiente turno
-            siguienteTurno();  // Avanzar al siguiente turno si todos los ingredientes han sido procesados
-        } else {
-            console.log(`Pasando al siguiente ingrediente: ${equipoActual.ingredients[ingredienteActualIndex].nombre}`);
+            console.log("Todos los ingredientes han sido procesados. Cambio de turno.");
 
-            // Asegúrate de ocultar el texto de pistas y botones cuando se pase al siguiente ingrediente
-            let modalTitulo = document.getElementById("modal-titulo");
-            let modalTexto = document.getElementById("modal-texto");
-            let pistaImagen = document.getElementById("pista-imagen");
-            let cumplioBtn = document.getElementById("cumplio-btn");
-            let noCumplioBtn = document.getElementById("no-cumplio-btn");
-
-            // Limpiar el contenido del modal antes de mostrar el siguiente ingrediente
-            modalTitulo.innerText = '';
-            modalTexto.innerText = '';
-            pistaImagen.style.display = "none";  // Esconde la imagen
-            cumplioBtn.style.display = "none";   // Esconde el botón
-            noCumplioBtn.style.display = "none"; // Esconde el otro botón
-
-            // Ahora, carga el siguiente ingrediente y su primera pista
-            let siguienteIngrediente = equipoActual.ingredients[ingredienteActualIndex];
-            if (siguienteIngrediente && siguienteIngrediente.pistas.length > 0) {
-                // Mostrar la primera pista del siguiente ingrediente
-                modalTitulo.innerText = "Pista 1";
-                modalTexto.innerText = siguienteIngrediente.pistas[0];
-
-                if (siguienteIngrediente.imagen) {
-                    pistaImagen.src = siguienteIngrediente.imagen;
-                    pistaImagen.style.display = "block";
+            // **Retrasar la aparición del botón hasta el inicio de la nueva ronda**
+            setTimeout(() => {
+                if (verificarIngredientesBtn) {
+                    verificarIngredientesBtn.style.display = "inline-block";
                 }
+            }, 1000); // Retraso de 1 segundo antes de mostrar el botón
 
-                // Esconder los botones ya que no deben aparecer en esta fase
-                cumplioBtn.style.display = "none";
-                noCumplioBtn.style.display = "none";
+            ingredienteActualIndex = 0;  // Reiniciar el índice para el siguiente turno
+        } else {
+            // Cargar el siguiente ingrediente y su primera pista
+            let siguienteIngrediente = equipoActual.ingredients[ingredienteActualIndex];
+            console.log(`Pasando al siguiente ingrediente: ${siguienteIngrediente.nombre}`);
 
-                // Restablecer el progreso de pistas del nuevo ingrediente
-                progresoPistas[siguienteIngrediente.nombre] = 0;
+            modalTitulo.innerText = "Pista 1";
+            modalTexto.innerText = siguienteIngrediente.pistas[0];
+
+            if (siguienteIngrediente.imagen) {
+                pistaImagen.src = siguienteIngrediente.imagen;
+                pistaImagen.style.display = "block";
+            } else {
+                pistaImagen.style.display = "none";
             }
+
+            // Reiniciar el progreso de pistas del nuevo ingrediente
+            progresoPistas[siguienteIngrediente.nombre] = 1;
         }
+
+        // Ocultar botones en esta etapa
+        cumplioBtn.style.display = "none";
+        noCumplioBtn.style.display = "none";
     }
 }
-
-
-
 
 
 
@@ -626,4 +600,3 @@ export function cerrarModal() {
 
     siguienteTurno();
 }
-
