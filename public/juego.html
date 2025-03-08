@@ -12,14 +12,14 @@
 
     <div id="modal-hechizo" class="modal">
         <div class="modal-contenido">
-            <span class="cerrar" onclick="cerrarModalHechizo()">×</span>
+            <span class="cerrar" id= "cerrar-hechizo" onclick="cerrarModalHechizo()">×</span>
             <h2 id="titulo-hechizo">Ingresa el código del hechizo</h2>
             <input id="codigo-hechizo" type="text" placeholder="Código del hechizo" />
             <button onclick="validarCodigo()">Lanzar Hechizo</button>
             <p id="mensaje-hechizo"></p>
         </div>
     </div>
-    
+
     <div class="cartas-container">
         <div class="carta" onclick="mostrarModal('Crea')">Crea</div>
         <div class="carta" onclick="mostrarModal('Actúa')">Actúa</div>
@@ -30,7 +30,7 @@
 
     <div id="modal" class="modal">
         <div class="modal-contenido">
-            <span class="cerrar" onclick="cerrarModal()">&times;</span>
+            <span id="cerrar-modal" class="cerrar" onclick="cerrarModal()">&times;</span>
             <h2 id="modal-titulo"></h2>
             <div id="pista-container" class="pista-container">
                 <img id="pista-imagen" src="" alt="Imagen de pista" class="pista-imagen" style="display: none;">
@@ -39,7 +39,7 @@
                 <div id="palabra-container" class="palabra-container" style="display: none;"></div>
             </div>
             <div id="opciones-container" class="opciones-container" style="display: none;"></div> 
-        
+            
             <button id="enviar-respuesta-btn" style="display:none;">Enviar Respuesta</button>
             <button id="iniciar-btn">Iniciar</button>
             <button id="cumplio-btn" style="display:none;">Cumplió</button>
@@ -49,6 +49,8 @@
             <button id="ver-respuesta-btn" style="display:none;">Abrir Respuesta</button> 
         </div>
     </div>
+
+    <button id="verificar-ingredientes-btn" style="display:none;">Verificar Ingredientes</button>
 
     <script type="module" src="../src/js/gamelogic.js"></script>
 </body>

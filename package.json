@@ -9,8 +9,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "serve": "^14.2.4"
-  }
+  },
+  "description": ""
 }

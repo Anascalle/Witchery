@@ -141,22 +141,7 @@ export const preguntasEscribe = [
         tipo: "desafio", 
         respuestaCorrecta: "Debe ser un conjunto de tres sinónimos de 'encantamiento'."
     },
-    {
-        pregunta: "Completa el refrán: El que con lobos anda, __________.",
-        respuestaCorrecta:  "aullar aprende",
-        tipo: "rellena",
-        participantes: "Todos"
-    },
-    {
-        pregunta: "Completa el refrán: En casa de herrero, __________.",
-        respuestaCorrecta: "cuchillo de palo",
-        tipo: "rellena"
-    },
-    {
-        pregunta: "Completa el refrán:  Del dicho al hecho, __________.",
-        respuestaCorrecta: "hay mucho trecho",
-        tipo: "rellena"
-    },
+   
     {
         pregunta: "Crea un conjuro usando solo palabras que empiecen con la misma letra.",
         tipo: "desafio", 
@@ -496,12 +481,3 @@ export const preguntasActua = [
     
     
 ];
-
-
-
-
-
-
-
-
-
