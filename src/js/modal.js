@@ -15,27 +15,6 @@ let progresoPistas = {};
 let ingredienteActualIndex = 0; 
 
 
-export function actualizarTurno() {
-    let turnoElemento = document.getElementById("turno");
-
-    if (equipos.length > 0 && turnoElemento) {
-        turnoElemento.innerText = `Turno de: ${equipos[turnoActual].name}`;
-    } else {
-        console.warn("No hay equipos disponibles o no se encontró el elemento 'turno'.");
-    }
-}
-
-export function siguienteTurno() {
-    if (equipos.length > 0) {
-        turnoActual = (turnoActual + 1) % equipos.length; 
-        localStorage.setItem("turnoActual", JSON.stringify(turnoActual)); 
-        actualizarTurno(); 
-        console.log(`Ahora es el turno de: ${equipos[turnoActual].name}`);
-    } else {
-        console.warn("No hay equipos para cambiar el turno.");
-    }
-}
-
 export function mostrarModalHechizo() {
     let modalHechizo = document.getElementById("modal-hechizo");
     let mensajeHechizo = document.getElementById("mensaje-hechizo");
@@ -141,8 +120,6 @@ export function aplicarEfectoHechizo(hechizo) {
     cerrarModalHechizo();
 }
 
-
-// Función para cerrar el modal de hechizo
 export function cerrarModalHechizo() {
     let modalHechizo = document.getElementById("modal-hechizo");
     let codigoInput = document.getElementById("codigo-hechizo");
@@ -201,6 +178,29 @@ export function validarCodigo() {
         mensajeHechizo.innerText = "¡Código inválido! Intenta de nuevo.";
     }
 }
+export function actualizarTurno() {
+    let turnoElemento = document.getElementById("turno");
+
+    if (equipos.length > 0 && turnoElemento) {
+        turnoElemento.innerText = `Turno de: ${equipos[turnoActual].name}`;
+    } else {
+        console.warn("No hay equipos disponibles o no se encontró el elemento 'turno'.");
+    }
+}
+
+export function siguienteTurno() {
+    if (equipos.length > 0) {
+        turnoActual = (turnoActual + 1) % equipos.length; 
+        localStorage.setItem("turnoActual", JSON.stringify(turnoActual)); 
+        actualizarTurno(); 
+        console.log(`Ahora es el turno de: ${equipos[turnoActual].name}`);
+    } else {
+        console.warn("No hay equipos para cambiar el turno.");
+    }
+}
+
+// Función para cerrar el modal de hechizo
+
 
 let preguntasMostradas = [];  // Array para almacenar las preguntas ya mostradas
 
@@ -298,30 +298,31 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
                 verRespuestaBtn.style.display = "none"; // Ocultar botón después de mostrar la respuesta
             };
              } else if (preguntaAleatoria.tipo === "seleccion" && Array.isArray(preguntaAleatoria.opciones)) {
-            // Limpiamos cualquier contenido previo en el contenedor de opciones
-           
+                // Limpiar cualquier contenido previo en el contenedor de opciones
+                opcionesContainer.innerHTML = ""; 
             
-            // Creamos botones para cada opción si la pregunta tiene opciones
-            preguntaAleatoria.opciones.forEach((opcion) => {
-                let opcionElemento = document.createElement('button');
-                opcionElemento.classList.add('opcion');
-                opcionElemento.innerText = opcion;
-                
-                // Al hacer clic en una opción, se valida la respuesta
-                opcionElemento.onclick = function () {
-                    // Llamamos a la función para validar la respuesta seleccionada
-                    validarRespuesta(opcion, preguntaAleatoria.respuestaCorrecta, opcionesContainer);
-                };
-                
-                // Agregamos el botón al contenedor de opciones
-                opcionesContainer.appendChild(opcionElemento);
-            });
+                // Crear botones para cada opción si la pregunta tiene opciones
+                preguntaAleatoria.opciones.forEach((opcion) => {
+                    let opcionElemento = document.createElement('button');
+                    opcionElemento.classList.add('opcion');
+                    opcionElemento.innerText = opcion;
             
-            // Mostramos las opciones como botones
-            opcionesContainer.style.display = "inline-block";
-            // Ocultamos el botón de "Iniciar" cuando las opciones ya están disponibles
-            iniciarBtn.style.display = "none";
-        }
+                    // Al hacer clic en una opción, se valida la respuesta
+                    opcionElemento.onclick = function () {
+                        // Llamamos a la función para validar la respuesta seleccionada
+                        validarRespuesta(opcion, preguntaAleatoria.respuestaCorrecta, opcionesContainer);
+                    };
+            
+                    // Agregamos el botón al contenedor de opciones
+                    opcionesContainer.appendChild(opcionElemento);
+                });
+            
+                // Mostramos las opciones como botones
+                opcionesContainer.style.display = "inline-block";
+                // Ocultamos el botón de "Iniciar" cuando las opciones ya están disponibles
+                iniciarBtn.style.display = "none";
+            }
+            
          else if (preguntaAleatoria.tipo === "reto" && Array.isArray(preguntaAleatoria.elige)) {
             // Mostrar las opciones como una lista en lugar de botones
             opcionesContainer.innerHTML = '';  
@@ -437,8 +438,6 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
         };
     };
 }
-
-
 
 
 function validarRespuesta(opcionSeleccionada, respuestaCorrecta, opcionesContainer) {
@@ -627,3 +626,4 @@ export function cerrarModal() {
 
     siguienteTurno();
 }
+
