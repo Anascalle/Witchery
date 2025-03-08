@@ -2,129 +2,130 @@ export const ingredientes = [
     {
         "nombre": "Raíz de Susurros",
         "pistas": [
-            "Es un vegetal",
-            "Es áspero al tacto",
-            "Es alargado"
+            "El ingrediente es de origen vegetal",
+            "Crece bajo tierra para absorber nutrientes",
+            "Tiene un brillo dorado que se asemeja al sol"
         ]
     },
     {
         "nombre": "Fruta Estrella Nocturna",
         "pistas": [
-            "Es un vegetal",
-            "Es azul",
-            "Es esférica"
-        ]
-    },
-    {
-        "nombre": "Ojo de Ámbar",
-        "pistas": [
-            "Es/viene de una criatura",
-            "Es dorado",
-            "Es esférico y tiene una textura lisa"
+            "El ingrediente es de origen vegetal",
+            "Dulce y comestible encarnación de un astro",
+            "Brilla con un intenso tono de azul pese a su pequeño tamaño"
         ]
     },
     {
         "nombre": "Escamas de Dracohelios",
         "pistas": [
-            "Es/viene de una criatura",
-            "Es dorado",
-            "Es plana y áspera al tacto"
+            "El ingrediente proviene de una criatura",
+            "Tiene un brillo dorado que se asemeja al sol",
+            "Es algo que tienen los peces y los reptiles"
         ]
     },
     {
-        "nombre": "Lágrima de Ninfa",
+        "nombre": "Escamas de Tritón Abisal",
         "pistas": [
-            "Es/viene de una criatura",
-            "Es traslúcida",
-            "Es plana"
+            "El ingrediente proviene de una criatura",
+            "Es algo que tienen los peces y los reptiles",
+            "Puedes encontrarlo en las profundidades del agua"
         ]
     },
     {
         "nombre": "Pluma de Cuervo Estelar",
         "pistas": [
-            "Es/viene de una criatura",
-            "Es suave y de forma alargada",
-            "Es azul"
+            "El ingrediente proviene de una criatura",
+            "Brilla con un intenso tono de azul pese a su pequeño tamaño",
+            "Es algo que tienen las aves"
+        ]
+    },
+    {
+        "nombre": "Pluma de Fénix Japonés",
+        "pistas": [
+            "El ingrediente proviene de una criatura",
+            "Tiene un brillo dorado que se asemeja al sol",
+            "Es algo que tienen las aves."
+        ]
+    },
+    {
+        "nombre": "Lágrimas de Unicornio",
+        "pistas": [
+            "El ingrediente proviene de una criatura",
+            "Es el resultado de una gran tristeza en el corazón",
+            "Tiene un resplandor violeta que ilumina donde caen"
+        ]
+    },
+    {
+        "nombre": "Lágrimas de Ninfa",
+        "pistas": [
+            "El ingrediente proviene de una criatura",
+            "Tiene un brillo dorado que se asemeja al sol",
+            "Es el resultado de una gran tristeza en el corazón"
+        ]
+    },
+    {
+        "nombre": "Raíz Cadavérica",
+        "pistas": [
+            "El ingrediente es de origen vegetal",
+            "Crece bajo tierra para absorber nutrientes",
+            "Crece enredada y gris, parece un recordatorio de la muerte misma"
+        ]
+    },
+    {
+        "nombre": "Violeta de los Suspiros",
+        "pistas": [
+            "El ingrediente es de origen vegetal",
+            "Abre sus pétalos bajo ciertas condiciones",
+            "Parece melancólica, quizá por eso está pintada de un tono de azul"
+        ]
+    },
+    {
+        "nombre": "Tulipán de la Aurora",
+        "pistas": [
+            "El ingrediente es de origen vegetal",
+            "Abre sus pétalos bajo ciertas condiciones",
+            "Su color dorado recuerda a los primeros rayos de la mañana"
         ]
     },
     {
         "nombre": "Raíz de Fuego Frío",
         "pistas": [
-            "Es un vegetal",
-            "Es áspero al tacto",
-            "Es azul"
+            "El ingrediente es de origen vegetal",
+            "Crece bajo tierra para absorber nutrientes",
+            "Brilla con un intenso tono de azul pese a su pequeño tamaño"
         ]
     },
     {
-        "nombre": "Flor del Suspiro Azul",
+        "nombre": "Flor de Loto de Sangre",
         "pistas": [
-            "Es un vegetal",
-            "Es azul",
-            "Tiene forma plana"
+            "El ingrediente es de origen vegetal",
+            "Abre sus pétalos bajo ciertas condiciones",
+            "Su color tan vibrante puede recordar al fuego o la sangre"
         ]
     },
     {
-        "nombre": "Escarabajo de Cristal",
+        "nombre": "Escarabajo de Rubi",
         "pistas": [
-            "Es/viene de una criatura",
-            "Es rojo",
-            "Es esférico"
+            "El ingrediente proviene de una criatura",
+            "Es pequeño y suele ir caminando por el bosque",
+            "Su color tan vibrante puede recordar al fuego o la sangre"
         ]
     },
     {
-        "nombre": "Colmillo de Bestia Lunar",
+        "nombre": "Escarabajo Opalino",
         "pistas": [
-            "Es/viene de una criatura",
-            "Es rojo",
-            "Es alargado"
+            "El ingrediente proviene de una criatura",
+            "Es pequeño y suele ir caminando por el bosque",
+            "Pareciera que refleja el arcoíris en su espalda"
         ]
     },
     {
-        "nombre": "Hilo de Seda Sombría",
+        "nombre": "Fruta de Sol Ardiente",
         "pistas": [
-            "Es/viene de una criatura",
-            "Es suave y de forma alargada",
-            "Es transparente"
+            "El ingrediente es de origen vegetal",
+            "Tiene un brillo dorado que se asemeja al sol",
+            "Dulce y comestible encarnación de un astro"
         ]
     },
-    {
-        "nombre": "Semilla de la Aurora",
-        "pistas": [
-            "Es un vegetal",
-            "Es dorado",
-            "Es un polvo de textura viscosa"
-        ]
-    },
-    {
-        "nombre": "Sangre de Leviatán",
-        "pistas": [
-            "Es/viene de una criatura",
-            "Es roja",
-            "Es un polvo de textura viscosa"
-        ]
-    },
-    {
-        "nombre": "Polvo de Hueso Antiguo",
-        "pistas": [
-            "Es/viene de una criatura",
-            "Es transparente",
-            "Es un polvo de textura áspera"
-        ]
-    },
-    {
-        "nombre": "Fruta del Crepúsculo",
-        "pistas": [
-            "Es un vegetal",
-            "Es dorada",
-            "Es esférica y su pulpa es viscosa"
-        ]
-    },
-    {
-        "nombre": "Loto de Sangre",
-        "pistas": [
-            "Es un vegetal",
-            "Es rojo",
-            "Tiene pétalos planos y su savia es viscosa"
-        ]
-    }
+  
 ]

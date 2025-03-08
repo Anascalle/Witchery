@@ -1,7 +1,6 @@
 import { ingredientes } from "../data/ingredients.js";
 console.log(ingredientes);
 
-
 // Asignar los ingredientes importados a la variable global
 let ingredientesDisponibles = [...ingredientes];
 
@@ -82,6 +81,9 @@ function generarGrupos() {
     // Cambiar el texto del botón a "Iniciar juego"
     boton.innerText = "Iniciar juego";
     boton.onclick = iniciarJuego;
+
+    // Actualizar los equipos en localStorage
+    actualizarLocalStorage();
 }
 
 function obtenerIngredientesAleatorios(cantidad) {
@@ -95,7 +97,7 @@ function obtenerIngredientesAleatorios(cantidad) {
 }
 
 function asignarIngredientesAGrupos() {
-    let totalIngredientes = teams.length * 4; // 4 ingredientes por equipo
+    let totalIngredientes = teams.length * 3; // 4 ingredientes por equipo
     let ingredientesSeleccionados = obtenerIngredientesAleatorios(totalIngredientes);
 
     if (ingredientesSeleccionados.length < totalIngredientes) {
@@ -104,13 +106,21 @@ function asignarIngredientesAGrupos() {
 
     // Distribuir los ingredientes sin repetir entre los equipos
     teams.forEach((equipo, index) => {
-        equipo.ingredients = ingredientesSeleccionados.slice(index * 4, (index + 1) * 4);
+        equipo.ingredients = ingredientesSeleccionados.slice(index * 3, (index + 1) * 3);
         console.log(`${equipo.name}:`, equipo.ingredients);
     });
+
+    // Actualizar localStorage cada vez que se asignen ingredientes
+    actualizarLocalStorage();
 }
 
 function iniciarJuego() {
     console.log("Equipos creados:", teams);
     localStorage.setItem("equipos", JSON.stringify(teams)); // Guardar equipos en localStorage
-    window.location.href = "juego.html"; // Cambia a la nueva pantalla
+    window.location.href = "juego.html"; // Cambiar a la nueva pantalla
+}
+
+// Actualizar el localStorage con los equipos
+function actualizarLocalStorage() {
+    localStorage.setItem("equipos", JSON.stringify(teams));
 }
