@@ -214,7 +214,6 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
     let modal = document.getElementById("modal");
     let cumplioBtn = document.getElementById("cumplio-btn");
     let noCumplioBtn = document.getElementById("no-cumplio-btn");
-    let pistaImagen = document.getElementById("pista-imagen");
     let iniciarBtn = document.getElementById("iniciar-btn");
     let opcionesContainer = document.getElementById("opciones-container");
     let enviarRespuestaBtn = document.getElementById("enviar-respuesta-btn");
@@ -327,7 +326,6 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
             opcionesContainer.style.display = "none";  
         }
 
-        pistaImagen.style.display = "none";  
     } else if (ingredienteNombre) {
         // Lógica para la categoría Ingrediente (sin cambios)
         let ingrediente = ingredientes.find(i => i.nombre === ingredienteNombre);
@@ -341,12 +339,7 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
         modalTitulo.innerText = "Pista 1";
         modalTexto.innerText = pistaActual;
 
-        if (ingrediente.imagen) {
-            pistaImagen.src = ingrediente.imagen;
-            pistaImagen.style.display = "block";
-        } else {
-            pistaImagen.style.display = "none";
-        }
+       
     } else {
         if (!retos[categoria]) {
             console.warn(`Categoría "${categoria}" no encontrada.`);
@@ -490,22 +483,137 @@ function validarRespuesta(opcionSeleccionada, respuestaCorrecta, opcionesContain
 
 export function verificarIngredientes() {
     let verificarIngredientesBtn = document.getElementById("verificar-ingredientes-btn");
+    let modal = document.getElementById("modal-verificacion");
+    let contenedorIngredientes = document.getElementById("contenedor-ingredientes");
     let equipoActual = equipos[turnoActual];
+
+    // Array para almacenar los ingredientes seleccionados
+    let ingredientesSeleccionados = [];
+    let botonesIngredientes = [];
 
     if (!equipoActual || !Array.isArray(equipoActual.ingredients)) {
         console.warn("⚠️ No hay ingredientes asignados al equipo.");
         return;
     }
 
-    // Si el equipo ya completó todas las pistas en una ronda anterior, ahora mostramos el botón
     if (equiposCompletados[equipoActual.name]) {
-        console.log(`🔄 El equipo ${equipoActual.name} vuelve a jugar y ya había completado. Mostrando botón.`);
         verificarIngredientesBtn.style.display = "inline-block";
+
+        verificarIngredientesBtn.onclick = function() {
+            contenedorIngredientes.innerHTML = ""; // Limpiar contenido previo
+            ingredientesSeleccionados = []; // Resetear las selecciones anteriores
+            botonesIngredientes = []; // Resetear botones anteriores
+
+            ingredientes.forEach(ingrediente => {
+                // Crear un botón para cada ingrediente
+                let button = document.createElement("button");
+                button.classList.add("boton-ingrediente");
+
+                // Crear imagen para el ingrediente
+                let img = document.createElement("img");
+                img.src = ingrediente.imagen || "ruta/por/defecto/imagen.jpg"; // Ruta por defecto en caso de que la imagen esté vacía
+                img.alt = ingrediente.nombre;
+                img.style.width = "100px";  // Ajusta el tamaño de la imagen
+                img.style.height = "100px";
+                img.style.marginRight = "10px";  // Espacio entre la imagen y el texto
+
+                // Asignamos el nombre del ingrediente como atributo `data-name` y lo ocultamos visualmente
+                button.setAttribute("data-name", ingrediente.nombre);
+                button.setAttribute("data-id", ingrediente.id); // (Si necesitas un identificador único)
+
+                // Agregar la imagen al botón
+                button.appendChild(img);
+
+                // Agregar el botón al contenedor
+                contenedorIngredientes.appendChild(button);
+
+                // Establecer el comportamiento del botón (agregar ingredientes seleccionados)
+                button.onclick = function() {
+                    if (ingredientesSeleccionados.length < 3) {
+                        // Si aún no hemos seleccionado 3 ingredientes, agregar este
+                        let nombreIngrediente = button.getAttribute("data-name");
+
+                        if (!ingredientesSeleccionados.includes(nombreIngrediente)) {
+                            ingredientesSeleccionados.push(nombreIngrediente);
+                            console.log(`Seleccionado: ${nombreIngrediente}`);
+
+                            // Añadir clase o estilo para marcar el ingrediente como seleccionado
+                            button.classList.add("seleccionado");
+
+                            // Mostrar el número de ingredientes seleccionados
+                            console.log(`Ingredientes seleccionados: ${ingredientesSeleccionados.length}`);
+                        }
+                    } else {
+                        alert("¡Ya seleccionaste 3 ingredientes!");
+                    }
+                };
+
+                // Guardar los botones para referencia futura
+                botonesIngredientes.push(button);
+            });
+
+            // Botón de verificación
+            let botonVerificar = document.createElement("button");
+            botonVerificar.textContent = "Verificar Selección";
+            botonVerificar.onclick = function() {
+                // Normalizar la comparación: convertir a minúsculas y eliminar espacios
+                let ingredientesSeleccionadosNormalizados = ingredientesSeleccionados.map(ingrediente => 
+                    String(ingrediente).trim().toLowerCase()
+                );
+                let ingredientesEsperadosNormalizados = equipoActual.ingredients.map(ingrediente => 
+                    String(ingrediente.nombre).trim().toLowerCase() // Asegurándonos de comparar solo el nombre
+                );
+
+                // Comparar los ingredientes seleccionados con los ingredientes del equipo
+                if (JSON.stringify(ingredientesSeleccionadosNormalizados.sort()) === JSON.stringify(ingredientesEsperadosNormalizados.sort())) {
+                    alert("¡Correcto! Los ingredientes seleccionados son los correctos.");
+                    
+                    // Limpiar la selección si es correcta (opcional si prefieres resetear los ingredientes después de cada turno)
+                    ingredientesSeleccionados = [];
+                    botonesIngredientes.forEach(button => {
+                        button.classList.remove("seleccionado");
+                        button.style.backgroundColor = ""; // Resetear color de fondo
+                    });
+
+                    modal.style.display = "none"; // Cerrar el modal después de verificar correctamente
+                    siguienteTurno(); // Cambiar turno si la verificación es correcta
+                } else {
+                    alert("¡Incorrecto! Los ingredientes seleccionados no coinciden.");
+                    
+                    // Limpiar la selección para que el jugador pueda escoger otros ingredientes
+                    ingredientesSeleccionados = [];
+                    botonesIngredientes.forEach(button => {
+                        button.classList.remove("seleccionado");
+                        button.style.backgroundColor = ""; // Resetear color de fondo
+                    });
+
+                    modal.style.display = "none"; // Cerrar el modal si es incorrecto
+                    siguienteTurno(); // Cambiar turno también si es incorrecto
+                }
+            };
+
+            // Agregar botón de verificación al contenedor
+            contenedorIngredientes.appendChild(botonVerificar);
+
+            modal.style.display = "block";
+        };
+
+        // Cerrar el modal
+        cerrarModal.onclick = function() {
+            modal.style.display = "none";
+            siguienteTurno(); // Cambiar turno al cerrar el modal
+        };
+
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                siguienteTurno(); // Cambiar turno si se hace clic fuera del modal
+            }
+        };
     } else {
         verificarIngredientesBtn.style.display = "none";
     }
 }
-
 
 let equiposCompletados = {}; // Objeto para almacenar qué equipos han completado sus pistas
 
@@ -563,7 +671,6 @@ export function cumplioReto() {
 
     let modalTitulo = document.getElementById("modal-titulo");
     let modalTexto = document.getElementById("modal-texto");
-    let pistaImagen = document.getElementById("pista-imagen");
     let cumplioBtn = document.getElementById("cumplio-btn");
     let noCumplioBtn = document.getElementById("no-cumplio-btn");
 
@@ -571,12 +678,7 @@ export function cumplioReto() {
         modalTitulo.innerText = `Pista ${indicePista + 1}`;
         modalTexto.innerText = ingrediente.pistas[indicePista];
     
-        if (ingrediente.imagen) {
-            pistaImagen.src = ingrediente.imagen;
-            pistaImagen.style.display = "block";
-        } else {
-            pistaImagen.style.display = "none";
-        }
+      
     
         cumplioBtn.style.display = "none";
         noCumplioBtn.style.display = "none";
@@ -600,12 +702,7 @@ export function cumplioReto() {
             modalTitulo.innerText = "Pista 1";
             modalTexto.innerText = siguienteIngrediente.pistas[0];
     
-            if (siguienteIngrediente.imagen) {
-                pistaImagen.src = siguienteIngrediente.imagen;
-                pistaImagen.style.display = "block";
-            } else {
-                pistaImagen.style.display = "none";
-            }
+          
     
             progresoPistas[siguienteIngrediente.nombre] = 1;
         }
