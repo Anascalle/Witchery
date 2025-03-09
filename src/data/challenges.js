@@ -55,7 +55,174 @@ export const preguntasPiensa = [
             "La Sirenita"
         ],
         respuestaCorrecta: "Blancanieves y los siete enanitos"
-    }
+    },
+        {
+            pregunta: "El pincel de los sueños. Algunos artistas no solo pintan, sino que tejen conjuros en sus lienzos. ¿Quién dio vida a la mística Noche estrellada, atrapando el resplandor del cielo en una tela encantada?",
+            tipo: "seleccion",
+            opciones: [
+                "Pablo 'El Visionario' Picasso",
+                "Vincent 'El Soñador' van Gogh",
+                "Leonardo 'El Sabio' da Vinci",
+                "Salvador 'El Ilusionista' Dalí"
+            ],
+            respuestaCorrecta: "Vincent 'El Soñador' van Gogh"
+        },
+        {
+            pregunta: "El aliento de los espíritus. En la alquimia de los elementos, ciertos gases son tan inertes que parecen estar encantados para no mezclarse con otros. ¿Cuál de estos vapores etéreos pertenece a la corte de los 'nobles'?",
+            tipo: "seleccion",
+            opciones: [
+                "Oxígeno, el soplo de la vida",
+                "Neón, la luz de los espectros",
+                "Sodio, la chispa de las brujas",
+                "Carbono, el creador de materia"
+            ],
+            respuestaCorrecta: "Neón, la luz de los espectros"
+        },
+        {
+            pregunta: "El río eterno. Los exploradores y hechiceros han debatido durante siglos cuál es el río que más tiempo ha dominado la tierra. ¿Cuál de estos cursos de agua es considerado el más largo del mundo?",
+            tipo: "seleccion",
+            opciones: [
+                "Amazonas, la serpiente esmeralda",
+                "Misisipi, la lengua de la tierra",
+                "Yangtsé, el dragón de agua",
+                "Nilo, el río del faraón"
+            ],
+            respuestaCorrecta: "Nilo, el río del faraón"
+        },
+        {
+            pregunta: "Símbolos mágicos. ¿Cuál de estos animales es más comúnmente asociado con la magia y la sabiduría en la mitología?",
+            tipo: "seleccion",
+            opciones: [
+                "Lobo",
+                "Búho",
+                "Ciervo",
+                "León"
+            ],
+            respuestaCorrecta: "Búho"
+        },
+        {
+            pregunta: "Recuerdos de leyendas. ¿Cuál de estas criaturas mitológicas NO tiene alas?",
+            tipo: "seleccion",
+            opciones: [
+                "Fénix",
+                "Quimera",
+                "Kraken",
+                "Hipogrifo"
+            ],
+            respuestaCorrecta: "Kraken"
+        },
+        {
+            pregunta: "Hierbas y encantamientos. ¿Cuál de estas plantas es más comúnmente usada en historias de brujería y pociones mágicas?",
+            tipo: "seleccion",
+            opciones: [
+                "Menta",
+                "Ruda",
+                "Lavanda",
+                "Albahaca"
+            ],
+            respuestaCorrecta: "Ruda"
+        },
+        {
+            pregunta: "¿Cuál de estas listas corresponde a la categoría 'Fenómenos naturales asociados con la magia'?",
+            tipo: "seleccion",
+            opciones: [
+                "Eclipse, aurora boreal, tormenta eléctrica, niebla densa.",
+                "Ola gigante, terremoto, viento huracanado, alud de nieve.",
+                "Relámpagos, sombra alargada, cristalización del hielo, anillo de fuego.",
+                "Lluvia ligera, arco iris, marea baja, viento otoñal."
+            ],
+            respuestaCorrecta: "Eclipse, aurora boreal, tormenta eléctrica, niebla densa."
+        },
+        {
+            pregunta: "¿Cuál de estas listas corresponde a la categoría 'Criaturas legendarias de la mitología'?",
+            tipo: "seleccion",
+            opciones: [
+                "Minotauro, esfinge, hipogrifo, leviatán.",
+                "Búho blanco, pantera negra, dragón de Komodo, águila imperial.",
+                "Gato montés, quetzal, tiburón blanco, mono dorado.",
+                "Alce, zorro plateado, caballo salvaje, lobo gris."
+            ],
+            respuestaCorrecta: "Minotauro, esfinge, hipogrifo, leviatán."
+        },
+        {
+            pregunta: "¿Cuál de estas listas corresponde a la categoría 'Materiales usados para fabricar varitas mágicas'?",
+            tipo: "seleccion",
+            opciones: [
+                "Madera de abedul, trozo de mármol, escama de dragón, perla marina.",
+                "Madera de roble, núcleo de pelo de unicornio, cristal de luna, pluma de fénix.",
+                "Raíz de sauce, fragmento de cuarzo, pluma de lechuza, lágrima de sirena.",
+                "Hueso tallado, fibra de lino, polvo de ámbar, hoja de plata."
+            ],
+            respuestaCorrecta: "Madera de roble, núcleo de pelo de unicornio, cristal de luna, pluma de fénix."
+        },
+        {
+            pregunta: "¿Qué tienen en común las palabras 'león', 'lobo' y 'águila'?",
+            tipo: "seleccion",
+            opciones: [
+                "Son nombres de constelaciones.",
+                "Son depredadores en la naturaleza.",
+                "Son personajes de cuentos infantiles.",
+                "Son tipos de armaduras medievales."
+            ],
+            respuestaCorrecta: "Son depredadores en la naturaleza."
+        },
+        {
+            pregunta: "¿Qué tienen en común las palabras 'espejo', 'charco' y 'ventana'?",
+            tipo: "seleccion",
+            opciones: [
+                "Son objetos que reflejan imágenes.",
+                "Son cosas que se rompen con facilidad.",
+                "Son elementos usados en magia.",
+                "Son tipos de portales en la mitología."
+            ],
+            respuestaCorrecta: "Son objetos que reflejan imágenes."
+        },
+        {
+            pregunta: "¿Qué tienen en común las palabras 'fuego', 'relámpago' y 'lava'?",
+            tipo: "seleccion",
+            opciones: [
+                "Son fenómenos naturales peligrosos.",
+                "Son elementos utilizados en alquimia.",
+                "Son cosas que emiten luz.",
+                "Son nombres de criaturas mitológicas."
+            ],
+            respuestaCorrecta: "Son cosas que emiten luz."
+        },
+        {
+            pregunta: "¿Cuál de estos elementos no pertenece al grupo?",
+            tipo: "seleccion",
+            opciones: [
+                "Sol",
+                "Linterna",
+                "Luna",
+                "Vela"
+            ],
+            respuestaCorrecta: "Luna, porque no emite luz propia, mientras que los demás sí"
+        },
+        {
+            pregunta: "¿Cuál de estos elementos no pertenece al grupo?",
+            tipo: "seleccion",
+            opciones: [
+                "Rubí",
+                "Esmeralda",
+                "Zafiro",
+                "Mármol"
+            ],
+            respuestaCorrecta: "Mármol, porque no es una piedra preciosa, mientras que los demás sí"
+        },
+        {
+            pregunta: "¿Cuál de estos animales no pertenece al grupo?",
+            tipo: "seleccion",
+            opciones: [
+                "Tiburón",
+                "Delfín",
+                "Ballena",
+                "Pulpo"
+            ],
+            respuestaCorrecta: "Pulpo, porque no es un mamífero marino, mientras que los demás sí"
+        }
+    
+    
 ];
 
 export const preguntasEscribe = [
@@ -70,15 +237,15 @@ export const preguntasEscribe = [
         respuestaCorrecta: "Cualquier rima válida con 'misterio'."
     },
     {
-        pregunta: "Escribe un hechizo corto para transformar un objeto en otro. Debe tener rima y al menos 6 palabras.",
+        pregunta: "Usa las letras de la palabra GRIMORIO para formar un acrónimo que tenga sentido. Cada letra debe representar una palabra o parte de una frase relacionada.",
         tipo: "desafio", 
-        respuestaCorrecta: "Debe tener rima y mencionar transformación.",
+        respuestaCorrecta: "Debe formar un acrónimo que tenga sentido.",
         participantes: "Todos"
     },
     {
         pregunta: "Usa las letras de la palabra HECHIZO para formar un acrónimo que tenga sentido. Cada letra debe representar una palabra o parte de una frase relacionada.",
         tipo: "desafio", 
-        respuestaCorrecta: "Debe formar un acrónimo relacionado con magia."
+        respuestaCorrecta: "Debe formar un acrónimo que tenga sentido."
     },
     {
         pregunta: "Cambia solo una letra en cada palabra para formar una nueva palabra válida en español. No puedes agregar ni quitar letras, solo modificar una.",
@@ -107,7 +274,7 @@ export const preguntasEscribe = [
     {
         pregunta: "Usa las letras de la palabra BRUJA para formar un acrónimo que tenga sentido. Cada letra debe representar una palabra o parte de una frase relacionada.",
         tipo: "desafio", 
-        respuestaCorrecta: "Debe formar un acrónimo relacionado con magia."
+        respuestaCorrecta: "Debe formar un acrónimo que tenga sentido."
     },
     {
         pregunta: "Escribe dos palabras que contengan tres vocales diferentes.",
@@ -158,12 +325,12 @@ export const preguntasEscribe = [
         tipo: "rellena"
     },
     {
-        pregunta: "Crea un conjuro usando solo palabras que empiecen con la misma letra.",
+        pregunta: "Completa el refrán: Más vale tarde, __________",
         tipo: "desafio", 
-        respuestaCorrecta: "Debe ser un conjuro usando palabras con la misma letra inicial."
+        respuestaCorrecta: "que nunca"
     },
     {
-        pregunta: "Un brujo ha lanzado un hechizo sobre ti y ahora hablas al revés. Escribe una frase al revés (min 4 palabras).",
+        pregunta: "Un brujo ha lanzado un hechizo sobre ti y ahora hablas al revés. Escribe una frase al revés.",
         tipo: "desafio", 
         respuestaCorrecta: "Debe ser una frase escrita al revés.",
         participantes: "Todos"
@@ -171,7 +338,7 @@ export const preguntasEscribe = [
     {
         pregunta: "Usa las letras de la palabra GATO para formar un acrónimo que tenga sentido con el tema de hechizos o magia. Cada letra debe representar una palabra o parte de una frase relacionada.",
         tipo: "desafio", 
-        respuestaCorrecta: "Debe formar un acrónimo relacionado con magia."
+        respuestaCorrecta: "Debe formar un acrónimo que tenga sentido."
     }
 ];
 
@@ -182,9 +349,9 @@ export const preguntasCrea = [
         respuestaCorrecta: "Un caldero mágico"
     },
     {
-        pregunta: "Modela con plastilina a un dragón. Tu equipo debe adivinar qué criatura has modelado.",
+        pregunta: "Modela con plastilina a un dragón de tres cabezas. Tu equipo debe adivinar qué criatura has modelado.",
         tipo: "reto",
-        respuestaCorrecta: "Un dragón"
+        respuestaCorrecta: "Un dragón de tres cabezas"
     },
     {
         pregunta: "Modela con plastilina a un cuervo. Tu equipo debe adivinar qué criatura has modelado.",
@@ -197,9 +364,9 @@ export const preguntasCrea = [
         respuestaCorrecta: "Un gato"
     },
     {
-        pregunta: "Dibuja un hipogrifo. Tu equipo debe adivinar qué criatura has dibujado.",
+        pregunta: "Dibuja un búho. Tu equipo debe adivinar qué criatura has dibujado.",
         tipo: "reto",
-        respuestaCorrecta: "Un hipogrifo"
+        respuestaCorrecta: "Un búho"
     },
     {
         pregunta: "Dibuja un fénix. Tu equipo debe adivinar qué criatura has dibujado.",
@@ -252,7 +419,7 @@ export const preguntasCrea = [
         respuestaCorrecta: "Un hechizo de amor"
     },
     {
-        pregunta: "Modela un hombre lobo. Tu equipo debe adivinar qué criatura has modelado.",
+        pregunta: "Dibuja un hombre lobo. Tu equipo debe adivinar qué criatura has dibujado.",
         tipo: "reto",
         respuestaCorrecta: "Un hombre lobo"
     },
@@ -262,9 +429,9 @@ export const preguntasCrea = [
         respuestaCorrecta: "Un caldero mágico"
     },
     {
-        pregunta: "Modela una llave encantada. Tu equipo debe adivinar qué objeto has modelado.",
+        pregunta: "Dibuja un espejo mágico sin levantar el lápiz. Tu equipo debe de adivinar que estás dibujado.",
         tipo: "reto",
-        respuestaCorrecta: "Una llave encantada"
+        respuestaCorrecta: "Un espejo mágico"
     },
     {
         pregunta: "Modela un tritón. Tu equipo debe adivinar qué criatura has modelado.",
