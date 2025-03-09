@@ -326,7 +326,7 @@ export const preguntasEscribe = [
     },
     {
         pregunta: "Completa el refrán: Más vale tarde, __________",
-        tipo: "desafio", 
+        tipo: "rellena", 
         respuestaCorrecta: "que nunca"
     },
     {

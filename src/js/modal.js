@@ -209,19 +209,21 @@ let preguntasMostradas = [];  // Array para almacenar las preguntas ya mostradas
 
 export function mostrarModal(categoria, ingredienteNombre = null) {
     // Los elementos del modal
-    let modalTitulo = document.getElementById("modal-titulo");
-    let modalTexto = document.getElementById("modal-texto");
-    let modal = document.getElementById("modal");
-    let cumplioBtn = document.getElementById("cumplio-btn");
-    let noCumplioBtn = document.getElementById("no-cumplio-btn");
-    let iniciarBtn = document.getElementById("iniciar-btn");
-    let opcionesContainer = document.getElementById("opciones-container");
-    let enviarRespuestaBtn = document.getElementById("enviar-respuesta-btn");
-    let instructivoContainer = document.getElementById("palabra-container");
-    let verRespuestaBtn = document.getElementById("ver-respuesta-btn");
-    let cerrarHechizoBtn = document.getElementById("cerrar-hechizo");
-    
+    const modalTitulo = document.getElementById("modal-titulo");
+    const modalTexto = document.getElementById("modal-texto");
+    const modal = document.getElementById("modal");
+    const cumplioBtn = document.getElementById("cumplio-btn");
+    const noCumplioBtn = document.getElementById("no-cumplio-btn");
+    const iniciarBtn = document.getElementById("iniciar-btn");
+    const opcionesContainer = document.getElementById("opciones-container");
+    const enviarRespuestaBtn = document.getElementById("enviar-respuesta-btn");
+    const instructivoContainer = document.getElementById("palabra-container");
+    const verRespuestaBtn = document.getElementById("ver-respuesta-btn");
+    const cerrarHechizoBtn = document.getElementById("cerrar-hechizo");
+
     cerrarHechizoBtn.style.display = "none";
+
+    // Validación de elementos del modal
     if (!modalTitulo || !modalTexto || !modal || !cumplioBtn || !noCumplioBtn || !opcionesContainer || !instructivoContainer || !verRespuestaBtn) {
         console.error("Elementos del modal no encontrados.");
         return;
@@ -238,117 +240,99 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
     verRespuestaBtn.style.display = "none"; 
 
     // Selección de preguntas según la categoría
-    if (categoria === "Piensa" || categoria === "Escribe" || categoria === "Crea" || categoria === "Actúa") {
-        let preguntas;
-        if (categoria === "Piensa") {
-            preguntas = preguntasPiensa;
-        } else if (categoria === "Escribe") {
-            preguntas = preguntasEscribe;
-        } else if (categoria === "Crea") {
-            preguntas = preguntasCrea;
-        } else if (categoria === "Actúa") {
-            preguntas = preguntasActua;  // Asumimos que preguntasActua contiene las preguntas para la categoría Actua
-        }
+    let preguntas = [];
+    if (categoria === "Piensa") preguntas = preguntasPiensa;
+    else if (categoria === "Escribe") preguntas = preguntasEscribe;
+    else if (categoria === "Crea") preguntas = preguntasCrea;
+    else if (categoria === "Actúa") preguntas = preguntasActua;
 
-        if (preguntas.length === 0) {
-            console.error(`No hay preguntas disponibles para la categoría ${categoria}`);
-            return;
-        }
+    if (preguntas.length === 0) {
+        console.error(`No hay preguntas disponibles para la categoría ${categoria}`);
+        return;
+    }
 
-        // Filtramos las preguntas que ya han sido mostradas
-        let preguntasDisponibles = preguntas.filter(pregunta => !preguntasMostradas.includes(pregunta.pregunta));
+    // Filtramos las preguntas que ya han sido mostradas
+    let preguntasDisponibles = preguntas.filter(pregunta => !preguntasMostradas.includes(pregunta.pregunta));
 
-        if (preguntasDisponibles.length === 0) {
-            preguntasMostradas = [];
-            preguntasDisponibles = preguntas;
-        }
+    if (preguntasDisponibles.length === 0) {
+        preguntasMostradas = [];
+        preguntasDisponibles = preguntas;
+    }
 
-        preguntaAleatoria = preguntasDisponibles[Math.floor(Math.random() * preguntasDisponibles.length)];
+    preguntaAleatoria = preguntasDisponibles[Math.floor(Math.random() * preguntasDisponibles.length)];
 
-        if (!preguntaAleatoria || !preguntaAleatoria.tipo) {
-            console.error("La pregunta aleatoria no tiene un tipo válido.");
-            return;
-        }
+    if (!preguntaAleatoria || !preguntaAleatoria.tipo) {
+        console.error("La pregunta aleatoria no tiene un tipo válido.");
+        return;
+    }
 
-        preguntasMostradas.push(preguntaAleatoria.pregunta);
+    preguntasMostradas.push(preguntaAleatoria.pregunta);
 
-        modalTitulo.innerText = categoria;
+    modalTitulo.innerText = categoria;
 
-        let textoPregunta = `<p>${preguntaAleatoria.pregunta}</p>`;
-        if (preguntaAleatoria.participantes === "Todos") {
-            textoPregunta += `<p><strong>Participantes:</strong> Todos</p>`;
-        }
+    let textoPregunta = `<p>${preguntaAleatoria.pregunta}</p>`;
+    if (preguntaAleatoria.participantes === "Todos") {
+        textoPregunta += `<p><strong>Participantes:</strong> Todos</p>`;
+    }
 
-        modalTexto.innerHTML = textoPregunta;
+    modalTexto.innerHTML = textoPregunta;
+    instructivoContainer.style.display = "none";
 
-        if (preguntaAleatoria.tipo === "acertijo") {
-            verRespuestaBtn.style.display = "none"; 
-        }
+    // Mostrar las palabras si están definidas y es necesario
+    if (preguntaAleatoria.palabras) {
+        let palabrasTexto = `<p><strong>Palabras:</strong></p><ul>`;
+        preguntaAleatoria.palabras.forEach(palabra => {
+            palabrasTexto += `<li>${palabra}</li>`;
+        });
+        palabrasTexto += `</ul>`;
+        
+        instructivoContainer.innerHTML = palabrasTexto;
+        instructivoContainer.style.display = "inline-block";  // Mostrar solo si hay palabras
+    }
 
-        if (preguntaAleatoria.tipo === "rellena") {
-            let inputElemento = document.createElement('input');
-            inputElemento.type = 'text';
-            inputElemento.placeholder = 'Escribe tu respuesta aquí...';
-            inputElemento.id = 'respuesta-input';
-            opcionesContainer.innerHTML = '';
-            opcionesContainer.appendChild(inputElemento);
-            opcionesContainer.style.display = "block"; 
-            enviarRespuestaBtn.style.display = "inline-block"; 
-            iniciarBtn.style.display = "none";  
-        } else if (Array.isArray(preguntaAleatoria.opciones)) {
-            opcionesContainer.innerHTML = ''; 
-            preguntaAleatoria.opciones.forEach((opcion) => {
-                let opcionElemento = document.createElement('button');
-                opcionElemento.classList.add('opcion');
-                opcionElemento.innerText = opcion;
-                opcionElemento.onclick = function () {
-                    validarRespuesta(opcion, preguntaAleatoria.respuestaCorrecta, opcionesContainer);
-                };
-                opcionesContainer.appendChild(opcionElemento);
-            });
-            opcionesContainer.style.display = "block"; 
-            iniciarBtn.style.display = "none";  
-        } else if (preguntaAleatoria.tipo === "reto" && Array.isArray(preguntaAleatoria.elige)) {
-            // Mostrar las opciones como una lista en lugar de botones
-            opcionesContainer.innerHTML = '';  
-            let lista = document.createElement('ul'); // Creamos una lista <ul> para las opciones
-            preguntaAleatoria.elige.forEach((opcion) => {
-                let listaItem = document.createElement('li'); // Cada opción será un <li>
-                listaItem.classList.add('opcion');
-                listaItem.innerText = opcion;
-                lista.appendChild(listaItem);  // Añadimos el <li> a la lista
-            });
-            opcionesContainer.appendChild(lista);  // Añadimos la lista al contenedor
-            opcionesContainer.style.display = "block"; 
-            iniciarBtn.style.display = "inline-block";  
-        } else {
-            iniciarBtn.style.display = "inline-block";  
-            opcionesContainer.style.display = "none";  
-        }
+    if (preguntaAleatoria.tipo === "acertijo") {
+        verRespuestaBtn.style.display = "none"; 
+    }
 
-    } else if (ingredienteNombre) {
-        // Lógica para la categoría Ingrediente (sin cambios)
-        let ingrediente = ingredientes.find(i => i.nombre === ingredienteNombre);
-        if (!ingrediente || !ingrediente.pistas || !Array.isArray(ingrediente.pistas)) {
-            console.warn(`Ingrediente "${ingredienteNombre}" no encontrado o sin pistas.`);
-            return;
-        }
-
-        progresoPistas[ingredienteNombre] = 0;
-        let pistaActual = ingrediente.pistas[0];
-        modalTitulo.innerText = "Pista 1";
-        modalTexto.innerText = pistaActual;
-
-       
+    if (preguntaAleatoria.tipo === "rellena") {
+        let inputElemento = document.createElement('input');
+        inputElemento.type = 'text';
+        inputElemento.placeholder = 'Escribe tu respuesta aquí...';
+        inputElemento.id = 'respuesta-input';
+        opcionesContainer.innerHTML = '';
+        opcionesContainer.appendChild(inputElemento);
+        opcionesContainer.style.display = "block"; 
+        enviarRespuestaBtn.style.display = "inline-block"; 
+        iniciarBtn.style.display = "none";  
+    } else if (Array.isArray(preguntaAleatoria.opciones)) {
+        opcionesContainer.innerHTML = ''; 
+        preguntaAleatoria.opciones.forEach((opcion) => {
+            let opcionElemento = document.createElement('button');
+            opcionElemento.classList.add('opcion');
+            opcionElemento.innerText = opcion;
+            opcionElemento.onclick = function () {
+                validarRespuesta(opcion, preguntaAleatoria.respuestaCorrecta, opcionesContainer);
+            };
+            opcionesContainer.appendChild(opcionElemento);
+        });
+        opcionesContainer.style.display = "block"; 
+        iniciarBtn.style.display = "none";  
+    } else if (preguntaAleatoria.tipo === "reto" && Array.isArray(preguntaAleatoria.elige)) {
+        // Mostrar opciones como una lista <ul>
+        opcionesContainer.innerHTML = '';  
+        let lista = document.createElement('ul');
+        preguntaAleatoria.elige.forEach((opcion) => {
+            let listaItem = document.createElement('li');
+            listaItem.classList.add('opcion');
+            listaItem.innerText = opcion;
+            lista.appendChild(listaItem);
+        });
+        opcionesContainer.appendChild(lista);
+        opcionesContainer.style.display = "block"; 
+        iniciarBtn.style.display = "inline-block";  
     } else {
-        if (!retos[categoria]) {
-            console.warn(`Categoría "${categoria}" no encontrada.`);
-            return;
-        }
-        let retoAleatorio = retos[categoria][Math.floor(Math.random() * retos[categoria].length)];
-        modalTitulo.innerText = categoria;
-        modalTexto.innerText = retoAleatorio;
-        pistaImagen.style.display = "none";
+        iniciarBtn.style.display = "inline-block";  
+        opcionesContainer.style.display = "none";  
     }
 
     // Si no hay texto en el modal y solo los botones de "cumplio" o "no cumplio", mostramos "Juego en curso"
@@ -369,47 +353,35 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
             modalTexto.style.display = "block";  
         }
 
-        if (preguntaAleatoria && preguntaAleatoria.tipo && preguntaAleatoria.tipo === "acertijo") {
+        if (preguntaAleatoria && preguntaAleatoria.tipo === "acertijo") {
             verRespuestaBtn.style.display = "inline-block"; 
         }
 
-        instructivoContainer.style.display = "inline-block";  
+        // Si la pregunta tiene palabras, las mostramos solo después de iniciar
+        instructivoContainer.style.display = preguntaAleatoria.palabras ? "inline-block" : "none";  
+    };
 
-        if (categoria === "Escribe") {
-            modalTexto.style.display = "block";  
-        } else if ((categoria === "Piensa" && preguntaAleatoria?.tipo === "reto") || categoria === "Crea") {
-            modalTexto.style.display = "none";  
+    cumplioBtn.onclick = function () {
+        if ((categoria === "Piensa" && preguntaAleatoria?.tipo === "reto") || categoria === "Escribe" || categoria === "Crea" || categoria === "Actúa") {
+            modalTexto.style.display = "block";
+            instructivoContainer.style.display = "none";
+            cerrarHechizoBtn.style.display = "inline-block";
         }
+        cumplioReto();
+    };
 
-
-
-        cumplioBtn.onclick = function () {
-            if ((categoria === "Piensa" && preguntaAleatoria?.tipo === "reto") || categoria === "Escribe" || categoria === "Crea" || categoria === "Actúa") {
-                modalTexto.style.display = "block";
-                instructivoContainer.style.display = "none";
-                cerrarHechizoBtn.style.display = "inline-block";
-            }
-            cumplioReto();
-        };
-
-        
-
-        noCumplioBtn.onclick = function () {
-            if ((categoria === "Piensa" && preguntaAleatoria?.tipo === "reto") || categoria === "Escribe" || categoria === "Crea" || categoria === "Actúa") {
-                modalTexto.style.display = "block";
-            }
-            noCumplioReto();
-        };
+    noCumplioBtn.onclick = function () {
+        if ((categoria === "Piensa" && preguntaAleatoria?.tipo === "reto") || categoria === "Escribe" || categoria === "Crea" || categoria === "Actúa") {
+            modalTexto.style.display = "block";
+        }
+        noCumplioReto();
     };
 
     // Mostrar respuesta cuando se hace clic en el botón "Ver respuesta"
     verRespuestaBtn.onclick = function() {
-        console.log("Botón 'Ver respuesta' presionado.");
-
         if (preguntaAleatoria && preguntaAleatoria.respuestaCorrecta) {
             let respuestaHTML = `<p><strong>Respuesta:</strong> ${preguntaAleatoria.respuestaCorrecta}</p>`;
             modalTexto.innerHTML += respuestaHTML;
-            console.log("Respuesta añadida al modal:", respuestaHTML);
             modalTexto.style.display = "block";
             verRespuestaBtn.style.display = "none"; 
         } else {
@@ -417,6 +389,7 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
         }
     };
 
+    // Enviar respuesta cuando se hace clic en el botón de "enviar"
     enviarRespuestaBtn.onclick = function () {
         let inputElemento = document.getElementById('respuesta-input');
         let opcionSeleccionada = inputElemento.value.trim();
@@ -430,10 +403,6 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
 
     modal.style.display = "block";
 }
-
-
-
-
 
 
 function validarRespuesta(opcionSeleccionada, respuestaCorrecta, opcionesContainer, esReto) {
