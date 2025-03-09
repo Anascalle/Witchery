@@ -1,6 +1,7 @@
 export const ingredientes = [
     {
         "nombre": "Raíz de Susurros",
+        "imagen":"",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Crece bajo tierra para absorber nutrientes",
@@ -9,6 +10,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Fruta Estrella Nocturna",
+        "imagen":"",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Dulce y comestible encarnación de un astro",
@@ -17,6 +19,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Escamas de Dracohelios",
+        "imagen":"",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Tiene un brillo dorado que se asemeja al sol",
@@ -25,6 +28,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Escamas de Tritón Abisal",
+        "imagen":"",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Es algo que tienen los peces y los reptiles",
@@ -33,6 +37,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Pluma de Cuervo Estelar",
+        "imagen":"",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Brilla con un intenso tono de azul pese a su pequeño tamaño",
@@ -41,6 +46,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Pluma de Fénix Japonés",
+        "imagen":"",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Tiene un brillo dorado que se asemeja al sol",
@@ -49,6 +55,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Lágrimas de Unicornio",
+        "imagen":"",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Es el resultado de una gran tristeza en el corazón",
@@ -57,6 +64,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Lágrimas de Ninfa",
+        "imagen":"",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Tiene un brillo dorado que se asemeja al sol",
@@ -65,6 +73,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Raíz Cadavérica",
+        "imagen":"",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Crece bajo tierra para absorber nutrientes",
@@ -73,6 +82,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Violeta de los Suspiros",
+        "imagen":"",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Abre sus pétalos bajo ciertas condiciones",
@@ -81,6 +91,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Tulipán de la Aurora",
+        "imagen":"",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Abre sus pétalos bajo ciertas condiciones",
@@ -89,6 +100,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Raíz de Fuego Frío",
+        "imagen":"",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Crece bajo tierra para absorber nutrientes",
@@ -97,6 +109,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Flor de Loto de Sangre",
+        "imagen":"",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Abre sus pétalos bajo ciertas condiciones",
@@ -105,6 +118,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Escarabajo de Rubi",
+        "imagen":"",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Es pequeño y suele ir caminando por el bosque",
@@ -113,6 +127,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Escarabajo Opalino",
+        "imagen":"",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Es pequeño y suele ir caminando por el bosque",
@@ -121,6 +136,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Fruta de Sol Ardiente",
+        "imagen":"",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Tiene un brillo dorado que se asemeja al sol",

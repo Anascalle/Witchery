@@ -6,7 +6,6 @@ import { preguntasEscribe } from "../data/challenges.js";
 import { preguntasCrea } from "../data/challenges.js";
 import { preguntasActua } from "../data/challenges.js";
 
-
 export let equipos = JSON.parse(localStorage.getItem("equipos")) || [];
 export let turnoActual = JSON.parse(localStorage.getItem("turnoActual")) || 0;
 
@@ -31,6 +30,9 @@ export function siguienteTurno() {
         localStorage.setItem("turnoActual", JSON.stringify(turnoActual)); 
         actualizarTurno(); 
         console.log(`Ahora es el turno de: ${equipos[turnoActual].name}`);
+        setTimeout(() => {
+            verificarIngredientes();
+        }, 500);
     } else {
         console.warn("No hay equipos para cambiar el turno.");
     }
@@ -486,25 +488,73 @@ function validarRespuesta(opcionSeleccionada, respuestaCorrecta, opcionesContain
 }
 
 
+export function verificarIngredientes() {
+    let verificarIngredientesBtn = document.getElementById("verificar-ingredientes-btn");
+    let equipoActual = equipos[turnoActual];
+
+    if (!equipoActual || !Array.isArray(equipoActual.ingredients)) {
+        console.warn("⚠️ No hay ingredientes asignados al equipo.");
+        return;
+    }
+
+    // Si el equipo ya completó todas las pistas en una ronda anterior, ahora mostramos el botón
+    if (equiposCompletados[equipoActual.name]) {
+        console.log(`🔄 El equipo ${equipoActual.name} vuelve a jugar y ya había completado. Mostrando botón.`);
+        verificarIngredientesBtn.style.display = "inline-block";
+    } else {
+        verificarIngredientesBtn.style.display = "none";
+    }
+}
 
 
+let equiposCompletados = {}; // Objeto para almacenar qué equipos han completado sus pistas
+
+
+function todasLasPistasCompletadas() {
+    let equipoActual = equipos[turnoActual];
+
+    if (!equipoActual || !Array.isArray(equipoActual.ingredients)) {
+        console.warn("⚠️ No hay equipo actual o no tiene ingredientes.");
+        return false;
+    }
+
+    return equipoActual.ingredients.every(ingrediente =>
+        progresoPistas[ingrediente.nombre] >= ingrediente.pistas.length
+    );
+}
+
+// 🚀 Función para cambiar de turno y verificar el botón
+function pasarAlSiguienteTurno() {
+    turnoActual = (turnoActual + 1) % equipos.length; // Avanza al siguiente equipo
+    ingredienteActualIndex = 0; // Reiniciar índice de ingredientes
+
+    console.log(`🔄 Cambiando al equipo: ${equipos[turnoActual].name}`);
+
+    setTimeout(() => {
+        verificarIngredientes(); // 🔥 Se ejecuta automáticamente al iniciar el turno
+    }, 500);
+}
 export function cumplioReto() {
     let equipoActual = equipos[turnoActual];
 
     if (!equipoActual || !Array.isArray(equipoActual.ingredients) || equipoActual.ingredients.length === 0) {
-        console.warn(`El equipo ${equipoActual?.name || "desconocido"} no tiene ingredientes asignados.`);
+        console.warn(`⚠️ El equipo ${equipoActual?.name || "desconocido"} no tiene ingredientes asignados.`);
+        return;
+    }
+
+    if (ingredienteActualIndex >= equipoActual.ingredients.length) {
+        console.warn("⚠️ No hay más ingredientes para mostrar.");
         return;
     }
 
     let ingrediente = equipoActual.ingredients[ingredienteActualIndex];
 
     if (!ingrediente || !Array.isArray(ingrediente.pistas) || ingrediente.pistas.length === 0) {
-        console.warn(`Ingrediente no válido o sin pistas para el equipo ${equipoActual.name}.`);
+        console.warn(`⚠️ Ingrediente no válido o sin pistas para el equipo ${equipoActual.name}.`);
         return;
     }
 
-    // Inicializa el progreso del ingrediente si no está definido
-    if (progresoPistas[ingrediente.nombre] === undefined) {
+    if (!progresoPistas[ingrediente.nombre]) {
         progresoPistas[ingrediente.nombre] = 0;
     }
 
@@ -516,78 +566,61 @@ export function cumplioReto() {
     let pistaImagen = document.getElementById("pista-imagen");
     let cumplioBtn = document.getElementById("cumplio-btn");
     let noCumplioBtn = document.getElementById("no-cumplio-btn");
-    let verificarIngredientesBtn = document.getElementById("verificar-ingredientes-btn");
 
     if (indicePista < totalPistas) {
-        // Mostrar la pista actual
         modalTitulo.innerText = `Pista ${indicePista + 1}`;
         modalTexto.innerText = ingrediente.pistas[indicePista];
-
+    
         if (ingrediente.imagen) {
             pistaImagen.src = ingrediente.imagen;
             pistaImagen.style.display = "block";
         } else {
             pistaImagen.style.display = "none";
         }
-
-        // Ocultar los botones en esta etapa
+    
         cumplioBtn.style.display = "none";
         noCumplioBtn.style.display = "none";
-
-        // Avanzar al siguiente nivel de pista
+    
         progresoPistas[ingrediente.nombre]++;
     } else {
-        // Todas las pistas han sido mostradas para este ingrediente
-        console.log(`Todas las pistas de "${ingrediente.nombre}" han sido mostradas.`);
+        console.log(`✅ Todas las pistas de "${ingrediente.nombre}" han sido mostradas.`);
         ingredienteActualIndex++;
-
-        // Si era el último ingrediente, pasar al siguiente turno
+    
         if (ingredienteActualIndex >= equipoActual.ingredients.length) {
-            console.log("Todos los ingredientes han sido procesados. Cambio de turno.");
-
-            // **Retrasar la aparición del botón hasta el inicio de la nueva ronda**
-            setTimeout(() => {
-                if (verificarIngredientesBtn) {
-                    verificarIngredientesBtn.style.display = "inline-block";
-                }
-            }, 1000); // Retraso de 1 segundo antes de mostrar el botón
-
-            ingredienteActualIndex = 0;  // Reiniciar el índice para el siguiente turno
+            console.log("🔄 Se completaron todos los ingredientes de este equipo.");
+            
+            
+            
+            // Pasar al siguiente turno solo si se requiere
+            pasarAlSiguienteTurno();
         } else {
-            // Cargar el siguiente ingrediente y su primera pista
             let siguienteIngrediente = equipoActual.ingredients[ingredienteActualIndex];
-            console.log(`Pasando al siguiente ingrediente: ${siguienteIngrediente.nombre}`);
-
+            console.log(`🔄 Pasando al siguiente ingrediente: ${siguienteIngrediente.nombre}`);
+    
             modalTitulo.innerText = "Pista 1";
             modalTexto.innerText = siguienteIngrediente.pistas[0];
-
+    
             if (siguienteIngrediente.imagen) {
                 pistaImagen.src = siguienteIngrediente.imagen;
                 pistaImagen.style.display = "block";
             } else {
                 pistaImagen.style.display = "none";
             }
-
-            // Reiniciar el progreso de pistas del nuevo ingrediente
+    
             progresoPistas[siguienteIngrediente.nombre] = 1;
         }
-
-        // Ocultar botones en esta etapa
+    
         cumplioBtn.style.display = "none";
         noCumplioBtn.style.display = "none";
     }
+    
 }
 
 
-
-export function noCumplioReto() {
-    cerrarModal();
-
-}
-
-export function siguienteRonda() {
-    siguienteTurno();
-}
+// 🚀 **Ejecutar la verificación al cargar la página**
+document.addEventListener("DOMContentLoaded", () => {
+    verificarIngredientes();
+});
 
 export function cerrarModal() {
     let modal = document.getElementById("modal");
@@ -598,5 +631,25 @@ export function cerrarModal() {
         console.error("No se encontró el modal.");
     }
 
+    let equipoActual = equipos[turnoActual];
+
+    if (todasLasPistasCompletadas()) {
+        console.log(`✅ El equipo ${equipoActual.name} ha completado todas sus pistas.`);
+        equiposCompletados[equipoActual.name] = true; // Marcar el equipo como completado
+        
+    }
+
+    siguienteTurno(); // Pasar turno después de la verificación
+}
+
+
+
+
+export function noCumplioReto() {
+    cerrarModal();
+
+}
+
+export function siguienteRonda() {
     siguienteTurno();
 }

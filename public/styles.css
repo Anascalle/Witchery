@@ -55,3 +55,22 @@ body {
     font-size: 24px;
     cursor: pointer;
 }
+
+#verificar-ingredientes-btn {
+    display: none; /* 🔴 El botón empieza oculto */
+    margin-top: 15px;
+    padding: 10px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+.ingrediente-btn.seleccionado {
+    border-color: green;
+    background-color: rgba(0, 255, 0, 0.3);
+}
+
