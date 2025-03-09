@@ -197,7 +197,7 @@ export const preguntasPiensa = [
                 "Luna",
                 "Vela"
             ],
-            respuestaCorrecta: "Luna, porque no emite luz propia, mientras que los demás sí"
+            respuestaCorrecta: "Luna"
         },
         {
             pregunta: "¿Cuál de estos elementos no pertenece al grupo?",
@@ -208,7 +208,7 @@ export const preguntasPiensa = [
                 "Zafiro",
                 "Mármol"
             ],
-            respuestaCorrecta: "Mármol, porque no es una piedra preciosa, mientras que los demás sí"
+            respuestaCorrecta: "Mármol"
         },
         {
             pregunta: "¿Cuál de estos animales no pertenece al grupo?",
@@ -219,7 +219,7 @@ export const preguntasPiensa = [
                 "Ballena",
                 "Pulpo"
             ],
-            respuestaCorrecta: "Pulpo, porque no es un mamífero marino, mientras que los demás sí"
+            respuestaCorrecta: "Pulpo"
         }
     
     
