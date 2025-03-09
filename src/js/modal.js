@@ -342,12 +342,13 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
 
     // Función para manejar la acción de "Iniciar"
     iniciarBtn.onclick = function () {
-        cumplioBtn.style.display = "inline-block";
-        noCumplioBtn.style.display = "inline-block";
+        cumplioBtn.style.display = "none"; // Escondemos los botones de cumplió y no cumplió
+        noCumplioBtn.style.display = "none";
         iniciarBtn.style.display = "none";
+        verRespuestaBtn.style.display = "none";
         opcionesContainer.style.display = "none";  
 
-        if (categoria === "Actúa") {
+        if ((categoria === "Actúa" || categoria === "Crea") && preguntaAleatoria.tipo !== "acertijo") {
             modalTexto.style.display = "none";  
         } else {
             modalTexto.style.display = "block";  
@@ -355,7 +356,13 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
 
         if (preguntaAleatoria && preguntaAleatoria.tipo === "acertijo") {
             verRespuestaBtn.style.display = "inline-block"; 
+        } else{
+            cumplioBtn.style.display = "inline-block"; // Para las demás preguntas, mostramos los botones cumplió/no cumplió
+            noCumplioBtn.style.display = "inline-block";  
         }
+        iniciarBtn.style.display = "none"; // Ocultamos el botón de iniciar
+        opcionesContainer.style.display = "none";  // Ocultamos las opciones si las hay
+    
 
         // Si la pregunta tiene palabras, las mostramos solo después de iniciar
         instructivoContainer.style.display = preguntaAleatoria.palabras ? "inline-block" : "none";  
@@ -383,7 +390,11 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
             let respuestaHTML = `<p><strong>Respuesta:</strong> ${preguntaAleatoria.respuestaCorrecta}</p>`;
             modalTexto.innerHTML += respuestaHTML;
             modalTexto.style.display = "block";
-            verRespuestaBtn.style.display = "none"; 
+    
+            // Después de mostrar la respuesta, mostramos los botones "Cumplió" y "No cumplió"
+            cumplioBtn.style.display = "inline-block";
+            noCumplioBtn.style.display = "inline-block";
+            verRespuestaBtn.style.display = "none"; // Escondemos el botón "Ver respuesta" después de presionarlo
         } else {
             console.error("No se ha encontrado la respuesta correcta.");
         }
