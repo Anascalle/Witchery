@@ -346,7 +346,7 @@ body {
     font-family: 'Montserrat Alternates', sans-serif;
     font-style: normal;
     font-weight: 400;
-    background: rgb(23, 23, 23);
+    background: #240044;
     color: #CCA352;
     border: 2px solid #CCA352;
     filter: drop-shadow(0 0 6px #d2a85455);
@@ -358,9 +358,7 @@ body {
 }
 
 #mezclar-btn:hover{
-    background: rgba(255, 255, 255, 0.889);
-    color: #865900;
-    border: 2px solid white;
+    background: rgb(23, 23, 23);
 }
 
 .grupo{
@@ -395,7 +393,7 @@ body {
     font-size: 16;
     color: #280545;
     border-radius: 10px;
-    filter: drop-shadow(0 0 15px #abb1ffa4);
+    filter: drop-shadow(0 0 15px #abb1ff86);
 }
 
 /* Personalizar el botón de confirmación */
