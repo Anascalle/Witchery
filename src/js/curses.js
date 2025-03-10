@@ -24,7 +24,7 @@ export function mostrarModalHechizo() {
 export function mostrarModalOraculo() {
     let modalOraculo = document.getElementById("modal-oraculo");
     let mensajeOraculo = document.getElementById("mensaje-oraculo");
-    let opcionesContainer = document.getElementById("opciones-container");
+    let opcionesContainer = document.getElementById("opciones-oraculo");
 
     // Elegir una pregunta aleatoria
     let preguntaAleatoria = preguntasOraculo[Math.floor(Math.random() * preguntasOraculo.length)];
@@ -58,7 +58,7 @@ function verificarRespuesta(indiceSeleccionado, respuestaCorrecta, modal) {
 
     if (indiceSeleccionado === respuestaCorrecta) {
         // ✅ Respuesta correcta
-        mensajeOraculo.innerText = "✅ Correcto, pueden proseguir con la búsqueda.";
+        mensajeOraculo.innerText = "Correcto, pueden proseguir con la búsqueda.";
 
         // Agregar botón para cerrar el modal
         let botonCerrar = document.createElement("button");
@@ -69,7 +69,7 @@ function verificarRespuesta(indiceSeleccionado, respuestaCorrecta, modal) {
         opcionesContainer.appendChild(botonCerrar);
     } else {
         // ❌ Respuesta incorrecta
-        mensajeOraculo.innerText = "❌ Incorrecto, quedan congelados y pierden un turno.";
+        mensajeOraculo.innerText = " Incorrecto, quedan congelados y pierden un turno.";
 
         // Agregar botón de aceptar que además salta el turno
         let botonAceptar = document.createElement("button");

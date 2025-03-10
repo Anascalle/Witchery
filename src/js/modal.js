@@ -105,9 +105,14 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
     modalTitulo.innerText = categoria;
 
     let textoPregunta = `<p>${preguntaAleatoria.pregunta}</p>`;
+
     if (preguntaAleatoria.participantes === "Todos") {
-        textoPregunta += `<p><strong>Participantes:</strong> Todos</p>`;
+        textoPregunta += `<p><strong>Participantes:</strong> Todos los del grupo</p>`;
+    } else if (preguntaAleatoria.participantes === "Ambos") {
+        textoPregunta += `<p><strong>Participantes:</strong> Ambos grupos</p>`;
     }
+
+
 
     modalTexto.innerHTML = textoPregunta;
     instructivoContainer.style.display = "none";
