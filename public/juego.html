@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego en Curso</title>
+    <title>Witchery</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Juego en Curso</h1>
+    <h1>Witchery</h1>
     <div id="turno" class="turno"></div>
 
     <div id="modal-hechizo" class="modal">
@@ -15,11 +15,18 @@
             <span class="cerrar" onclick="cerrarModalHechizo()">×</span>
             <h2 id="titulo-hechizo">Ingresa el código del hechizo</h2>
             <input id="codigo-hechizo" type="text" placeholder="Código del hechizo" />
-            <button onclick="validarCodigo()">Lanzar Hechizo</button>
             <p id="mensaje-hechizo"></p>
+            <button onclick="validarCodigo()">Lanzar Hechizo</button>
         </div>
     </div>
-    
+
+    <div id="modal-oraculo" class="modal" style="display: none">
+        <div class="modal-contenido">
+            <h2>Prueba del Oráculo</h2>
+            <div id="mensaje-oraculo"></div>
+            <div id="opciones-container"></div>
+        </div>
+    </div>
     
     <div class="cartas-container">
         <div class="carta" onclick="mostrarModal('Crea')">Crea</div>
@@ -27,7 +34,6 @@
         <div class="carta" onclick="mostrarModal('Escribe')">Escribe</div>
         <div class="carta" onclick="mostrarModal('Piensa')">Piensa</div>
         <div class="carta" onclick="mostrarModalHechizo('Hechizo')">Hechizo</div>
-
     </div>
 
     <div id="modal" class="modal">
@@ -37,10 +43,18 @@
             <div id="pista-container" class="pista-container">
                 <img id="pista-imagen" src="" alt="Imagen de pista" class="pista-imagen" style="display: none;">
                 <p id="modal-texto" class="pista-texto"></p>
+                
+                <div id="palabra-container" class="palabra-container" style="display: none;"></div>
             </div>
+            <div id="opciones-container" class="opciones-container" style="display: none;"></div> 
+        
+            <button id="enviar-respuesta-btn" style="display:none;">Enviar Respuesta</button>
             <button id="iniciar-btn">Iniciar</button>
-<button id="cumplio-btn" style="display:none;">Cumplió</button>
-<button id="no-cumplio-btn" style="display:none;">No cumplió</button>
+            <button id="cumplio-btn" style="display:none;">Cumplió</button>
+            <button id="no-cumplio-btn" style="display:none;">No cumplió</button>
+            
+            <!-- Botón para abrir la respuesta (solo se muestra si la pregunta es de tipo "acertijo") -->
+            <button id="ver-respuesta-btn" style="display:none;">Abrir Respuesta</button> 
         </div>
     </div>
 
