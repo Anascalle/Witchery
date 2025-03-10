@@ -1,5 +1,3 @@
-
-
 export const preguntasPiensa = [
     {
         pregunta: "Un grupo de amigos va de excursión a devolver una joya, pero en el camino se enredan con un tipo pálido que se obsesiona con ellos y un monstruo con doble personalidad. ¿De qué película se trata?",
@@ -663,12 +661,3 @@ export const preguntasActua = [
     
     
 ];
-
-
-
-
-
-
-
-
-
