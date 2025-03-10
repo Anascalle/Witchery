@@ -1,6 +1,5 @@
 
 import { ingredientes } from "../data/ingredients.js";
-import { hechizos } from "../data/spell.js";
 import { preguntasPiensa } from "../data/challenges.js";
 import { preguntasEscribe } from "../data/challenges.js";
 import { preguntasCrea } from "../data/challenges.js";
@@ -38,171 +37,6 @@ export function siguienteTurno() {
     }
 }
 
-export function mostrarModalHechizo() {
-    let modalHechizo = document.getElementById("modal-hechizo");
-    let mensajeHechizo = document.getElementById("mensaje-hechizo");
-    let codigoInput = document.getElementById("codigo-hechizo");
-    let botonHechizo = document.querySelector("button");
-
-    if (modalHechizo) {
-        modalHechizo.style.display = "block";
-    } else {
-        console.error("Modal de hechizo no encontrado.");
-    }
-
-    // Limpiar cualquier mensaje previo
-    mensajeHechizo.innerText = "";
-    codigoInput.style.display = "block";
-    botonHechizo.style.display = "block";
-}
-
-// Función para aplicar el efecto del hechizo al equipo contrario
-export function aplicarEfectoHechizo(hechizo) {
-    let equipoContrario = equipos[(turnoActual + 1) % equipos.length]; // El equipo contrario
-
-    switch (hechizo.codigo) {
-        case "A1B2":
-            // Hechizo del Silencio
-            console.log(`${equipoContrario.name} no puede hablar durante su turno.`);
-            break;
-        case "C3D4":
-            // Visión Nublada
-            console.log(`${equipoContrario.name} debe hacer el desafío con los ojos cerrados.`);
-            break;
-        case "E5F6":
-            // Lengua Encantada I
-            console.log(`${equipoContrario.name} solo puede hablar usando la vocal 'A'.`);
-            break;
-        case "G7H8":
-            // Lengua Encantada II
-            console.log(`${equipoContrario.name} solo puede hablar usando la vocal 'E'.`);
-            break;
-        case "I9J0":
-            // Lengua Encantada III
-            console.log(`${equipoContrario.name} solo puede hablar usando la vocal 'I'.`);
-            break;
-        case "K1L2":
-            // Prueba del Oráculo
-            console.log(`${equipoContrario.name} debe responder una pregunta de cultura mágica antes de continuar.`);
-            break;
-        case "M3N4":
-            // Confusión Temporal
-            
-            console.log(`${equipoContrario.name} intercambia su turno con el otro equipo.`);
-            break;
-        case "O5P6":
-            // Hechizo de Desorden
-            console.log(`${equipoContrario.name} debe intercambiar los roles de los jugadores.`);
-            break;
-        case "Q7R8":
-            // Reto Duplicado
-            console.log(`${equipoContrario.name} debe completar dos desafíos en lugar de uno para avanzar.`);
-            break;
-        case "S9T0":
-            // Máscara Maldita
-            console.log(`${equipoContrario.name} debe actuar como un personaje (bruja, ogro, hada, etc.) hasta que termine el desafío.`);
-            break;
-        case "U1V2":
-            // Dado Maldito
-            console.log(`${equipoContrario.name} debe restar 2 al número obtenido con el dado.`);
-            break;
-        case "W3X4":
-            // Manos Encantadas
-            console.log(`${equipoContrario.name} no puede usar sus manos en el siguiente desafío.`);
-            break;
-        case "Y5Z6":
-            // Pérdida de Tiempo
-            console.log(`${equipoContrario.name} pierde 30 segundos en su próximo desafío.`);
-            break;
-        case "A7B8":
-            // El Susurro
-            console.log(`${equipoContrario.name} debe realizar su próximo desafío de "Piensa" en susurros.`);
-            break;
-        case "C9D0":
-            // El Fantasma Burlón
-            console.log(`Un jugador de ${equipoContrario.name} debe realizar el desafío de "Crea" con los ojos vendados.`);
-            break;
-        case "E1F2":
-            // El Dragón Dormido
-            console.log(`Un jugador de ${equipoContrario.name} debe "dormir" (no participar) en su siguiente turno.`);
-            break;
-        case "G3H4":
-            // El Regalo Tóxico
-            console.log(`${equipoContrario.name} recibe una pista falsa disfrazada como correcta.`);
-            break;
-        case "I5J6":
-            // La Rueda de la Fortuna
-            console.log(`${equipoContrario.name} debe jugar el reto que el equipo que sacó la carta decida.`);
-            break;
-        default:
-            console.warn("Hechizo no reconocido.");
-            break;
-    }
-
-    // Cerrar el modal de hechizo después de aplicar el efecto
-    cerrarModalHechizo();
-}
-
-
-// Función para cerrar el modal de hechizo
-export function cerrarModalHechizo() {
-    let modalHechizo = document.getElementById("modal-hechizo");
-    let codigoInput = document.getElementById("codigo-hechizo");
-    let botonHechizo = document.querySelector("button");
-    let modalTitulo = document.getElementById("titulo-hechizo");
-
-    if (modalHechizo) {
-        modalHechizo.style.display = "none";
-    }
-
-    // Restablecer los valores cuando se cierre el modal
-    // Restaurar el título del modal a su valor original
-    modalTitulo.innerText = "Ingresa el código del hechizo"; 
-
-    // Mostrar de nuevo el input y el botón
-    codigoInput.style.display = "block";
-    botonHechizo.style.display = "block";
-
-    // Limpiar el input
-    codigoInput.value = "";
-    
-    // Limpiar el mensaje de hechizo
-    let mensajeHechizo = document.getElementById("mensaje-hechizo");
-    mensajeHechizo.innerText = "";
-}
-
-export function validarCodigo() {
-    let codigoInput = document.getElementById("codigo-hechizo");
-    let mensajeHechizo = document.getElementById("mensaje-hechizo");
-    let botonHechizo = document.querySelector("button"); // Obtener el botón de lanzar hechizo
-    let modalTitulo = document.getElementById("titulo-hechizo"); // Obtener el título del modal
-
-    // Código de hechizo ingresado
-    let codigo = codigoInput.value.trim();
-
-    // Verifica si el código del hechizo existe
-    const hechizoEncontrado = hechizos.find(hechizo => hechizo.codigo === codigo);
-
-    if (hechizoEncontrado) {
-        // Mostrar el nombre del hechizo en el título del modal
-        modalTitulo.innerText = hechizoEncontrado.nombre;  // Actualiza el título con el nombre del hechizo
-        mensajeHechizo.innerText = `${hechizoEncontrado.descripcion}`;
-
-        // Actualizar el input para que muestre el nombre del hechizo
-        codigoInput.value = hechizoEncontrado.nombre; // Aquí cambiamos el texto del input por el nombre del hechizo
-
-        // Aquí puedes agregar la lógica para aplicar el hechizo en el juego
-        console.log(`Hechizo lanzado: ${hechizoEncontrado.descripcion}`);
-
-        // Ocultar el input y el botón después de lanzar el hechizo
-        codigoInput.style.display = "none";
-        botonHechizo.style.display = "none";
-        
-    } else {
-        // Si el código no es válido
-        mensajeHechizo.innerText = "¡Código inválido! Intenta de nuevo.";
-    }
-}
 
 
 let preguntasMostradas = [];  // Array para almacenar las preguntas ya mostradas
@@ -271,9 +105,14 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
     modalTitulo.innerText = categoria;
 
     let textoPregunta = `<p>${preguntaAleatoria.pregunta}</p>`;
+
     if (preguntaAleatoria.participantes === "Todos") {
-        textoPregunta += `<p><strong>Participantes:</strong> Todos</p>`;
+        textoPregunta += `<p><strong>Participantes:</strong> Todos los del grupo</p>`;
+    } else if (preguntaAleatoria.participantes === "Ambos") {
+        textoPregunta += `<p><strong>Participantes:</strong> Ambos grupos</p>`;
     }
+
+
 
     modalTexto.innerHTML = textoPregunta;
     instructivoContainer.style.display = "none";
@@ -480,7 +319,7 @@ export function verificarIngredientes() {
     let botonesIngredientes = [];
 
     if (!equipoActual || !Array.isArray(equipoActual.ingredients)) {
-        console.warn("⚠️ No hay ingredientes asignados al equipo.");
+        console.warn(" No hay ingredientes asignados al equipo.");
         return;
     }
 
@@ -610,7 +449,7 @@ function todasLasPistasCompletadas() {
     let equipoActual = equipos[turnoActual];
 
     if (!equipoActual || !Array.isArray(equipoActual.ingredients)) {
-        console.warn("⚠️ No hay equipo actual o no tiene ingredientes.");
+        console.warn(" No hay equipo actual o no tiene ingredientes.");
         return false;
     }
 
@@ -627,26 +466,26 @@ function pasarAlSiguienteTurno() {
     console.log(`🔄 Cambiando al equipo: ${equipos[turnoActual].name}`);
 
     setTimeout(() => {
-        verificarIngredientes(); // 🔥 Se ejecuta automáticamente al iniciar el turno
+        verificarIngredientes(); //  Se ejecuta automáticamente al iniciar el turno
     }, 300);
 }
 export function cumplioReto() {
     let equipoActual = equipos[turnoActual];
 
     if (!equipoActual || !Array.isArray(equipoActual.ingredients) || equipoActual.ingredients.length === 0) {
-        console.warn(`⚠️ El equipo ${equipoActual?.name || "desconocido"} no tiene ingredientes asignados.`);
+        console.warn(` El equipo ${equipoActual?.name || "desconocido"} no tiene ingredientes asignados.`);
         return;
     }
 
     if (ingredienteActualIndex >= equipoActual.ingredients.length) {
-        console.warn("⚠️ No hay más ingredientes para mostrar.");
+        console.warn(" No hay más ingredientes para mostrar.");
         return;
     }
 
     let ingrediente = equipoActual.ingredients[ingredienteActualIndex];
 
     if (!ingrediente || !Array.isArray(ingrediente.pistas) || ingrediente.pistas.length === 0) {
-        console.warn(`⚠️ Ingrediente no válido o sin pistas para el equipo ${equipoActual.name}.`);
+        console.warn(` Ingrediente no válido o sin pistas para el equipo ${equipoActual.name}.`);
         return;
     }
 
@@ -673,11 +512,11 @@ export function cumplioReto() {
     
         progresoPistas[ingrediente.nombre]++;
     } else {
-        console.log(`✅ Todas las pistas de "${ingrediente.nombre}" han sido mostradas.`);
+        console.log(` Todas las pistas de "${ingrediente.nombre}" han sido mostradas.`);
         ingredienteActualIndex++;
     
         if (ingredienteActualIndex >= equipoActual.ingredients.length) {
-            console.log("🔄 Se completaron todos los ingredientes de este equipo.");
+            console.log(" Se completaron todos los ingredientes de este equipo.");
             
             
             
@@ -685,7 +524,7 @@ export function cumplioReto() {
             pasarAlSiguienteTurno();
         } else {
             let siguienteIngrediente = equipoActual.ingredients[ingredienteActualIndex];
-            console.log(`🔄 Pasando al siguiente ingrediente: ${siguienteIngrediente.nombre}`);
+            console.log(` Pasando al siguiente ingrediente: ${siguienteIngrediente.nombre}`);
     
             modalTitulo.innerText = "Pista 1";
             modalTexto.innerText = siguienteIngrediente.pistas[0];
@@ -719,7 +558,7 @@ export function cerrarModal() {
     let equipoActual = equipos[turnoActual];
 
     if (todasLasPistasCompletadas()) {
-        console.log(`✅ El equipo ${equipoActual.name} ha completado todas sus pistas.`);
+        console.log(` El equipo ${equipoActual.name} ha completado todas sus pistas.`);
         equiposCompletados[equipoActual.name] = true; // Marcar el equipo como completado
         
     }

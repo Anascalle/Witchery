@@ -140,7 +140,8 @@ export const preguntasPiensa = [
                 "Gato montés, quetzal, tiburón blanco, mono dorado.",
                 "Alce, zorro plateado, caballo salvaje, lobo gris."
             ],
-            respuestaCorrecta: "Minotauro, esfinge, hipogrifo, leviatán."
+            respuestaCorrecta: "Minotauro, esfinge, hipogrifo, leviatán.",
+             participantes: "Todos "
         },
         {
             pregunta: "¿Cuál de estas listas corresponde a la categoría 'Materiales usados para fabricar varitas mágicas'?",
@@ -217,7 +218,8 @@ export const preguntasPiensa = [
                 "Ballena",
                 "Pulpo"
             ],
-            respuestaCorrecta: "Pulpo"
+            respuestaCorrecta: "Pulpo",
+            
         }
     
     
@@ -238,7 +240,7 @@ export const preguntasEscribe = [
         pregunta: "Usa las letras de la palabra GRIMORIO para formar un acrónimo que tenga sentido. Cada letra debe representar una palabra o parte de una frase relacionada.",
         tipo: "desafio", 
         respuestaCorrecta: "Debe formar un acrónimo que tenga sentido.",
-        participantes: "Todos"
+        participantes: "Todos "
     },
     {
         pregunta: "Usa las letras de la palabra HECHIZO para formar un acrónimo que tenga sentido. Cada letra debe representar una palabra o parte de una frase relacionada.",
@@ -250,7 +252,7 @@ export const preguntasEscribe = [
         tipo: "desafio", 
         palabras: ["Barco", "Diente", "Plaza", "Camino", "Rocas"],
         respuestaCorrecta: "Cada palabra debe transformarse correctamente.",
-        participantes: "Todos"
+         participantes: "Todos "
     },
     {
         pregunta: "Cambia solo una letra en cada palabra para formar una nueva palabra válida en español. No puedes agregar ni quitar letras, solo modificar una.",
@@ -267,7 +269,7 @@ export const preguntasEscribe = [
         pregunta: "Escribe una pregunta cuya respuesta sea 'la luna'.",
         tipo: "desafio", 
         respuestaCorrecta: "Debe ser una pregunta cuya respuesta sea la luna.",
-        participantes: "Todos"
+         participantes: "Todos "
     },
     {
         pregunta: "Usa las letras de la palabra BRUJA para formar un acrónimo que tenga sentido. Cada letra debe representar una palabra o parte de una frase relacionada.",
@@ -283,7 +285,7 @@ export const preguntasEscribe = [
         pregunta: "Escribe una frase en la que cada palabra tenga la misma cantidad de letras.",
         tipo: "desafio", 
         respuestaCorrecta: "Debe ser una frase donde todas las palabras tengan el mismo número de letras.",
-        participantes: "Todos"
+        
     },
     {
         pregunta: "Escribe una palabra que sea un anagrama de 'bruja' y 'mala'. Anagrama: Cambiar el orden de las letras y formar otra palabra.",
@@ -294,7 +296,7 @@ export const preguntasEscribe = [
         pregunta: "Escribe un acertijo sobre un fantasma.",
         tipo: "desafio", 
         respuestaCorrecta: "Cualquier acertijo sobre un fantasma.",
-        participantes: "Todos"
+         participantes: "Todos "
     },
     {
         pregunta: "Escribe un acertijo sobre un hada.",
@@ -310,7 +312,7 @@ export const preguntasEscribe = [
         pregunta: "Completa el refrán: El que con lobos anda, __________.",
         respuestaCorrecta:  "aullar aprende",
         tipo: "rellena",
-        participantes: "Todos"
+         participantes: "Todos "
     },
     {
         pregunta: "Completa el refrán: En casa de herrero, __________.",
@@ -349,7 +351,8 @@ export const preguntasCrea = [
     {
         pregunta: "Modela con plastilina a un dragón de tres cabezas. Tu equipo debe adivinar qué criatura has modelado.",
         tipo: "reto",
-        respuestaCorrecta: "Un dragón de tres cabezas"
+        respuestaCorrecta: "Un dragón de tres cabezas",
+        participantes: "Ambos"
     },
     {
         pregunta: "Modela con plastilina a un cuervo. Tu equipo debe adivinar qué criatura has modelado.",
@@ -364,7 +367,8 @@ export const preguntasCrea = [
     {
         pregunta: "Dibuja un búho. Tu equipo debe adivinar qué criatura has dibujado.",
         tipo: "reto",
-        respuestaCorrecta: "Un búho"
+        respuestaCorrecta: "Un búho",
+         participantes: "Ambos"
     },
     {
         pregunta: "Dibuja un fénix. Tu equipo debe adivinar qué criatura has dibujado.",
@@ -384,7 +388,8 @@ export const preguntasCrea = [
     {
         pregunta: "Dibuja un portal a otra dimensión. Tu equipo debe adivinar qué objeto has dibujado.",
         tipo: "reto",
-        respuestaCorrecta: "Un portal a otra dimensión"
+        respuestaCorrecta: "Un portal a otra dimensión",
+         participantes: "Ambos"
     },
     {
         pregunta: "Dibuja una mano lanzando un hechizo. Tu equipo debe adivinar qué acción representa el dibujo.",
@@ -399,7 +404,8 @@ export const preguntasCrea = [
     {
         pregunta: "Dibuja un grimorio con símbolos mágicos. Tu equipo debe adivinar qué objeto has dibujado.",
         tipo: "reto",
-        respuestaCorrecta: "Un grimorio con símbolos mágicos"
+        respuestaCorrecta: "Un grimorio con símbolos mágicos",
+         participantes: "Ambos"
     },
     {
         pregunta: "Dibuja una escoba voladora. Tu equipo debe adivinar qué objeto has dibujado.",
@@ -434,7 +440,8 @@ export const preguntasCrea = [
     {
         pregunta: "Modela un tritón. Tu equipo debe adivinar qué criatura has modelado.",
         tipo: "reto",
-        respuestaCorrecta: "Un tritón"
+        respuestaCorrecta: "Un tritón",
+         participantes: "Ambos"
     },
     {
         pregunta: "Modela una varita mágica. Tu equipo debe adivinar qué objeto has modelado.",
@@ -459,7 +466,8 @@ export const preguntasCrea = [
     {
         pregunta: "Dibuja la respuesta de este acertijo: Puede contener agua, pero tiene muchos agujeros. ",
         tipo: "acertijo",
-        respuestaCorrecta: "Una esponja"
+        respuestaCorrecta: "Una esponja",
+         participantes: "Ambos"
     },
     {
         pregunta: "Dibuja la respuesta de este acertijo: Es más ligera que el aire, pero la persona más fuerte no puede sostenerla por mucho tiempo. ",
@@ -560,16 +568,16 @@ export const preguntasActua = [
         ],
     },
         {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
             tipo: "reto",
             elige: [
-                "Imitar a Mickey Mouse",
+                "Imita a Pac-Man",
                 "Un chef preparando sushi",
                 "Un perro cavando un hoyo"
             ]
         },
         {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
             tipo: "reto",
             elige: [
                 "Imitar a Elsa de Frozen",
@@ -578,7 +586,7 @@ export const preguntasActua = [
             ]
         },
         {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
             tipo: "reto",
             elige: [
                 "Imitar a Spider-Man lanzando telarañas",
@@ -587,7 +595,7 @@ export const preguntasActua = [
             ]
         },
         {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
             tipo: "reto",
             elige: [
                 "Imitar a Mario Bros saltando obstáculos",
@@ -596,43 +604,43 @@ export const preguntasActua = [
             ]
         },
         {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
             tipo: "reto",
             elige: [
-                "Imitar a Bob Esponja riendo",
+                "Imitar a Superman volando",
                 "Un pastelero haciendo una tarta de cumpleaños",
                 "Un elefante usando su trompa"
             ]
         },
         {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
             tipo: "reto",
             elige: [
-                "Imitar a Peppa Pig hablando feliz",
+                "Imita a Tarzán balanceándose en lianas",
                 "Un futbolista celebrando un gol",
                 "Un mono trepando un árbol"
             ]
         },
         {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
             tipo: "reto",
             elige: [
-                "Imitar a Batman con su voz grave",
+                "Imitar a Cenicienta cuando perdio zapato",
                 "Un mecánico arreglando una llanta pinchada",
                 "Un pato nadando en un lago"
             ]
         },
         {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
             tipo: "reto",
             elige: [
-                "Imitar a Dora la Exploradora dando instrucciones",
+                "Imitar al capitán garfio",
                 "Un cantante en un concierto",
                 "Un tigre acechando a su presa"
             ]
         },
         {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
             tipo: "reto",
             elige: [
                 "Imitar a la Sirenita nadando bajo el mar",
@@ -641,19 +649,19 @@ export const preguntasActua = [
             ]
         },
         {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
             tipo: "reto",
             elige: [
-                "Imitar a Winnie the Pooh buscando miel",
+                "Imita a Buzz Lightyear",
                 "Un mago sacando un conejo del sombrero",
                 "Un león rugiendo fuerte"
             ]
         },
         {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar (Puede hacer sonidos más no hablar)",
+            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
             tipo: "reto",
             elige: [
-                "Imitar a Shrek gruñendo",
+                "Imitar a la reina roja de Alicia en el país de las maravillas",
                 "Un veterinario revisando a un loro parlante",
                 "Un canguro saltando rápidamente"
             ]
