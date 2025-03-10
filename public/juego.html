@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Witchery</title>
+    <title>Juego en Curso</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Witchery</h1>
+    <h1>Juego en Curso</h1>
     <div id="turno" class="turno"></div>
 
     <div id="modal-hechizo" class="modal">
         <div class="modal-contenido">
-            <span class="cerrar"  id= "cerrar-hechizo" onclick="cerrarModalHechizo()">×</span>
+            <span class="cerrar" onclick="cerrarModalHechizo()">×</span>
             <h2 id="titulo-hechizo">Ingresa el código del hechizo</h2>
             <input id="codigo-hechizo" type="text" placeholder="Código del hechizo" />
             <button onclick="validarCodigo()">Lanzar Hechizo</button>
@@ -20,51 +20,29 @@
         </div>
     </div>
     
+    
     <div class="cartas-container">
         <div class="carta" onclick="mostrarModal('Crea')">Crea</div>
         <div class="carta" onclick="mostrarModal('Actúa')">Actúa</div>
         <div class="carta" onclick="mostrarModal('Escribe')">Escribe</div>
         <div class="carta" onclick="mostrarModal('Piensa')">Piensa</div>
         <div class="carta" onclick="mostrarModalHechizo('Hechizo')">Hechizo</div>
+
     </div>
 
     <div id="modal" class="modal">
         <div class="modal-contenido">
-            <span id="cerrar-hechizos"  onclick="cerrarModal()">&times;</span>
+            <span class="cerrar" onclick="cerrarModal()">&times;</span>
             <h2 id="modal-titulo"></h2>
             <div id="pista-container" class="pista-container">
                 <img id="pista-imagen" src="" alt="Imagen de pista" class="pista-imagen" style="display: none;">
                 <p id="modal-texto" class="pista-texto"></p>
-                
-                <div id="palabra-container" class="palabra-container" style="display: none;"></div>
             </div>
-            <div id="opciones-container" class="opciones-container" style="display: none;"></div> 
-        
-            <button id="enviar-respuesta-btn" style="display:none;">Enviar Respuesta</button>
             <button id="iniciar-btn">Iniciar</button>
-            <button id="cumplio-btn" style="display:none;">Cumplió</button>
-            <button id="no-cumplio-btn" style="display:none;">No cumplió</button>
-            <button id="ver-respuesta-btn" style="display:none;">Abrir Respuesta</button> 
-
-        </div>
-
-    </div>
-    <button id="verificar-ingredientes-btn" onclick="verificarIngredientes()">Verificar Ingredientes</button>
-    <div id="modal-verificacion" class="modal">
-        <div class="modal-content">
-            
-            <h2>Verifica tus ingredientes</h2>
-            <h4>Selecciona los 3 ingredientes en el orden que los encontraste</h4>
-            <div id="contenedor-ingredientes"></div>
+<button id="cumplio-btn" style="display:none;">Cumplió</button>
+<button id="no-cumplio-btn" style="display:none;">No cumplió</button>
         </div>
     </div>
-    
-    
-    
-
-
-</body>
-</html>
 
     <script type="module" src="../src/js/gamelogic.js"></script>
 </body>
