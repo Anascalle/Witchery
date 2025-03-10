@@ -313,22 +313,35 @@ body {
     padding: 10px;
     font-size: 16px;
     font-family: 'Montserrat Alternates', sans-serif;
-    background: #ffffff52;
+    background: #ffffff31;
     color: #CCA352;
-    border: 2px solid #CCA352;
+    border: 2px solid #cca35280;
     border-radius: 10px;
     outline: none;
     transition: 0.3s ease-in-out;
     box-sizing: border-box;
 }
 
+#nombres-container input:focus{
+    background-color: #ffffffe9;
+    color: rgb(22, 22, 22);
+    filter: drop-shadow(0 0 3px #d2a854a0);
+}
+
+#nombres-container input:not(:placeholder-shown):not(:focus) {
+    border-color: #CCA352;
+    color: #865900;
+    background: #ffffffe9;
+    filter: drop-shadow(0 0 3px #d2a854a0);
+}
+
 #mezclar-btn{
-    width: 25%;
-    padding: 10px;
+    width: 26%;
+    padding: 12px;
     font-size: 18px;
     font-family: 'Montserrat Alternates', sans-serif;
     font-style: normal;
-    background: #240044;
+    background: #280545;
     color: #CCA352;
     border: 2px solid #CCA352;
     border-radius: 10px;
@@ -338,12 +351,19 @@ body {
     margin-top: 20px;
 }
 
+#mezclar-btn:hover{
+    background: rgba(255, 255, 255, 0.825);
+    color: #865900;
+    border: 2px solid #CCA352;
+    filter: drop-shadow(0 0 3px #d2a854bc);
+}
+
 .grupo{
     height: 8vh;
     font-size: 18px;
     font-family: 'Montserrat Alternates', sans-serif;
     background: #cca35260;
-    color: #CCA352;
+    color: white;
     border: 2px solid #CCA352;
     border-radius: 10px;
     appearance: none;

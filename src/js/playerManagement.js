@@ -42,6 +42,12 @@ function generarGrupos() {
         nombres.push(nombre);
     }
 
+    // Ocultar el select-wrapper cuando se haga clic en "Crear grupos"
+    let selectWrapper = document.querySelector(".select-wrapper");
+    if (selectWrapper) {
+        selectWrapper.style.display = "none";
+    }
+
     // Mezclar nombres aleatoriamente
     for (let i = nombres.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
