@@ -1,4 +1,3 @@
-
 import { ingredientes } from "../data/ingredients.js";
 import { preguntasPiensa } from "../data/challenges.js";
 import { preguntasEscribe } from "../data/challenges.js";
@@ -36,7 +35,6 @@ export function siguienteTurno() {
         console.warn("No hay equipos para cambiar el turno.");
     }
 }
-
 
 
 let preguntasMostradas = [];  // Array para almacenar las preguntas ya mostradas
@@ -565,9 +563,6 @@ export function cerrarModal() {
 
     siguienteTurno(); // Pasar turno después de la verificación
 }
-
-
-
 
 export function noCumplioReto() {
     cerrarModal();
