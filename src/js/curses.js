@@ -2,6 +2,9 @@ import { hechizos } from "../data/spell.js";
 import { equipos, turnoActual } from "../js/modal.js"
 import { siguienteTurno } from "../js/modal.js";
 import { preguntasOraculo } from "../data/oracle.js"; // Importamos las preguntas
+import { pistasFalsas } from "../data/fakeClues.js";
+import { preguntasActua } from "../data/challenges.js";
+import { preguntasCrea } from "../data/challenges.js";
 
 export function mostrarModalHechizo() {
     let modalHechizo = document.getElementById("modal-hechizo");
@@ -52,13 +55,13 @@ export function mostrarModalOraculo() {
 
 function verificarRespuesta(indiceSeleccionado, respuestaCorrecta, modal) {
     let mensajeOraculo = document.getElementById("mensaje-oraculo");
-    let opcionesContainer = document.getElementById("opciones-container");
+    let opcionesContainer = document.getElementById("opciones-oraculo");
     // Limpiar opciones anteriores
     opcionesContainer.innerHTML = "";
 
     if (indiceSeleccionado === respuestaCorrecta) {
         // ✅ Respuesta correcta
-        mensajeOraculo.innerText = "Correcto, pueden proseguir con la búsqueda.";
+        mensajeOraculo.innerText = "✅ Correcto, pueden proseguir con la búsqueda.";
 
         // Agregar botón para cerrar el modal
         let botonCerrar = document.createElement("button");
@@ -69,7 +72,7 @@ function verificarRespuesta(indiceSeleccionado, respuestaCorrecta, modal) {
         opcionesContainer.appendChild(botonCerrar);
     } else {
         // ❌ Respuesta incorrecta
-        mensajeOraculo.innerText = " Incorrecto, quedan congelados y pierden un turno.";
+        mensajeOraculo.innerText = "❌ Incorrecto, quedan congelados y pierden un turno.";
 
         // Agregar botón de aceptar que además salta el turno
         let botonAceptar = document.createElement("button");
@@ -79,6 +82,77 @@ function verificarRespuesta(indiceSeleccionado, respuestaCorrecta, modal) {
             siguienteTurno(); // Pierden el turno
         });
         opcionesContainer.appendChild(botonAceptar);
+    }
+}
+
+export function mostrarModalPistaFalsa() {
+    let modal = document.getElementById("modal-pista-falsa");
+    let mensajePista = document.getElementById("mensaje-pista-falsa");
+    let botonCerrar = document.getElementById("cerrar-pista-falsa");
+
+    // Elegir una pista aleatoria
+    let pistaAleatoria = pistasFalsas[Math.floor(Math.random() * pistasFalsas.length)];
+
+    if (modal && mensajePista && botonCerrar) {
+        mensajePista.innerText = `\n\n${pistaAleatoria}`;
+
+        modal.style.display = "block";
+
+        botonCerrar.onclick = () => {
+            modal.style.display = "none"; // Cerrar el modal al hacer clic
+        };
+    } else {
+        console.error("Error: Modal de pista falsa no encontrado.");
+    }
+}
+
+export function mostrarModalDesafioExtra() {
+    let modal = document.getElementById("modal-desafio-extra");
+    let mensajeInicial = document.getElementById("mensaje-inicial-desafio-extra");
+    let botonAceptar = document.getElementById("aceptar-desafio-extra");
+    let contenidoDesafio = document.getElementById("contenido-desafio-extra");
+    let mensajeDesafio = document.getElementById("mensaje-desafio-extra");
+    let botonCumplio = document.getElementById("cumplio-desafio");
+    let botonNoCumplio = document.getElementById("no-cumplio-desafio");
+
+    // Combinar los retos de "Crea" y "Actúa"
+    let desafiosExtra = [...preguntasCrea, ...preguntasActua];
+
+    // Seleccionar un desafío aleatorio
+    let desafioAleatorio = desafiosExtra[Math.floor(Math.random() * desafiosExtra.length)];
+
+    if (modal && mensajeInicial && botonAceptar && contenidoDesafio && mensajeDesafio && botonCumplio && botonNoCumplio) {
+        modal.style.display = "block"; // Mostrar el modal
+
+        // Evento para el botón "Aceptar" que muestra el desafío
+        botonAceptar.onclick = () => {
+            mensajeInicial.style.display = "none"; // Ocultar el mensaje inicial
+            botonAceptar.style.display = "none"; // Ocultar el botón de aceptar
+            contenidoDesafio.style.display = "block"; // Mostrar el desafío y los botones
+
+            // Verificar si el reto tiene opciones o es una pregunta con respuesta
+            if (desafioAleatorio.elige) {
+                mensajeDesafio.innerHTML = `<strong>Elige una opción para actuar:</strong><br>`;
+                desafioAleatorio.elige.forEach(opcion => {
+                    mensajeDesafio.innerHTML += `- ${opcion}<br>`;
+                });
+            } else {
+                mensajeDesafio.innerHTML = `<strong>${desafioAleatorio.pregunta}</strong>`;
+            }
+        };
+
+        // Evento para cerrar el modal si completan el reto
+        botonCumplio.onclick = () => {
+            modal.style.display = "none"; // Cerrar el modal normalmente
+        };
+
+        // Evento para cerrar el modal y saltar turno si no lo cumplen
+        botonNoCumplio.onclick = () => {
+            modal.style.display = "none"; // Cerrar el modal
+            siguienteTurno(); // Saltar turno como penalización
+        };
+    } else {
+        console.error("Error: Modal de desafío extra no encontrado.");
     }
 }
 
@@ -119,7 +193,7 @@ export function cerrarModalHechizo() {
 function aplicarEfecto(hechizoCodigo) {
     if (!hechizoCodigo) return; // Si no hay hechizo, no hacer nada
 
-    let equipoContrario = equipos[(turnoActual + 1) % equipos.length];
+    let equipoContrario = equipos[(turnoActual) % equipos.length];
 
     switch (hechizoCodigo) {
         case "K1L2": // Prueba del Oráculo
@@ -134,12 +208,12 @@ function aplicarEfecto(hechizoCodigo) {
 
         case "Q7R8": // Desafío Espejo
             console.log(`🪞 ${equipoContrario.name} debe completar dos desafíos en su próximo turno.`);
-            dobleRetoActivo = true; // Activamos el estado de doble reto
+            mostrarModalDesafioExtra()
             break;
 
         case "G3H4": // La Manzana Envenenada
             console.log(`🍎 ${equipoContrario.name} recibirá una pista falsa.`);
-            equipoContrario.recibePistaFalsa = true;
+            mostrarModalPistaFalsa()
             break;
 
         default:

@@ -1,6 +1,6 @@
 import { actualizarTurno, siguienteTurno } from "./turns.js";
 import { mostrarModal, cerrarModal, cumplioReto, noCumplioReto,  } from "./modal.js";
-import { mostrarModalHechizo, validarCodigo, cerrarModalHechizo, mostrarModalOraculo } from "./curses.js"
+import { mostrarModalHechizo, validarCodigo, cerrarModalHechizo, mostrarModalOraculo, mostrarModalDesafioExtra, mostrarModalPistaFalsa } from "./curses.js"
 
 document.addEventListener("DOMContentLoaded", function () {
    
@@ -21,5 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.validarCodigo = validarCodigo;
     window.cerrarModalHechizo = cerrarModalHechizo;
     window.mostrarModalOraculo = mostrarModalOraculo;
+    window.mostrarModalDesafioExtra = mostrarModalDesafioExtra;
+    window.mostrarModalPistaFalsa = mostrarModalPistaFalsa;
   
 });

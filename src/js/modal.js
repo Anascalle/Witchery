@@ -16,7 +16,7 @@ export function actualizarTurno() {
     let turnoElemento = document.getElementById("turno");
 
     if (equipos.length > 0 && turnoElemento) {
-        turnoElemento.innerText = `Turno de: ${equipos[turnoActual].name}`;
+        turnoElemento.innerHTML = `En este momento es turno del <strong>${equipos[turnoActual].name}</strong>`;
     } else {
         console.warn("No hay equipos disponibles o no se encontró el elemento 'turno'.");
     }

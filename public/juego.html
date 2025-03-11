@@ -31,6 +31,29 @@
                 <div id="opciones-oraculo"></div>
             </div>
         </div>
+        <div id="modal-pista-falsa" class="modal">
+            <div class="modal-contenido">
+                <h2>¡Pista extra!</h2>
+                <p id="mensaje-pista-falsa"></p>
+                <button id="cerrar-pista-falsa">Cerrar</button>
+            </div>
+        </div>
+        <div id="modal-desafio-extra" class="modal">
+            <div class="modal-contenido">
+                <h2>¡Desafío extra!</h2>
+                <p id="mensaje-inicial-desafio-extra">
+                    ¡Sorpresa! Como resultado del hechizo, deberán completar un desafío extra de Crea o Actúa para seguir. 
+                    Solo uno del equipo puede ver el desafío.
+                </p>
+                <button id="aceptar-desafio-extra">Aceptar</button>
+        
+                <div id="contenido-desafio-extra" style="display: none;">
+                    <p id="mensaje-desafio-extra"></p>
+                    <button id="cumplio-desafio">Cumplió</button>
+                    <button id="no-cumplio-desafio">No cumplió</button>
+                </div>
+            </div>
+        </div>
         <div class="cartas-container">
             <div id="creaCard" class="carta" onclick="mostrarModal('Crea')">Crea</div>
             <div id="actuaCard" class="carta" onclick="mostrarModal('Actúa')">Actúa</div>

@@ -346,13 +346,13 @@ export const preguntasCrea = [
     {
         pregunta: "Dibuja un caldero mágico sin levantar el lápiz. Tu equipo debe adivinar qué objeto has dibujado.",
         tipo: "reto",
-        respuestaCorrecta: "Un caldero mágico"
+        respuestaCorrecta: "Un caldero mágico",
+        participantes: "Ambos"
     },
     {
         pregunta: "Modela con plastilina a un dragón de tres cabezas. Tu equipo debe adivinar qué criatura has modelado.",
         tipo: "reto",
-        respuestaCorrecta: "Un dragón de tres cabezas",
-        participantes: "Ambos"
+        respuestaCorrecta: "Un dragón de tres cabezas", 
     },
     {
         pregunta: "Modela con plastilina a un cuervo. Tu equipo debe adivinar qué criatura has modelado.",
@@ -402,9 +402,9 @@ export const preguntasCrea = [
         respuestaCorrecta: "Una calavera encantada"
     },
     {
-        pregunta: "Dibuja un grimorio con símbolos mágicos. Tu equipo debe adivinar qué objeto has dibujado.",
+        pregunta: "Dibuja un libro de hechizos. Tu equipo debe adivinar qué objeto has dibujado.",
         tipo: "reto",
-        respuestaCorrecta: "Un grimorio con símbolos mágicos",
+        respuestaCorrecta: "Un libro de hechizos",
          participantes: "Ambos"
     },
     {
