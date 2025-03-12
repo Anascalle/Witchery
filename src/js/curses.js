@@ -27,7 +27,7 @@ export function mostrarModalHechizo() {
 export function mostrarModalOraculo() {
     let modalOraculo = document.getElementById("modal-oraculo");
     let mensajeOraculo = document.getElementById("mensaje-oraculo");
-    let opcionesContainer = document.getElementById("opciones-container");
+    let opcionesContainer = document.getElementById("opciones-oraculo");
 
     // Elegir una pregunta aleatoria
     let preguntaAleatoria = preguntasOraculo[Math.floor(Math.random() * preguntasOraculo.length)];
@@ -55,7 +55,7 @@ export function mostrarModalOraculo() {
 
 function verificarRespuesta(indiceSeleccionado, respuestaCorrecta, modal) {
     let mensajeOraculo = document.getElementById("mensaje-oraculo");
-    let opcionesContainer = document.getElementById("opciones-container");
+    let opcionesContainer = document.getElementById("opciones-oraculo");
     // Limpiar opciones anteriores
     opcionesContainer.innerHTML = "";
 

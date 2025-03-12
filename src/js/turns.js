@@ -9,7 +9,7 @@ localStorage.setItem("turnoActual", JSON.stringify(turnoActual));
 export function actualizarTurno() {
     let turnoElemento = document.getElementById("turno");
     if (equipos.length > 0 && turnoElemento) {
-        turnoElemento.innerText = `Turno de: ${equipos[turnoActual]?.name || "Equipo desconocido"}`;
+        turnoElemento.innerHTML = `En este momento es turno del <span class="equipo-nombre"> ${equipos[turnoActual]?.name || "Equipo desconocido"}</span>`;
     } else {
         console.warn("No hay equipos disponibles o no se encontró el elemento 'turno'.");
     }

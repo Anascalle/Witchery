@@ -1,6 +1,7 @@
 export const ingredientes = [
     {
         "nombre": "Raíz de Susurros",
+        "imagen":"img/Raizdelsusurro.jpg",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Crece bajo tierra para absorber nutrientes",
@@ -9,6 +10,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Fruta Estrella Nocturna",
+        "imagen":"img/Frutaestrellada.jpg",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Dulce y comestible encarnación de un astro",
@@ -17,6 +19,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Escamas de Dracohelios",
+        "imagen":"img/Escamasdedracohelios.jpg",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Tiene un brillo dorado que se asemeja al sol",
@@ -25,6 +28,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Escamas de Tritón Abisal",
+        "imagen":"img/Escamasdetriton.jpg",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Es algo que tienen los peces y los reptiles",
@@ -33,6 +37,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Pluma de Cuervo Estelar",
+        "imagen":"img/Plumadecuervoestelar.jpg",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Brilla con un intenso tono de azul pese a su pequeño tamaño",
@@ -41,6 +46,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Pluma de Fénix Japonés",
+        "imagen":"img/Plumasdefenix.jpg",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Tiene un brillo dorado que se asemeja al sol",
@@ -49,6 +55,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Lágrimas de Unicornio",
+        "imagen":"img/Lagrimasdeunicornio.jpg",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Es el resultado de una gran tristeza en el corazón",
@@ -57,6 +64,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Lágrimas de Ninfa",
+        "imagen":"img/Lagrimasdeninfa.jpg",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Tiene un brillo dorado que se asemeja al sol",
@@ -65,6 +73,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Raíz Cadavérica",
+        "imagen":"img/Raizcad.jpg",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Crece bajo tierra para absorber nutrientes",
@@ -73,6 +82,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Violeta de los Suspiros",
+        "imagen":"img/Violetadelossuspiros.jpg",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Abre sus pétalos bajo ciertas condiciones",
@@ -81,6 +91,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Tulipán de la Aurora",
+        "imagen":"img/Tulipanesdelaaurora.jpg",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Abre sus pétalos bajo ciertas condiciones",
@@ -89,6 +100,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Raíz de Fuego Frío",
+        "imagen":"img/Raizdefuegofrio.jpg",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Crece bajo tierra para absorber nutrientes",
@@ -97,6 +109,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Flor de Loto de Sangre",
+        "imagen":"img/Flordeloto.jpg",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Abre sus pétalos bajo ciertas condiciones",
@@ -105,6 +118,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Escarabajo de Rubi",
+        "imagen":"img/Escarabajorubi.jpg",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Es pequeño y suele ir caminando por el bosque",
@@ -113,6 +127,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Escarabajo Opalino",
+        "imagen":"img/Escarabajoopalino.jpg",
         "pistas": [
             "El ingrediente proviene de una criatura",
             "Es pequeño y suele ir caminando por el bosque",
@@ -121,6 +136,7 @@ export const ingredientes = [
     },
     {
         "nombre": "Fruta de Sol Ardiente",
+        "imagen":"img/Frutadesolardiente.jpg",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Tiene un brillo dorado que se asemeja al sol",

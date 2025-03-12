@@ -36,10 +36,21 @@ function generarGrupos() {
     for (let i = 0; i < cantidad; i++) {
         let nombre = document.getElementById(`nombre${i}`).value.trim();
         if (nombre === "") {
-            alert("Todos los nombres deben ser ingresados.");
+            Swal.fire({
+                title: "Error",
+                text: "Todos los nombres deben ser ingresados.",
+                icon: "warning",
+                confirmButtonText: "Entendido"
+            });
             return;
         }
         nombres.push(nombre);
+    }
+
+    // Ocultar el select-wrapper cuando se haga clic en "Crear grupos"
+    let selectWrapper = document.querySelector(".select-wrapper");
+    if (selectWrapper) {
+        selectWrapper.style.display = "none";
     }
 
     // Mezclar nombres aleatoriamente
