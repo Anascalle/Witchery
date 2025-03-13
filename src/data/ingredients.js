@@ -1,7 +1,7 @@
 export const ingredientes = [
     {
         "nombre": "Raíz de Susurros",
-        "imagen":"../../public/img/Raizdelsusurro.jpg",
+        "imagen":"https://github.com/Anascalle/Witchery/blob/e4cc43f00653f3f41f71935fb9212133a0040fdb/public/img/Raizdelsusurro.jpg",
         "pistas": [
             "El ingrediente es de origen vegetal",
             "Crece bajo tierra para absorber nutrientes",
