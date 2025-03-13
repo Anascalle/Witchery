@@ -248,13 +248,20 @@ export function mostrarModal(categoria, ingredienteNombre = null) {
     enviarRespuestaBtn.onclick = function () {
         let inputElemento = document.getElementById('respuesta-input');
         let opcionSeleccionada = inputElemento.value.trim();
+    
         if (opcionSeleccionada === "") {
-            alert("Por favor ingresa una respuesta.");
+            Swal.fire({
+                icon: "warning",
+                title: "Oops...",
+                text: "Por favor ingresa una respuesta.",
+                confirmButtonText: "OK"
+            });
             return;
         }
+    
         validarRespuesta(opcionSeleccionada, preguntaAleatoria.respuestaCorrecta, opcionesContainer);
         enviarRespuestaBtn.style.display = "none";
-    };
+    };    
     
 
     modal.style.display = "block";
@@ -335,19 +342,14 @@ export function verificarIngredientes() {
                 button.classList.add("boton-ingrediente");
 
                 // Crear imagen para el ingrediente
-                let img = document.createElement("img");
-                img.src = ingrediente.imagen || "ruta/por/defecto/imagen.jpg"; // Ruta por defecto en caso de que la imagen esté vacía
-                img.alt = ingrediente.nombre;
-                img.style.width = "100px";  // Ajusta el tamaño de la imagen
-                img.style.height = "100px";
-                img.style.marginRight = "10px";  // Espacio entre la imagen y el texto
+                button.style.backgroundImage = `url('${ingrediente.imagen || "ruta/por/defecto/imagen.jpg"}')`;
+                button.style.backgroundSize = "cover"; // Ajusta la imagen para cubrir el botón
+                button.style.backgroundPosition = "center"; // Centra la imagen
+                button.style.border = "none";
 
                 // Asignamos el nombre del ingrediente como atributo `data-name` y lo ocultamos visualmente
                 button.setAttribute("data-name", ingrediente.nombre);
                 button.setAttribute("data-id", ingrediente.id); // (Si necesitas un identificador único)
-
-                // Agregar la imagen al botón
-                button.appendChild(img);
 
                 // Agregar el botón al contenedor
                 contenedorIngredientes.appendChild(button);
@@ -369,8 +371,15 @@ export function verificarIngredientes() {
                             console.log(`Ingredientes seleccionados: ${ingredientesSeleccionados.length}`);
                         }
                     } else {
-                        alert("¡Ya seleccionaste 3 ingredientes!");
-                    }
+                        Swal.fire({
+                            icon: "warning",
+                            title: "¡Atención!",
+                            text: "¡Ya seleccionaste 3 ingredientes!",
+                            confirmButtonText: "Entendido",
+                            timer: 2000, // La alerta se cierra automáticamente después de 2 segundos
+                            timerProgressBar: true // Muestra una barra de progreso mientras el temporizador está activo
+                        });
+                    }                    
                 };
 
                 // Guardar los botones para referencia futura
@@ -380,6 +389,7 @@ export function verificarIngredientes() {
             // Botón de verificación
             let botonVerificar = document.createElement("button");
             botonVerificar.textContent = "Verificar Selección";
+            botonVerificar.classList.add("boton-verificar");
             botonVerificar.onclick = function() {
                 // Normalizar la comparación: convertir a minúsculas y eliminar espacios
                 let ingredientesSeleccionadosNormalizados = ingredientesSeleccionados.map(ingrediente => 
@@ -391,34 +401,46 @@ export function verificarIngredientes() {
 
                 // Comparar los ingredientes seleccionados con los ingredientes del equipo
                 if (JSON.stringify(ingredientesSeleccionadosNormalizados.sort()) === JSON.stringify(ingredientesEsperadosNormalizados.sort())) {
-                    alert("¡Correcto! Los ingredientes seleccionados son los correctos.");
-                    
-                    // Limpiar la selección si es correcta (opcional si prefieres resetear los ingredientes después de cada turno)
-                    ingredientesSeleccionados = [];
-                    botonesIngredientes.forEach(button => {
-                        button.classList.remove("seleccionado");
-                        button.style.backgroundColor = ""; // Resetear color de fondo
-                    });
-
-                    modal.style.display = "none"; // Cerrar el modal después de verificar correctamente
-                    siguienteTurno(); // Cambiar turno si la verificación es correcta
+                    Swal.fire({
+                        icon: "success",
+                        title: "¡Correcto!",
+                        text: "Los ingredientes seleccionados son los correctos.",
+                        confirmButtonText: "Continuar",
+                        allowOutsideClick: false // Evita que se cierre al hacer clic fuera
+                    }).then(() => {
+                        // Limpiar la selección si es correcta (opcional si prefieres resetear los ingredientes después de cada turno)
+                        ingredientesSeleccionados = [];
+                        botonesIngredientes.forEach(button => {
+                            button.classList.remove("seleccionado");
+                            button.style.backgroundColor = ""; // Resetear color de fondo
+                        });
+                
+                        modal.style.display = "none"; // Cerrar el modal después de verificar correctamente
+                        siguienteTurno(); // Cambiar turno si la verificación es correcta
+                    });                
                 } else {
-                    alert("¡Incorrecto! Los ingredientes seleccionados no coinciden.");
-                    
-                    // Limpiar la selección para que el jugador pueda escoger otros ingredientes
-                    ingredientesSeleccionados = [];
-                    botonesIngredientes.forEach(button => {
-                        button.classList.remove("seleccionado");
-                        button.style.backgroundColor = ""; // Resetear color de fondo
+                    Swal.fire({
+                        icon: "error",
+                        title: "¡Incorrecto!",
+                        text: "Los ingredientes seleccionados no coinciden.",
+                        confirmButtonText: "Intentar de nuevo",
+                        allowOutsideClick: false // Evita que se cierre al hacer clic fuera
+                    }).then(() => {
+                        // Limpiar la selección para que el jugador pueda escoger otros ingredientes
+                        ingredientesSeleccionados = [];
+                        botonesIngredientes.forEach(button => {
+                            button.classList.remove("seleccionado");
+                            button.style.backgroundColor = ""; // Resetear color de fondo
+                        });
+                
+                        modal.style.display = "none"; // Cerrar el modal si es incorrecto
+                        siguienteTurno(); // Cambiar turno también si es incorrecto
                     });
-
-                    modal.style.display = "none"; // Cerrar el modal si es incorrecto
-                    siguienteTurno(); // Cambiar turno también si es incorrecto
-                }
+                }                
             };
 
             // Agregar botón de verificación al contenedor
-            contenedorIngredientes.appendChild(botonVerificar);
+            modal.appendChild(botonVerificar);
 
             modal.style.display = "block";
         };

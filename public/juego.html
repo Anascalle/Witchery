@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Princess+Sofia&display=swap" rel="stylesheet">
     <title>Witchery</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="TurnoContainer">
@@ -17,11 +18,11 @@
 
         <div id="modal-hechizo" class="modal">
             <div class="modal-contenido">
-                <span class="cerrar" onclick="cerrarModalHechizo()">×</span>
+                <span class="cerrar" onclick="cerrarModalHechizo()">X</span>
                 <h2 id="titulo-hechizo">Ingresa el código del hechizo</h2>
                 <input id="codigo-hechizo" type="text" placeholder="Código del hechizo" />
                 <p id="mensaje-hechizo"></p>
-                <button onclick="validarCodigo()">Lanzar Hechizo</button>
+                <button onclick="validarCodigo()" class="modal-contenido-button">Lanzar Hechizo</button>
             </div>
         </div>
         <div id="modal-oraculo" class="modal" style="display: none">
@@ -35,7 +36,7 @@
             <div class="modal-contenido">
                 <h2>¡Pista extra!</h2>
                 <p id="mensaje-pista-falsa"></p>
-                <button id="cerrar-pista-falsa">Cerrar</button>
+                <button id="cerrar-pista-falsa" class="modal-contenido-button">Cerrar</button>
             </div>
         </div>
         <div id="modal-desafio-extra" class="modal">
@@ -45,12 +46,12 @@
                     ¡Sorpresa! Como resultado del hechizo, deberán completar un desafío extra de Crea o Actúa para seguir. 
                     Solo uno del equipo puede ver el desafío.
                 </p>
-                <button id="aceptar-desafio-extra">Aceptar</button>
+                <button id="aceptar-desafio-extra" class="modal-contenido-button">Aceptar</button>
         
                 <div id="contenido-desafio-extra" style="display: none;">
                     <p id="mensaje-desafio-extra"></p>
-                    <button id="cumplio-desafio">Cumplió</button>
-                    <button id="no-cumplio-desafio">No cumplió</button>
+                    <button id="cumplio-desafio" class="modal-contenido-button">Cumplió</button>
+                    <button id="no-cumplio-desafio" class="modal-contenido-button">No cumplió</button>
                 </div>
             </div>
         </div>
@@ -60,6 +61,7 @@
             <div id="escribeCard" class="carta" onclick="mostrarModal('Escribe')">Escribe</div>
             <div id="piensaCard" class="carta" onclick="mostrarModal('Piensa')">Piensa</div>
             <div id="hechizoCard" class="carta" onclick="mostrarModalHechizo('Hechizo')">Hechizo</div>
+            
         </div>
 
         <div id="modal" class="modal">
@@ -74,11 +76,11 @@
                 </div>
                 <div id="opciones-container" class="opciones-container" style="display: none;"></div> 
             
-                <button id="enviar-respuesta-btn" style="display:none;">Enviar Respuesta</button>
-                <button id="iniciar-btn">Iniciar</button>
-                <button id="cumplio-btn" style="display:none;">Cumplió</button>
-                <button id="no-cumplio-btn" style="display:none;">No cumplió</button>
-                <button id="ver-respuesta-btn" style="display:none;">Abrir Respuesta</button> 
+                <button id="enviar-respuesta-btn" style="display:none;" class="modal-contenido-button">Enviar Respuesta</button>
+                <button id="iniciar-btn" class="modal-contenido-button">Iniciar</button>
+                <button id="cumplio-btn" style="display:none;" class="modal-contenido-button">Cumplió</button>
+                <button id="no-cumplio-btn" style="display:none;" class="modal-contenido-button">No cumplió</button>
+                <button id="ver-respuesta-btn" style="display:none;" class="modal-contenido-button">Abrir Respuesta</button> 
 
             </div>
 
@@ -86,7 +88,6 @@
         <button id="verificar-ingredientes-btn" onclick="verificarIngredientes()">Verificar Ingredientes</button>
         <div id="modal-verificacion" class="modal">
             <div class="modal-content">
-                
                 <h2>Verifica tus ingredientes</h2>
                 <h4>Selecciona los 3 ingredientes en el orden que los encontraste</h4>
                 <div id="contenedor-ingredientes"></div>

@@ -481,191 +481,189 @@ export const preguntasActua = [
     {
         pregunta: "Elige una de las tres opciones para actuar",
         tipo: "reto",
-        elige:["Chef cocinando un postre complicado",
-                "Pastelero decorando una tarta de bodas enorme ",
-                " Mesero cargando una bandeja muy pesada",
+        elige:["Chef",
+                "Pastelero",
+                "Camarero",
         ]
     },
     {
         pregunta: "Elige una de las tres opciones para actuar",
         tipo: "reto",
         elige: [
-            "Policía persiguiendo a un ladrón",
-            "Bombero apagando un incendio",
-            "Médico atendiendo una emergencia"
+            "Policía",
+            "Bombero",
+            "Médico"
         ],
     },
     {
         pregunta: "Elige una de las tres opciones para actuar",
         tipo: "reto",
         elige: [
-            "Profesor explicando una lección difícil",
-            "Entrenador de fútbol dando instrucciones en un partido",
-            "Músico tocando en un concierto"
+            "Profesor",
+            "Entrenador de fútbol",
+            "Músico"
         ],
     },
     {
         pregunta: "Elige una de las tres opciones para actuar",
         tipo: "reto",
         elige: [
-            "Piloto despegando un avión",
-            "Conductor de autobús en un tráfico terrible",
-            "Repartidor de pizza llegando tarde"
+            "Piloto",
+            "Conductor de autobús",
+            "Repartidor de pizza"
         ],
     },
     {
         pregunta: "Elige una de las tres opciones para actuar",
         tipo: "reto",
         elige: [
-            "Un veterinario revisando un perro inquieto",
-            "Un granjero ordeñando una vaca",
-            "Un biólogo observando animales salvajes"
+            "Veterinario",
+            "Granjero",
+            "Biólogo"
         ],
     },
     {
         pregunta: "Elige una de las tres opciones para actuar",
         tipo: "reto",
         elige: [
-            "Un actor en una escena de acción",
-            "Un bailarín profesional haciendo una coreografía difícil",
-            "Un mago haciendo un truco impresionante"
+            "Actor",
+            "Bailarín",
+            "Mago"
         ],
     },
     {
         pregunta: "Elige una de las tres opciones para actuar",
         tipo: "reto",
         elige: [
-            "Un cajero contando billetes rápidamente",
-            "Un mecánico reparando un coche averiado",
-            "Un albañil construyendo una casa"
+            "Cajero",
+            "Mecánico",
+            "Albañil"
         ],
     },
     {
         pregunta: "Elige una de las tres opciones para actuar",
         tipo: "reto",
         elige: [
-            "Un fotógrafo intentando capturar la mejor foto",
-            "Un periodista entrevistando a alguien importante",
-            "Un influencer grabando un video viral"
+            "Fotógrafo",
+            "Periodista",
+            "Influencer"
         ],
     },
     {
         pregunta: "Elige una de las tres opciones para actuar",
         tipo: "reto",
         elige: [
-            "Un astronauta caminando en la luna",
-            "Un buzo explorando el fondo del océano",
-            "Un guardia de seguridad revisando cámaras de vigilancia"
+            "Astronauta",
+            "Buzo",
+            "Guardia de seguridad"
         ],
     },
     {
         pregunta: "Elige una de las tres opciones para actuar",
         tipo: "reto",
         elige: [
-            "Un peluquero cortando el cabello con mucho estilo",
-            "Un diseñador de moda mostrando sus creaciones",
-            "Un tatuador haciendo un tatuaje complicado"
+            "Peluquero",
+            "Diseñador de moda",
+            "Tatuador"
         ],
     },
-        {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
-            tipo: "reto",
-            elige: [
-                "Imita a Pac-Man",
-                "Un chef preparando sushi",
-                "Un perro cavando un hoyo"
-            ]
-        },
-        {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
-            tipo: "reto",
-            elige: [
-                "Imitar a Elsa de Frozen",
-                "Un policía dirigiendo el tráfico",
-                "Un gato estirándose perezosamente"
-            ]
-        },
-        {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
-            tipo: "reto",
-            elige: [
-                "Imitar a Spider-Man lanzando telarañas",
-                "Un doctor operando a un paciente",
-                "Un gallo cantando al amanecer"
-            ]
-        },
-        {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
-            tipo: "reto",
-            elige: [
-                "Imitar a Mario Bros saltando obstáculos",
-                "Un piloto aterrizando un avión",
-                "Un caballo trotando con elegancia"
-            ]
-        },
-        {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
-            tipo: "reto",
-            elige: [
-                "Imitar a Superman volando",
-                "Un pastelero haciendo una tarta de cumpleaños",
-                "Un elefante usando su trompa"
-            ]
-        },
-        {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
-            tipo: "reto",
-            elige: [
-                "Imita a Tarzán balanceándose en lianas",
-                "Un futbolista celebrando un gol",
-                "Un mono trepando un árbol"
-            ]
-        },
-        {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
-            tipo: "reto",
-            elige: [
-                "Imitar a Cenicienta cuando perdio zapato",
-                "Un mecánico arreglando una llanta pinchada",
-                "Un pato nadando en un lago"
-            ]
-        },
-        {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
-            tipo: "reto",
-            elige: [
-                "Imitar al capitán garfio",
-                "Un cantante en un concierto",
-                "Un tigre acechando a su presa"
-            ]
-        },
-        {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
-            tipo: "reto",
-            elige: [
-                "Imitar a la Sirenita nadando bajo el mar",
-                "Un bombero rescatando a un gato de un árbol",
-                "Un pingüino caminando torpemente"
-            ]
-        },
-        {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
-            tipo: "reto",
-            elige: [
-                "Imita a Buzz Lightyear",
-                "Un mago sacando un conejo del sombrero",
-                "Un león rugiendo fuerte"
-            ]
-        },
-        {
-            pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
-            tipo: "reto",
-            elige: [
-                "Imitar a la reina roja de Alicia en el país de las maravillas",
-                "Un veterinario revisando a un loro parlante",
-                "Un canguro saltando rápidamente"
-            ]
-        }
-    
-    
+    {
+        pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
+        tipo: "reto",
+        elige: [
+            "Imita a Pac-Man",
+            "Preparar sushi",
+            "Un perro cavando un hoyo"
+        ]
+    },
+    {
+        pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
+        tipo: "reto",
+        elige: [
+            "Imitar a Elsa de Frozen",
+            "Dirigir el tráfico",
+            "Un gato estirándose perezosamente"
+        ]
+    },
+    {
+        pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
+        tipo: "reto",
+        elige: [
+            "Imitar a Spider-Man lanzando telarañas",
+            "Operar a un paciente",
+            "Un gallo cantando al amanecer"
+        ]
+    },
+    {
+        pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
+        tipo: "reto",
+        elige: [
+            "Imitar a Mario Bros saltando obstáculos",
+            "Aterrizar un avión",
+            "Un caballo trotando con elegancia"
+        ]
+    },
+    {
+        pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
+        tipo: "reto",
+        elige: [
+            "Imitar a Superman volando",
+            "Hacer una tarta de cumpleaños",
+            "Un elefante usando su trompa"
+        ]
+    },
+    {
+        pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
+        tipo: "reto",
+        elige: [
+            "Imita a Tarzán balanceándose en lianas",
+            "Celebrar un gol",
+            "Un mono trepando un árbol"
+        ]
+    },
+    {
+        pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
+        tipo: "reto",
+        elige: [
+            "Imitar a Cenicienta cuando perdió el zapato",
+            "Arreglar una llanta pinchada",
+            "Un pato nadando en un lago"
+        ]
+    },
+    {
+        pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
+        tipo: "reto",
+        elige: [
+            "Imitar al Capitán Garfio",
+            "Cantar en un concierto",
+            "Un tigre acechando a su presa"
+        ]
+    },
+    {
+        pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
+        tipo: "reto",
+        elige: [
+            "Imitar a la Sirenita nadando bajo el mar",
+            "Rescatar a un gato de un árbol",
+            "Un pingüino caminando torpemente"
+        ]
+    },
+    {
+        pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
+        tipo: "reto",
+        elige: [
+            "Imita a Buzz Lightyear",
+            "Sacar un conejo del sombrero",
+            "Un león rugiendo fuerte"
+        ]
+    },
+    {
+        pregunta: "Deben actuar las tres cosas en orden y adivinarlas todas para ganar ",
+        tipo: "reto",
+        elige: [
+            "Imitar a la Reina Roja de Alicia en el país de las maravillas",
+            "Revisar a un loro parlante",
+            "Un canguro saltando rápidamente"
+        ]
+    }
 ];

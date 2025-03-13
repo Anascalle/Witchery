@@ -21,7 +21,7 @@ export function mostrarModalHechizo() {
     // Limpiar cualquier mensaje previo
     mensajeHechizo.innerText = "";
     codigoInput.style.display = "block";
-    botonHechizo.style.display = "block";
+    botonHechizo.style.display = "inline-block";
 }
 
 export function mostrarModalOraculo() {
@@ -61,22 +61,24 @@ function verificarRespuesta(indiceSeleccionado, respuestaCorrecta, modal) {
 
     if (indiceSeleccionado === respuestaCorrecta) {
         // ✅ Respuesta correcta
-        mensajeOraculo.innerText = "✅ Correcto, pueden proseguir con la búsqueda.";
+        mensajeOraculo.innerText = "Correcto, pueden proseguir con la búsqueda.";
 
         // Agregar botón para cerrar el modal
         let botonCerrar = document.createElement("button");
         botonCerrar.innerText = "Cerrar";
+        botonCerrar.classList.add("modal-contenido-button");
         botonCerrar.addEventListener("click", () => {
             modal.style.display = "none"; // Cierra el modal sin penalización
         });
         opcionesContainer.appendChild(botonCerrar);
     } else {
         // ❌ Respuesta incorrecta
-        mensajeOraculo.innerText = "❌ Incorrecto, quedan congelados y pierden un turno.";
+        mensajeOraculo.innerText = "Incorrecto, quedan congelados y pierden un turno.";
 
         // Agregar botón de aceptar que además salta el turno
         let botonAceptar = document.createElement("button");
         botonAceptar.innerText = "Cerrar";
+        botonAceptar.classList.add("modal-contenido-button");
         botonAceptar.addEventListener("click", () => {
             modal.style.display = "none"; // Cierra el modal
             siguienteTurno(); // Pierden el turno

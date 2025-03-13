@@ -4,78 +4,6 @@ body {
     text-align: center;
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-contenido {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    text-align: center;
-}
-
-.cerrar {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-#verificar-ingredientes-btn {
-    display: none;
-    margin-top: 15px;
-    padding: 10px;
-    background: green;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.ingrediente-btn.seleccionado {
-    border-color: green;
-    background-color: rgba(0, 255, 0, 0.3);
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-    background-color: white;
-    margin: 10% auto;
-    padding: 20px;
-    width: 50%;
-    text-align: center;
-    position: relative;
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 24px;
-    cursor: pointer;
-}
-
 #ingredientes-container button {
     margin: 10px;
     padding: 10px;
@@ -582,4 +510,467 @@ body {
 
 #hechizoCard:hover{
     filter: drop-shadow(0 0 10px #c399fb76);
+}
+
+.modal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000b9;
+}
+
+@keyframes fadeInZoom {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.modal-contenido {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40vw;
+    height: auto;
+    background-color: #15021df9;
+    box-sizing: border-box;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 5%;
+    border: 2px solid #CCA352;
+    box-shadow: 0px 0px 20px #cca352bd;
+    animation: fadeInZoom 0.5s ease-out;
+}
+
+
+.modal-contenido h2{
+    font-family: "Princess Sofia", cursive;
+    font-weight: 550;
+    font-size: 32px;
+    color: #ffffff;
+    font-style: normal;
+    margin: 0%;
+}
+
+.modal-contenido p{
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 35;
+    color: rgb(255, 252, 240);
+    font-weight: 500;
+}
+
+.modal-contenido-button{
+    width: 40%;
+    padding: 12px;
+    font-size: 16px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    background: #240044;
+    color: #CCA352;
+    border: 2.5px solid #CCA352;
+    filter: drop-shadow(0 0 6px #d2a85455);
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+    margin-top: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.modal-contenido button:hover{
+    background: rgb(23, 23, 23);
+}
+
+#cerrar-hechizos{
+    width: 2.5vw;
+    height: 2.5vw;
+    border-radius: 200px;
+    background-color: rgba(255, 255, 255, 0.437);
+    font-family: "Princess Sofia", cursive;
+    font-weight: 500;
+    font-size: 30px;
+    color: #ffffff;
+    font-style: normal;
+    cursor: pointer;
+    padding: 2px;
+    position: fixed;
+    top: 10%;
+    left: 85%;
+}
+
+#cerrar-hechizos:hover{
+    color:#240044;
+    background-color: rgb(255, 255, 255);
+}
+
+#opciones-container ul {
+    list-style: none; /* Quita los estilos de viñeta */
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    color: #CCA352;
+}
+  
+#opciones-container li {
+    display: inline; /* Hace que los elementos estén en línea */
+}
+  
+#opciones-container li::after {
+    content: " / "; /* Agrega la barra inclinada después de cada elemento */
+}
+  
+#opciones-container li:last-child::after {
+    content: ""; /* Elimina la barra del último elemento */
+}
+
+#palabra-container ul {
+    list-style: none; /* Quita los estilos de viñeta */
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    color: #CCA352;
+}
+  
+#palabra-container li {
+    display: inline; /* Hace que los elementos estén en línea */
+}
+  
+#palabra-container li::after {
+    content: " / "; /* Agrega la barra inclinada después de cada elemento */
+}
+  
+#palabra-container li:last-child::after {
+    content: ""; /* Elimina la barra del último elemento */
+}
+
+.cerrar{
+    width: 2.5vw;
+    height: 2.5vw;
+    border-radius: 200px;
+    background-color: rgba(255, 255, 255, 0.437);
+    font-family: "Princess Sofia", cursive;
+    font-weight: 500;
+    font-size: 20px;
+    color: #ffffff;
+    font-style: normal;
+    cursor: pointer;
+    padding: 2px;
+    position: fixed;
+    top: 10%;
+    left: 85%;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.cerrar:hover{
+    color:#240044;
+    background-color: rgb(255, 255, 255);
+}
+
+#codigo-hechizo{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    background: #ffffff5c;
+    color: #CCA352;
+    border: 2px solid #CCA352;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+    box-sizing: border-box;
+    margin-top: 5%;
+}
+
+#codigo-hechizo:focus{
+    background-color: #ffffffe9;
+    color: rgb(22, 22, 22);
+    filter: drop-shadow(0 0 3px #d2a854a0);
+}
+
+#codigo-hechizo::placeholder{
+    color: rgba(255, 255, 255, 0.807);
+}
+
+#opciones-container button{
+    padding: 12px;
+    font-size: 16px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    background: #240044;
+    color: #CCA352;
+    border: 2.5px solid #CCA352;
+    filter: drop-shadow(0 0 6px #d2a85455);
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+    margin-top: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#opciones-container button:hover{
+    background: rgb(23, 23, 23);
+}
+
+#mensaje-oraculo{
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 35;
+    color: rgb(255, 252, 240);
+    font-weight: 500;
+}
+
+#opciones-oraculo button{
+    padding: 12px;
+    font-size: 16px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    background: #240044;
+    color: #CCA352;
+    border: 2.5px solid #CCA352;
+    filter: drop-shadow(0 0 6px #d2a85455);
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+    margin-top: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#opciones-oraculo button:hover{
+    background: rgb(23, 23, 23);
+}
+
+#respuesta-input {
+    width: 82%;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    background: #ffffff5c;
+    color: #CCA352;
+    border: 2px solid #CCA352;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+#respuesta-input:focus{
+    background-color: #ffffffe9;
+    color: rgb(22, 22, 22);
+    filter: drop-shadow(0 0 3px #d2a854a0);
+}
+
+#respuesta-input::placeholder{
+    color: rgba(255, 255, 255, 0.807);
+}
+
+#respuesta-input:not(:placeholder-shown):not(:focus) {
+    border-color: #CCA352;
+    color: #865900;
+    background: #ffffffe9;
+    filter: drop-shadow(0 0 3px #d2a854a0);
+}
+
+#verificar-ingredientes-btn{
+    width: 40%;
+    padding: 12px;
+    font-size: 16px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    background: #013200;
+    color: #CCA352;
+    border: 2.5px solid #CCA352;
+    filter: drop-shadow(0 0 6px #d2a85455);
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+    margin-top: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#verificar-ingredientes-btn:hover{
+    background: rgb(23, 23, 23);
+}
+
+.ingrediente-btn.seleccionado {
+    border-color: green;
+    background-color: rgba(0, 255, 0, 0.3);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 80vh;
+    background-color: #15021df9;
+    box-sizing: border-box;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 4%;
+    border: 2px solid #CCA352;
+    box-shadow: 0px 0px 20px #cca352bd;
+    animation: fadeInZoom 0.5s ease-out;
+}
+
+
+.modal-content h2{
+    font-family: "Princess Sofia", cursive;
+    font-weight: 550;
+    font-size: 32px;
+    color: #ffffff;
+    font-style: normal;
+    margin: 0%;
+}
+
+.modal-content h4{
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 35;
+    color: rgb(255, 252, 240);
+    font-weight: 500;
+}
+
+#contenedor-ingredientes {
+    width: 100%;
+    height: 40vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Estiliza la barra de desplazamiento en navegadores basados en WebKit (Chrome, Edge, Safari) */
+#contenedor-ingredientes::-webkit-scrollbar {
+    width: 9px; /* Ancho de la barra vertical */
+}
+
+/* Estiliza la parte de fondo de la barra de desplazamiento */
+#contenedor-ingredientes::-webkit-scrollbar-track {
+    background: #ffffff58; /* Color de fondo de la barra */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Estiliza la barra deslizable */
+#contenedor-ingredientes::-webkit-scrollbar-thumb {
+    background: white; /* Color de la barra deslizable */
+    border-radius: 10px; /* Bordes redondeados */
+    transition: background 0.3s;
+}
+
+/* Cambia el color de la barra cuando se pasa el mouse */
+#contenedor-ingredientes::-webkit-scrollbar-thumb:hover {
+    background: #ddb7ff;
+}
+
+/* Elimina las flechas de la barra de desplazamiento */
+#contenedor-ingredientes::-webkit-scrollbar-button {
+    display: none;
+}
+
+.boton-verificar{
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.boton-verificar{
+    padding: 12px;
+    font-size: 16px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    background: #240044;
+    color: #CCA352;
+    border: 2.5px solid #CCA352;
+    filter: drop-shadow(0 0 6px #d2a85455);
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+    margin-top: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.boton-verificar:hover{
+    background: rgb(23, 23, 23);
+}
+
+.boton-ingrediente {
+    width: 9.5vw;
+    height: 30.2vh;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative; /* Necesario para la pseudo-clase */
+    overflow: hidden; /* Para evitar que los efectos sobresalgan del botón */
+}
+
+/* Agrega un pseudo-elemento para el efecto de opacidad */
+.boton-ingrediente::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0); /* Sin color por defecto */
+    transition: background 0.3s ease-in-out;
+}
+
+/* Cuando el usuario pase el mouse, se aplicará un color oscuro con opacidad */
+.boton-ingrediente:hover::after {
+    background: #c3923090; /* Negro con 40% de opacidad */
 }
