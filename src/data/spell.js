@@ -15,6 +15,6 @@ export const hechizos = [
     { codigo: "A7B8", nombre: "El Susurro", descripcion: "Una misteriosa energía envuelve al equipo contrario, obligándolos a elegir y realizar su próximo desafío de 'Piensa' solo en susurros. ¡Que sus palabras no se pierdan en la bruma encantada!" },
     { codigo: "C9D0", nombre: "El Fantasma Burlón", descripcion: "Un espíritu travieso se apodera del equipo contrario, forzando a uno de sus jugadores a elegir y completar un desafío de 'Crea' con los ojos vendados. ¡Que la magia guíe sus manos en la oscuridad!" },
     { codigo: "E1F2", nombre: "El Dragón Dormido", descripcion: "Un poderoso encantamiento sumerge a un miembro del equipo contrario en un profundo sueño mágico, impidiéndole participar en su próximo turno. ¡Solo el tiempo podrá despertarlo!" },
-    { codigo: "G3H4", nombre: "El Regalo", descripcion: "Uh-oh... parece que algo salió mal. ¿Querías hacerles una maldad al equipo opuesto, no? Pues, sorpresa... ¡parece que acabas de regalarle una pista al equipo rival!" },
+    { codigo: "G3H4", nombre: "El Regalo", descripcion: "Uh-oh... algo salió mal. ¿Querías hacerles una maldad al equipo opuesto, no? Bueno… parece que las cosas tomaron un giro inesperado. Una pista proveniente de fuentes dudosas ha aparecido frente al grupo contrario...Cualquier pista es bienvenida ¿No?" },
     { codigo: "I5J6", nombre: "La Rueda de la Fortuna", descripcion: "La suerte ha hablado. El equipo contrario deberá enfrentar el desafío que el equipo que sacó la carta elija. ¡Que la rueda gire y el destino decida su prueba!" }
 ];

@@ -346,21 +346,21 @@ export const preguntasCrea = [
     {
         pregunta: "Dibuja un caldero mágico sin levantar el lápiz. Tu equipo debe adivinar qué objeto has dibujado.",
         tipo: "reto",
-        respuestaCorrecta: "Un caldero mágico",
+        respuestaCorrecta: "Un caldero",
         participantes: "Ambos"
     },
     {
-        pregunta: "Modela con plastilina a un dragón de tres cabezas. Tu equipo debe adivinar qué criatura has modelado.",
+        pregunta: "Modela con plastilina un dragón. Tu equipo debe adivinar qué criatura has modelado.",
         tipo: "reto",
-        respuestaCorrecta: "Un dragón de tres cabezas", 
+        respuestaCorrecta: "Un dragón"
     },
     {
-        pregunta: "Modela con plastilina a un cuervo. Tu equipo debe adivinar qué criatura has modelado.",
+        pregunta: "Modela con plastilina un pájaro. Tu equipo debe adivinar qué criatura has modelado.",
         tipo: "reto",
-        respuestaCorrecta: "Un cuervo"
+        respuestaCorrecta: "Un pájaro"
     },
     {
-        pregunta: "Modela con plastilina a un gato. Tu equipo debe adivinar qué criatura has modelado.",
+        pregunta: "Modela con plastilina un gato. Tu equipo debe adivinar qué criatura has modelado.",
         tipo: "reto",
         respuestaCorrecta: "Un gato"
     },
@@ -368,7 +368,7 @@ export const preguntasCrea = [
         pregunta: "Dibuja un búho. Tu equipo debe adivinar qué criatura has dibujado.",
         tipo: "reto",
         respuestaCorrecta: "Un búho",
-         participantes: "Ambos"
+        participantes: "Ambos"
     },
     {
         pregunta: "Dibuja un fénix. Tu equipo debe adivinar qué criatura has dibujado.",
@@ -389,23 +389,23 @@ export const preguntasCrea = [
         pregunta: "Dibuja un portal a otra dimensión. Tu equipo debe adivinar qué objeto has dibujado.",
         tipo: "reto",
         respuestaCorrecta: "Un portal a otra dimensión",
-         participantes: "Ambos"
+        participantes: "Ambos"
     },
     {
-        pregunta: "Dibuja una mano lanzando un hechizo. Tu equipo debe adivinar qué acción representa el dibujo.",
+        pregunta: "Dibuja una mano haciendo el gesto de la paz. Tu equipo debe adivinar qué representa el dibujo.",
         tipo: "reto",
-        respuestaCorrecta: "Una mano lanzando un hechizo"
+        respuestaCorrecta: "Una mano haciendo el gesto de la paz"
     },
     {
-        pregunta: "Modela con plastilina una calavera encantada. Tu equipo debe adivinar qué objeto has modelado.",
+        pregunta: "Modela con plastilina una calavera. Tu equipo debe adivinar qué objeto has modelado.",
         tipo: "reto",
-        respuestaCorrecta: "Una calavera encantada"
+        respuestaCorrecta: "Una calavera"
     },
     {
-        pregunta: "Dibuja un libro de hechizos. Tu equipo debe adivinar qué objeto has dibujado.",
+        pregunta: "Dibuja un libro antiguo. Tu equipo debe adivinar qué objeto has dibujado.",
         tipo: "reto",
-        respuestaCorrecta: "Un libro de hechizos",
-         participantes: "Ambos"
+        respuestaCorrecta: "Un libro antiguo",
+        participantes: "Ambos"
     },
     {
         pregunta: "Dibuja una escoba voladora. Tu equipo debe adivinar qué objeto has dibujado.",
@@ -413,14 +413,14 @@ export const preguntasCrea = [
         respuestaCorrecta: "Una escoba voladora"
     },
     {
-        pregunta: "Dibuja un hechizo de tormenta eléctrica. Tu equipo debe adivinar qué objeto has dibujado.",
+        pregunta: "Dibuja una tormenta desatada en el cielo. Tu equipo debe adivinar qué has dibujado.",
         tipo: "reto",
-        respuestaCorrecta: "Un hechizo de tormenta eléctrica"
+        respuestaCorrecta: "Una tormenta"
     },
     {
-        pregunta: "Dibuja un hechizo de amor. Tu equipo debe adivinar qué objeto has dibujado.",
+        pregunta: "Dibuja una escena de romance. Tu equipo debe adivinar qué representa el dibujo.",
         tipo: "reto",
-        respuestaCorrecta: "Un hechizo de amor"
+        respuestaCorrecta: "Romance"
     },
     {
         pregunta: "Dibuja un hombre lobo. Tu equipo debe adivinar qué criatura has dibujado.",
@@ -428,12 +428,12 @@ export const preguntasCrea = [
         respuestaCorrecta: "Un hombre lobo"
     },
     {
-        pregunta: "Modela un caldero mágico. Tu equipo debe adivinar qué objeto has modelado.",
+        pregunta: "Modela un caldero. Tu equipo debe adivinar qué objeto has modelado.",
         tipo: "reto",
-        respuestaCorrecta: "Un caldero mágico"
+        respuestaCorrecta: "Un caldero"
     },
     {
-        pregunta: "Dibuja un espejo mágico sin levantar el lápiz. Tu equipo debe de adivinar que estás dibujado.",
+        pregunta: "Dibuja un espejo mágico sin levantar el lápiz. Tu equipo debe de adivinar qué has dibujado.",
         tipo: "reto",
         respuestaCorrecta: "Un espejo mágico"
     },
@@ -441,7 +441,7 @@ export const preguntasCrea = [
         pregunta: "Modela un tritón. Tu equipo debe adivinar qué criatura has modelado.",
         tipo: "reto",
         respuestaCorrecta: "Un tritón",
-         participantes: "Ambos"
+        participantes: "Ambos"
     },
     {
         pregunta: "Modela una varita mágica. Tu equipo debe adivinar qué objeto has modelado.",
@@ -464,17 +464,16 @@ export const preguntasCrea = [
         respuestaCorrecta: "Un agujero"
     },
     {
-        pregunta: "Dibuja la respuesta de este acertijo: Puede contener agua, pero tiene muchos agujeros. ",
+        pregunta: "Dibuja la respuesta de este acertijo: Puede contener agua, pero tiene muchos agujeros.",
         tipo: "acertijo",
         respuestaCorrecta: "Una esponja",
-         participantes: "Ambos"
+        participantes: "Ambos"
     },
     {
-        pregunta: "Dibuja la respuesta de este acertijo: Es más ligera que el aire, pero la persona más fuerte no puede sostenerla por mucho tiempo. ",
+        pregunta: "Dibuja la respuesta de este acertijo: Es más ligera que el aire, pero la persona más fuerte no puede sostenerla por mucho tiempo.",
         tipo: "acertijo",
         respuestaCorrecta: "La respiración"
     }
-
 ];
 
 export const preguntasActua = [
