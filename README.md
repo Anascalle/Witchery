@@ -3,6 +3,7 @@
 ¡Bienvenidos a **Witchery**, el juego phygital de mesa que desafiará tus habilidades y pondrá a prueba tu ingenio, creatividad y destreza! En este juego de aventuras, dos equipos competirán para descubrir los tres ingredientes prohibidos de la **Poción del Eclipse** antes de que el tiempo se agote y quedes atrapado en el **Reino de las Sombras**.
 
 ¿Serás capaz de desatar la magia o sucumbirás al olvido? ¡La respuesta depende de ti y de tu aquelarre!
+https://www.behance.net/gallery/221365791/WITCHERY-PHYGITAL-GAME
 
 ## Objetivo del juego
 
